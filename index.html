@@ -1,0 +1,1742 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DetailGO — Premium Car Detailing</title>
+  <meta name="description" content="DetailGO — Detallado profesional de carros en Los Ángeles. Express $35, Regular $45, Premium $80, Full Detail $220. Llama o escribe: +1 (310) 776-2980." />
+  <meta property="og:title" content="DetailGO — Premium Car Detailing" />
+  <meta property="og:description" content="Detallado profesional que transforma cada vehículo. Resultados que hablan por sí solos." />
+  <meta property="og:image" content="images/foto1.jpeg" />
+  <meta property="og:type" content="website" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    /* ── DARK MODE (default) ── */
+    :root {
+      --bg:      #0a0f1e;
+      --bg2:     #0d1b3e;
+      --gold:    #c9a84c;
+      --gold-lt: #e8c96e;
+      --text:    #ffffff;
+      --gray:    #a0aec0;
+      --glass:   rgba(255,255,255,0.05);
+      --glass-b: rgba(255,255,255,0.10);
+      --border:  rgba(201,168,76,0.25);
+      --radius:  16px;
+      --footer:  #060a14;
+      --feat-color: rgba(255,255,255,0.75);
+    }
+
+    /* ── LIGHT MODE ── */
+    body.light {
+      --bg:      #eef2fb;
+      --bg2:     #e2e9f7;
+      --text:    #0d1b3e;
+      --gray:    #4a5568;
+      --glass:   rgba(255,255,255,0.70);
+      --glass-b: rgba(255,255,255,0.88);
+      --border:  rgba(201,168,76,0.35);
+      --footer:  #dde4f5;
+      --feat-color: rgba(13,27,62,0.78);
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Inter', sans-serif;
+      font-size: 16px;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background 300ms, color 300ms;
+    }
+
+    /* Hero text always white (over dark video) */
+    body.light .hero-content .hero-title  { color: #fff; }
+    body.light .hero-content .hero-title span { color: var(--gold); }
+    body.light .hero-content .hero-sub    { color: rgba(255,255,255,0.82); }
+    body.light .hero-content .hero-badge  { color: var(--gold); }
+    body.light .btn-secondary             { color: #fff; border-color: rgba(255,255,255,0.3); background: rgba(255,255,255,0.15); }
+
+    /* ── NAVBAR ── */
+    nav {
+      position: fixed;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 100;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+      width: max-content;
+      max-width: calc(100vw - 24px);
+      padding: 3px 16px 3px 4px;
+      background: radial-gradient(
+        ellipse at 30% 25%,
+        rgba(255,255,255,0.22) 0%,
+        rgba(180,220,255,0.08) 35%,
+        rgba(160,130,255,0.06) 65%,
+        rgba(120,210,200,0.08) 100%
+      );
+      backdrop-filter: blur(24px) saturate(1.4);
+      -webkit-backdrop-filter: blur(24px) saturate(1.4);
+      border: 1.5px solid rgba(255,255,255,0.38);
+      box-shadow:
+        inset 0  0  14px rgba(255,255,255,0.10),
+        inset -4px -4px 10px rgba(140,190,255,0.14),
+        inset  4px  4px  8px rgba(210,180,255,0.12),
+        0 8px 32px rgba(0,0,0,0.35),
+        0 0 0 0.5px rgba(255,255,255,0.15);
+      border-radius: 100px;
+      gap: 14px;
+      transition: box-shadow 300ms;
+    }
+
+    nav:hover {
+      box-shadow:
+        inset 0  0  18px rgba(255,255,255,0.14),
+        inset -4px -4px 12px rgba(140,190,255,0.20),
+        inset  4px  4px 10px rgba(210,180,255,0.18),
+        0 12px 40px rgba(0,0,0,0.40),
+        0 0 0 0.5px rgba(255,255,255,0.22);
+    }
+
+    body.light nav {
+      background: radial-gradient(
+        ellipse at 30% 25%,
+        rgba(255,255,255,0.70) 0%,
+        rgba(220,235,255,0.45) 40%,
+        rgba(200,185,255,0.30) 100%
+      );
+      border-color: rgba(255,255,255,0.65);
+    }
+
+    .nav-logo {
+      text-decoration: none;
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+    }
+
+    .nav-logo img {
+      height: 120px;
+      width: auto;
+      object-fit: contain;
+      display: block;
+    }
+
+    body.light .nav-logo img { filter: brightness(0.85); }
+
+    .nav-links {
+      display: flex;
+      gap: 24px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      color: var(--gray);
+      text-decoration: none;
+      font-size: 0.875rem;
+      font-weight: 500;
+      letter-spacing: 0.5px;
+      transition: color 200ms;
+    }
+    .nav-links a:hover { color: var(--gold); }
+    .nav-links a.active { color: var(--gold); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
+    }
+
+    .nav-toggle {
+      width: 34px;
+      height: 34px;
+      border-radius: 50%;
+      border: 1px solid var(--border);
+      background: var(--glass);
+      color: var(--gray);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: background 200ms, color 200ms, border-color 200ms;
+      font-size: 0.7rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      letter-spacing: 0.5px;
+    }
+    .nav-toggle:hover { background: var(--glass-b); color: var(--gold); border-color: var(--gold); }
+    .nav-toggle svg { width: 15px; height: 15px; stroke: currentColor; fill: none; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+
+    .nav-cta {
+      padding: 8px 20px;
+      background: var(--gold);
+      color: #0a0f1e;
+      border-radius: 50px;
+      text-decoration: none;
+      font-weight: 700;
+      font-size: 0.85rem;
+      transition: background 200ms, transform 150ms;
+      cursor: pointer;
+      white-space: nowrap;
+    }
+    .nav-cta:hover { background: var(--gold-lt); transform: scale(1.04); }
+
+    /* ── HAMBURGER ── */
+    .nav-hamburger {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      gap: 5px;
+      width: 36px;
+      height: 36px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      cursor: pointer;
+      padding: 0;
+    }
+    .nav-hamburger span {
+      display: block;
+      width: 18px;
+      height: 2px;
+      background: var(--text);
+      border-radius: 2px;
+      transition: transform 250ms, opacity 250ms;
+    }
+    .nav-hamburger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-hamburger.open span:nth-child(2) { opacity: 0; }
+    .nav-hamburger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── MOBILE MENU ── */
+    .mobile-menu {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 95;
+      background: rgba(8,12,26,0.97);
+      backdrop-filter: blur(24px);
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+    .mobile-menu.open { display: flex; }
+    .mobile-menu a {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text);
+      text-decoration: none;
+      padding: 14px 40px;
+      border-radius: 14px;
+      transition: color 200ms, background 200ms;
+      width: 100%;
+      max-width: 300px;
+      text-align: center;
+    }
+    .mobile-menu a:hover, .mobile-menu a:focus { color: var(--gold); background: rgba(201,168,76,0.08); outline: none; }
+    .mobile-menu-cta {
+      margin-top: 20px;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      background: var(--gold);
+      color: #0a0f1e !important;
+      border-radius: 50px;
+      font-family: 'Inter', sans-serif !important;
+      font-size: 1rem !important;
+      font-weight: 700;
+    }
+    .mobile-menu-cta:hover { background: var(--gold-lt) !important; }
+    .mobile-menu-close {
+      position: absolute;
+      top: 24px;
+      right: 24px;
+      width: 44px;
+      height: 44px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--text);
+      font-size: 1.4rem;
+      transition: background 150ms;
+    }
+    .mobile-menu-close:hover { background: rgba(201,168,76,0.2); }
+
+    /* ── HERO ── */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+
+    #hero-video {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      filter: brightness(0.38);
+    }
+
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg,rgba(10,15,30,.55) 0%,rgba(13,27,62,.40) 50%,rgba(10,15,30,.70) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 24px;
+      max-width: 780px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 6px 18px;
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.75rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 24px;
+      background: rgba(201,168,76,0.10);
+    }
+
+    .hero-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.8rem, 7vw, 5.5rem);
+      font-weight: 700;
+      line-height: 1.08;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .hero-title span { color: var(--gold); }
+
+    .hero-sub {
+      font-size: 1.125rem;
+      color: rgba(255,255,255,0.75);
+      max-width: 520px;
+      margin: 0 auto 36px;
+      line-height: 1.7;
+    }
+
+    .hero-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    .btn-primary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px;
+      background: var(--gold); color: #0a0f1e;
+      border-radius: 50px; font-weight: 700; font-size: 0.9375rem;
+      text-decoration: none;
+      transition: background 200ms, transform 150ms; cursor: pointer;
+    }
+    .btn-primary:hover { background: var(--gold-lt); transform: scale(1.04); }
+
+    .btn-secondary {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 32px;
+      background: var(--glass-b); color: #fff;
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50px; font-weight: 600; font-size: 0.9375rem;
+      text-decoration: none; backdrop-filter: blur(10px);
+      transition: background 200ms, transform 150ms; cursor: pointer;
+    }
+    .btn-secondary:hover { background: rgba(255,255,255,0.22); transform: scale(1.04); }
+
+    /* ── SECTION COMMON ── */
+    section { padding: 100px 24px; }
+    .section-label {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 3px;
+      text-transform: uppercase; color: var(--gold); margin-bottom: 12px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 700; line-height: 1.15; margin-bottom: 16px;
+      color: var(--text);
+    }
+    .section-sub { color: var(--gray); font-size: 1rem; max-width: 520px; line-height: 1.7; }
+    .section-header { margin-bottom: 60px; }
+    .section-header.centered { text-align: center; }
+    .section-header.centered .section-sub { margin-left: auto; margin-right: auto; }
+    .section-header.centered .gold-divider { margin-left: auto; margin-right: auto; }
+    .container { max-width: 1200px; margin: 0 auto; }
+    .gold-divider { width: 60px; height: 3px; background: var(--gold); border-radius: 2px; margin: 16px 0 0; }
+
+    /* ── STATS BAR ── */
+    .stats-bar {
+      display: flex; justify-content: center; gap: 60px;
+      padding: 40px 24px;
+      background: var(--bg2);
+      border-top: 1px solid var(--border); border-bottom: 1px solid var(--border);
+      flex-wrap: wrap;
+      transition: background 300ms;
+    }
+    .stat { text-align: center; }
+    .stat-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 2.25rem; font-weight: 700; color: var(--gold); line-height: 1;
+    }
+    .stat-label { font-size: 0.8125rem; color: var(--gray); letter-spacing: 1px; text-transform: uppercase; margin-top: 4px; }
+
+    /* ── GALLERY CAROUSEL ── */
+    #gallery { background: var(--bg); transition: background 300ms; }
+
+    .carousel-wrap {
+      position: relative; overflow: hidden;
+      border-radius: 20px; border: 1px solid var(--border);
+      box-shadow: 0 24px 80px rgba(0,0,0,0.4);
+    }
+    .carousel-track {
+      display: flex;
+      transition: transform 420ms cubic-bezier(0.4,0,0.2,1);
+      height: 520px;
+    }
+    .carousel-slide { min-width: 100%; position: relative; cursor: pointer; overflow: hidden; }
+    .carousel-slide img, .carousel-slide video {
+      width: 100%; height: 100%; object-fit: cover; display: block; pointer-events: none;
+    }
+    .carousel-slide-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, rgba(10,15,30,0.65) 0%, transparent 55%);
+      display: flex; align-items: flex-end; padding: 28px 32px; pointer-events: none;
+    }
+    .carousel-tag {
+      font-size: 0.75rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--gold); background: rgba(10,15,30,0.75);
+      padding: 5px 14px; border-radius: 50px; border: 1px solid var(--border);
+    }
+    .play-icon {
+      position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%);
+      width: 64px; height: 64px; background: rgba(201,168,76,0.88); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      pointer-events: none; transition: opacity 200ms;
+      box-shadow: 0 4px 24px rgba(201,168,76,0.4);
+    }
+    .play-icon svg { width: 24px; height: 24px; fill: #0a0f1e; margin-left: 5px; }
+
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%); z-index: 10;
+      width: 52px; height: 52px;
+      background: rgba(10,15,30,0.75); border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; backdrop-filter: blur(12px);
+      transition: background 200ms, transform 150ms;
+    }
+    .carousel-btn:hover { background: rgba(201,168,76,0.25); transform: translateY(-50%) scale(1.1); }
+    .carousel-btn svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 2.2; stroke-linecap: round; stroke-linejoin: round; }
+    .carousel-prev { left: 16px; }
+    .carousel-next { right: 16px; }
+
+    .carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 20px; }
+    .carousel-dot {
+      width: 8px; height: 8px; border-radius: 50%;
+      background: rgba(255,255,255,0.2); border: 1px solid var(--border);
+      cursor: pointer; transition: background 200ms, width 200ms;
+    }
+    body.light .carousel-dot { background: rgba(13,27,62,0.2); }
+    .carousel-dot.active { background: var(--gold); border-color: var(--gold); width: 24px; border-radius: 4px; }
+
+    .carousel-counter {
+      position: absolute; top: 16px; right: 20px; z-index: 5;
+      font-size: 0.8rem; font-weight: 600; color: rgba(255,255,255,0.75);
+      background: rgba(10,15,30,0.65); padding: 4px 12px; border-radius: 50px;
+      border: 1px solid var(--border); backdrop-filter: blur(8px); pointer-events: none;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--bg2); transition: background 300ms; }
+
+    .services-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 24px; }
+
+    .service-card {
+      background: var(--glass); border: 1px solid var(--border); border-radius: var(--radius);
+      padding: 32px 28px;
+      transition: transform 250ms, box-shadow 250ms, background 250ms;
+      cursor: default; position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--gold), transparent);
+      opacity: 0; transition: opacity 250ms;
+    }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 24px 60px rgba(201,168,76,0.15); background: var(--glass-b); }
+    .service-card:hover::before { opacity: 1; }
+    .service-card.featured { border-color: var(--gold); background: rgba(201,168,76,0.08); }
+    .service-card.featured::before { opacity: 1; }
+
+    .featured-badge {
+      position: absolute; top: 16px; right: 16px;
+      font-size: 0.65rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+      color: #0a0f1e; background: var(--gold); padding: 4px 10px; border-radius: 50px;
+    }
+
+    .service-icon {
+      width: 48px; height: 48px; background: rgba(201,168,76,0.15); border-radius: 12px;
+      display: flex; align-items: center; justify-content: center;
+      margin-bottom: 20px; border: 1px solid var(--border);
+    }
+    .service-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+
+    .service-name { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 6px; color: var(--text); }
+    .service-price { font-size: 2rem; font-weight: 700; color: var(--gold); margin-bottom: 20px; line-height: 1; }
+    .service-price span { font-size: 1rem; color: var(--gray); font-weight: 400; }
+
+    .service-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .service-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.875rem; color: var(--feat-color); line-height: 1.4; }
+
+    .feature-check {
+      width: 18px; height: 18px; min-width: 18px; border-radius: 50%;
+      background: rgba(201,168,76,0.15); border: 1px solid rgba(201,168,76,0.4);
+      display: flex; align-items: center; justify-content: center; margin-top: 1px;
+    }
+    .feature-check svg { width: 10px; height: 10px; stroke: var(--gold); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .feature-star { width: 18px; height: 18px; min-width: 18px; display: flex; align-items: center; justify-content: center; margin-top: 1px; }
+    .feature-star svg { width: 12px; height: 12px; fill: var(--gold); stroke: var(--gold); stroke-width: 1; }
+
+    /* ── PAYMENTS ── */
+    #payments { background: var(--bg); transition: background 300ms; }
+
+    .payments-row {
+      display: flex; justify-content: center; gap: 24px; flex-wrap: wrap; margin-top: 52px;
+    }
+
+    .pay-card {
+      display: flex; flex-direction: column; align-items: center; gap: 14px;
+      padding: 32px 40px;
+      background: var(--glass); border: 1px solid var(--border); border-radius: 20px;
+      min-width: 170px;
+      transition: transform 250ms, box-shadow 250ms, background 250ms;
+    }
+    .pay-card:hover { transform: translateY(-6px); box-shadow: 0 20px 48px rgba(201,168,76,0.12); background: var(--glass-b); }
+
+    .pay-icon {
+      width: 60px; height: 60px; border-radius: 16px;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .pay-icon svg { width: 32px; height: 32px; }
+
+    .pay-cash .pay-icon  { background: rgba(52,199,89,0.12);  border: 1px solid rgba(52,199,89,0.3); }
+    .pay-zelle .pay-icon { background: rgba(109,30,212,0.12); border: 1px solid rgba(109,30,212,0.3); }
+    .pay-venmo .pay-icon { background: rgba(0,140,255,0.12);  border: 1px solid rgba(0,140,255,0.3); }
+
+    .pay-letter {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      font-weight: 700;
+      line-height: 1;
+    }
+
+    .pay-name { font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 700; color: var(--text); }
+    .pay-sub  { font-size: 0.8rem; color: var(--gray); letter-spacing: 0.5px; }
+
+    /* ── CONTACT ── */
+    #contact { background: var(--bg2); text-align: center; transition: background 300ms; }
+
+    .cta-box {
+      max-width: 720px; margin: 0 auto; padding: 64px 40px;
+      background: var(--glass); border: 1px solid var(--border); border-radius: 24px;
+      backdrop-filter: blur(16px);
+    }
+    .cta-box .section-title { margin-bottom: 12px; }
+    .cta-box .section-sub { margin: 0 auto 40px; }
+
+    .contact-btns { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+    .contact-btn {
+      display: inline-flex; align-items: center; gap: 10px;
+      padding: 15px 28px; border-radius: 50px;
+      font-weight: 700; font-size: 0.9375rem;
+      text-decoration: none;
+      transition: background 200ms, transform 150ms, box-shadow 200ms;
+      cursor: pointer; min-width: 180px; justify-content: center;
+    }
+    .contact-btn svg { width: 22px; height: 22px; flex-shrink: 0; }
+
+    .btn-whatsapp { background: #25D366; color: #fff; box-shadow: 0 4px 24px rgba(37,211,102,0.35); }
+    .btn-whatsapp svg { fill: #fff; }
+    .btn-whatsapp:hover { background: #1ebe59; transform: scale(1.05); }
+
+    .btn-sms { background: rgba(201,168,76,0.12); color: var(--gold); border: 1.5px solid var(--gold); }
+    .btn-sms svg { stroke: var(--gold); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .btn-sms:hover { background: rgba(201,168,76,0.22); transform: scale(1.05); }
+
+    .btn-call { background: var(--glass-b); color: var(--text); border: 1.5px solid var(--border); backdrop-filter: blur(10px); }
+    .btn-call svg { stroke: var(--text); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
+    .btn-call:hover { background: var(--glass-b); transform: scale(1.05); }
+
+    .contact-divider {
+      display: flex; align-items: center; gap: 16px;
+      margin: 28px auto 0; max-width: 360px;
+      color: var(--gray); font-size: 0.8rem; letter-spacing: 1px; text-transform: uppercase;
+    }
+    .contact-divider::before, .contact-divider::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+
+    .contact-phone {
+      color: var(--gold);
+      font-weight: 700;
+      font-size: 1.125rem;
+      margin-top: 10px;
+      letter-spacing: 1px;
+    }
+
+    /* ── FLOATING WA ── */
+    .wa-float {
+      position: fixed; bottom: 28px; right: 28px; z-index: 200;
+      width: 60px; height: 60px; background: #25D366; border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      box-shadow: 0 8px 32px rgba(37,211,102,0.5);
+      transition: transform 200ms; cursor: pointer; text-decoration: none;
+    }
+    .wa-float:hover { transform: scale(1.12); }
+    .wa-float svg { width: 32px; height: 32px; fill: #fff; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--footer); padding: 40px 24px; text-align: center;
+      border-top: 1px solid var(--border); transition: background 300ms;
+    }
+    .footer-logo { display: flex; justify-content: center; margin-bottom: 12px; }
+    .footer-logo img { height: 48px; width: auto; object-fit: contain; }
+    body.light .footer-logo img { filter: brightness(0.85); }
+    .footer-sub { color: var(--gray); font-size: 0.875rem; }
+    .footer-copy { color: var(--gray); font-size: 0.8rem; opacity: 0.5; margin-top: 8px; }
+
+    /* ── LIGHTBOX ── */
+    .lightbox {
+      display: none; position: fixed; inset: 0; z-index: 500;
+      background: rgba(0,0,0,0.94);
+      align-items: center; justify-content: center; padding: 20px;
+    }
+    .lightbox.open { display: flex; }
+    .lightbox-inner {
+      position: relative; max-width: 960px; max-height: 88vh; width: 100%;
+      display: flex; align-items: center; justify-content: center;
+    }
+    #lightbox-content { width: 100%; display: flex; align-items: center; justify-content: center; }
+    #lightbox-content img, #lightbox-content video {
+      max-width: 100%; max-height: 80vh; object-fit: contain;
+      border-radius: 14px; box-shadow: 0 24px 80px rgba(0,0,0,0.6);
+    }
+    .lightbox-close {
+      position: absolute; top: -48px; right: 0;
+      background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 50%; width: 40px; height: 40px; color: #fff; font-size: 1.4rem;
+      cursor: pointer; display: flex; align-items: center; justify-content: center;
+      transition: background 150ms, color 150ms;
+    }
+    .lightbox-close:hover { background: var(--gold); color: #0a0f1e; }
+    .lb-arrow {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      width: 52px; height: 52px; background: rgba(10,15,30,0.80);
+      border: 1px solid var(--border); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; backdrop-filter: blur(12px);
+      transition: background 200ms, transform 150ms; z-index: 10;
+    }
+    .lb-arrow:hover { background: rgba(201,168,76,0.3); transform: translateY(-50%) scale(1.1); }
+    .lb-arrow svg { width: 22px; height: 22px; stroke: var(--gold); fill: none; stroke-width: 2.5; stroke-linecap: round; stroke-linejoin: round; }
+    .lb-prev { left: -68px; }
+    .lb-next { right: -68px; }
+    .lb-counter { position: absolute; bottom: -36px; left: 50%; transform: translateX(-50%); font-size: 0.8rem; color: rgba(255,255,255,0.5); letter-spacing: 1px; }
+
+    /* ── SCHEDULE SECTION ── */
+    .schedule-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 28px;
+      padding: 60px;
+      backdrop-filter: blur(16px);
+    }
+
+    .schedule-left .section-title { margin-bottom: 16px; }
+
+    .schedule-perks {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin: 28px 0 36px;
+    }
+    .schedule-perk {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.9rem;
+      color: var(--feat-color);
+    }
+
+    .schedule-cta {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: var(--gold);
+      color: #0a0f1e;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: background 200ms, transform 150ms;
+      cursor: pointer;
+    }
+    .schedule-cta:hover { background: var(--gold-lt); transform: scale(1.03); }
+
+    .schedule-note {
+      font-size: 0.78rem;
+      color: var(--gray);
+      margin-top: 14px;
+      opacity: 0.75;
+    }
+
+    /* calendar preview mockup */
+    .schedule-right {
+      display: flex;
+      justify-content: center;
+    }
+    .schedule-cal-preview {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 24px;
+      width: 100%;
+      max-width: 300px;
+    }
+    .cal-header {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--gold);
+      margin-bottom: 20px;
+      padding-bottom: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .cal-slots {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    .cal-slot {
+      padding: 10px 16px;
+      border-radius: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      text-align: center;
+    }
+    .cal-slot.available {
+      background: rgba(201,168,76,0.10);
+      border: 1px solid rgba(201,168,76,0.30);
+      color: var(--gold);
+      cursor: pointer;
+    }
+    .cal-slot.booked {
+      background: rgba(255,255,255,0.03);
+      border: 1px solid rgba(255,255,255,0.06);
+      color: var(--gray);
+      text-decoration: line-through;
+      opacity: 0.5;
+    }
+
+    @media (max-width: 900px) {
+      .schedule-card {
+        grid-template-columns: 1fr;
+        padding: 40px 28px;
+        gap: 40px;
+      }
+      .schedule-right { display: none; }
+    }
+
+    /* ── SERVICE BOOK BUTTON ── */
+    .service-book-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      width: 100%;
+      margin-top: 24px;
+      padding: 12px 20px;
+      background: var(--gold);
+      color: #0a0f1e;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.875rem;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 200ms, transform 150ms;
+    }
+    .service-book-btn:hover { background: var(--gold-lt); transform: scale(1.02); }
+    .service-book-btn svg { width: 14px; height: 14px; flex-shrink: 0; }
+
+    /* ── BOOKING MODAL ── */
+    .booking-overlay {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 600;
+      background: rgba(0,0,0,0.82);
+      backdrop-filter: blur(10px);
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .booking-overlay.open { display: flex; }
+
+    .booking-modal {
+      background: #0a0f1e;
+      border: 1px solid var(--border);
+      border-radius: 24px;
+      padding: 40px 36px;
+      width: 100%;
+      max-width: 460px;
+      position: relative;
+      box-shadow: 0 32px 80px rgba(0,0,0,0.7);
+    }
+    body.light .booking-modal { background: #dde6f5; }
+
+    .booking-service-tag {
+      display: inline-block;
+      padding: 5px 14px;
+      background: rgba(201,168,76,0.12);
+      border: 1px solid var(--border);
+      border-radius: 50px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--gold);
+      letter-spacing: 0.5px;
+      margin-bottom: 14px;
+    }
+
+    .booking-heading {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.55rem;
+      font-weight: 700;
+      color: var(--text);
+      margin-bottom: 4px;
+      line-height: 1.2;
+    }
+
+    .booking-price-display {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--gold);
+      margin-bottom: 28px;
+      line-height: 1;
+    }
+
+    .booking-form { display: flex; flex-direction: column; gap: 14px; }
+
+    .form-group { display: flex; flex-direction: column; gap: 5px; }
+
+    .form-label {
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: var(--gray);
+      letter-spacing: 0.8px;
+      text-transform: uppercase;
+    }
+
+    .form-input {
+      padding: 13px 16px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      color: var(--text);
+      font-size: 0.9375rem;
+      font-family: 'Inter', sans-serif;
+      outline: none;
+      width: 100%;
+      transition: border-color 200ms, background 200ms;
+    }
+    body.light .form-input { background: rgba(13,27,62,0.07); }
+    .form-input::placeholder { color: var(--gray); opacity: 0.6; }
+    .form-input:focus { border-color: var(--gold); background: rgba(201,168,76,0.06); }
+
+    .booking-submit {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      width: 100%;
+      padding: 15px;
+      margin-top: 6px;
+      background: #25D366;
+      color: #fff;
+      border: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      transition: background 200ms, transform 150ms;
+      box-shadow: 0 4px 24px rgba(37,211,102,0.3);
+    }
+    .booking-submit:hover { background: #1ebe59; transform: scale(1.02); }
+    .booking-submit svg { fill: #fff; width: 20px; height: 20px; flex-shrink: 0; }
+
+    .booking-note {
+      font-size: 0.77rem;
+      color: var(--gray);
+      text-align: center;
+      margin-top: 12px;
+      opacity: 0.75;
+    }
+
+    .booking-close {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      width: 36px;
+      height: 36px;
+      background: var(--glass);
+      border: 1px solid var(--border);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: var(--gray);
+      font-size: 1.2rem;
+      transition: background 150ms, color 150ms;
+    }
+    .booking-close:hover { background: rgba(201,168,76,0.2); color: var(--gold); }
+
+    @media (max-width: 480px) {
+      .booking-modal { padding: 32px 22px; }
+    }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 1024px) { .carousel-track { height: 400px; } }
+    @media (max-width: 900px) {
+      .services-grid { grid-template-columns: repeat(2,1fr); }
+      .carousel-track { height: 340px; }
+    }
+    @media (max-width: 700px) {
+      .lb-prev { left: -4px; }
+      .lb-next { right: -4px; }
+      .lb-arrow { width: 40px; height: 40px; background: rgba(10,15,30,0.9); }
+    }
+    @media (max-width: 640px) {
+      nav {
+        padding: 8px 14px;
+        top: 10px;
+        left: 10px;
+        right: 10px;
+        width: auto;
+        transform: none;
+      }
+      .nav-links { display: none; }
+      .nav-hamburger { display: flex; }
+      .nav-logo img { height: 64px; }
+      .services-grid { grid-template-columns: 1fr; }
+      .carousel-track { height: 260px; }
+      .carousel-btn { width: 40px; height: 40px; }
+      .stats-bar { gap: 32px; }
+      .cta-box { padding: 40px 20px; }
+      .contact-btns { flex-direction: column; align-items: center; }
+      .contact-btn { width: 100%; max-width: 300px; }
+      .payments-row { gap: 16px; }
+    }
+
+    /* ── BUBBLES ── */
+    #bubbles-container {
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: -1;
+      overflow: hidden;
+    }
+
+    .bubble {
+      position: absolute;
+      bottom: -140px;
+      border-radius: 50%;
+      opacity: 0;
+      animation: floatUp linear infinite;
+      background: radial-gradient(
+        circle at 35% 30%,
+        rgba(255,255,255,0.55) 0%,
+        rgba(255,255,255,0.10) 18%,
+        rgba(160,220,255,0.06) 45%,
+        rgba(180,140,255,0.08) 70%,
+        rgba(120,200,255,0.10) 100%
+      );
+      border: 1.5px solid rgba(255,255,255,0.45);
+      box-shadow:
+        inset 0   0  10px rgba(255,255,255,0.12),
+        inset -3px -3px 8px rgba(140,200,255,0.20),
+        inset  3px  3px 6px rgba(220,180,255,0.15),
+        0 2px 12px rgba(180,220,255,0.06);
+    }
+
+    .bubble:nth-child(3n)   { border-color: rgba(180,220,255,0.50); box-shadow: inset 0 0 10px rgba(180,220,255,0.12), inset -3px -3px 8px rgba(100,180,255,0.22), inset 3px 3px 6px rgba(255,200,240,0.15), 0 2px 12px rgba(100,180,255,0.08); }
+    .bubble:nth-child(3n+1) { border-color: rgba(220,190,255,0.45); box-shadow: inset 0 0 10px rgba(220,190,255,0.12), inset -3px -3px 8px rgba(180,120,255,0.20), inset 3px 3px 6px rgba(160,220,255,0.15), 0 2px 12px rgba(180,120,255,0.06); }
+    .bubble:nth-child(3n+2) { border-color: rgba(160,230,220,0.45); box-shadow: inset 0 0 10px rgba(160,230,220,0.12), inset -3px -3px 8px rgba(100,220,200,0.22), inset 3px 3px 6px rgba(200,180,255,0.15), 0 2px 12px rgba(100,220,200,0.06); }
+
+    @keyframes floatUp {
+      0%   { transform: translateY(0)      translateX(0)           scale(1);    opacity: 0; }
+      8%   { opacity: 0.85; }
+      50%  { transform: translateY(-52vh)  translateX(var(--drift)) scale(1.04); opacity: 0.75; }
+      92%  { opacity: 0.5; }
+      100% { transform: translateY(-108vh) translateX(calc(var(--drift) * 1.6)) scale(1.08); opacity: 0; }
+    }
+
+    body.light .bubble { opacity: 0 !important; animation: none !important; }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation: none !important; transition: none !important; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- SVG SYMBOL LIBRARY (hidden) -->
+  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
+    <symbol id="icon-wa" viewBox="0 0 24 24">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.554 4.103 1.524 5.83L0 24l6.343-1.498A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.015-1.378l-.36-.213-3.767.889.936-3.663-.234-.375A9.773 9.773 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
+    </symbol>
+    <symbol id="icon-check" viewBox="0 0 12 12">
+      <polyline points="2,6 5,9 10,3"/>
+    </symbol>
+    <symbol id="icon-star-sm" viewBox="0 0 12 12">
+      <polygon points="6 1 7.5 4.5 11 5 8.5 7.5 9 11 6 9.5 3 11 3.5 7.5 1 5 4.5 4.5"/>
+    </symbol>
+    <symbol id="icon-arrow-right" viewBox="0 0 24 24">
+      <path d="M5 12h14M12 5l7 7-7 7"/>
+    </symbol>
+    <symbol id="icon-play" viewBox="0 0 24 24">
+      <path d="M8 5v14l11-7z"/>
+    </symbol>
+    <symbol id="icon-chevron-left" viewBox="0 0 24 24">
+      <polyline points="15 18 9 12 15 6"/>
+    </symbol>
+    <symbol id="icon-chevron-right" viewBox="0 0 24 24">
+      <polyline points="9 18 15 12 9 6"/>
+    </symbol>
+  </svg>
+
+  <!-- BUBBLES -->
+  <div id="bubbles-container" aria-hidden="true"></div>
+
+  <!-- MOBILE MENU -->
+  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
+    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">&times;</button>
+    <a href="#gallery"  data-es="Trabajos"  data-en="Work"    onclick="closeMobileMenu()">Trabajos</a>
+    <a href="#services" data-es="Servicios" data-en="Services" onclick="closeMobileMenu()">Servicios</a>
+    <a href="#payments" data-es="Pagos"     data-en="Payment"  onclick="closeMobileMenu()">Pagos</a>
+    <a href="#contact"  data-es="Contacto"  data-en="Contact"  onclick="closeMobileMenu()">Contacto</a>
+    <a href="#schedule" data-es="Agendar"   data-en="Schedule" onclick="closeMobileMenu()">Agendar</a>
+    <a href="https://wa.me/13107762980" target="_blank" rel="noopener" class="mobile-menu-cta" onclick="closeMobileMenu()">
+      <svg width="20" height="20" fill="#0a0f1e" aria-hidden="true"><use href="#icon-wa"/></svg>
+      <span data-es="Reservar" data-en="Book Now">Reservar</span>
+    </a>
+  </div>
+
+  <!-- NAV -->
+  <nav role="navigation" aria-label="Navegación principal">
+    <a href="#hero" class="nav-logo" aria-label="DetailGO">
+      <img src="images/logo.png" alt="DetailGO Logo" width="auto" height="64" />
+    </a>
+
+    <ul class="nav-links">
+      <li><a href="#gallery"  data-es="Trabajos"  data-en="Work">Trabajos</a></li>
+      <li><a href="#services" data-es="Servicios"  data-en="Services">Servicios</a></li>
+      <li><a href="#payments" data-es="Pagos"      data-en="Payment">Pagos</a></li>
+      <li><a href="#contact"  data-es="Contacto"   data-en="Contact">Contacto</a></li>
+      <li><a href="#schedule" data-es="Agendar"    data-en="Schedule">Agendar</a></li>
+    </ul>
+
+    <div class="nav-right">
+      <button class="nav-toggle" id="themeToggle" onclick="toggleTheme()" aria-label="Cambiar tema">
+        <svg id="iconSun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <svg id="iconMoon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
+      </button>
+      <button class="nav-toggle" id="langToggle" onclick="toggleLang()" aria-label="Cambiar idioma" style="width:auto;padding:0 12px;font-size:0.72rem;">EN</button>
+      <a href="https://wa.me/13107762980" target="_blank" rel="noopener" class="nav-cta" data-es="Reservar" data-en="Book Now">Reservar</a>
+      <button class="nav-hamburger" id="navHamburger" onclick="openMobileMenu()" aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="hero" aria-label="Portada">
+    <video id="hero-video" autoplay muted loop playsinline aria-hidden="true">
+      <source src="images/video4.mp4" type="video/mp4" />
+    </video>
+    <div class="hero-overlay" aria-hidden="true"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Premium Car Detailing</div>
+      <h1 class="hero-title" data-es="Tu carro<br>merece lo <span>mejor</span>" data-en="Your car<br>deserves the <span>best</span>">Tu carro<br>merece lo <span>mejor</span></h1>
+      <p class="hero-sub" data-es="Detallado profesional que transforma cada vehículo. Resultados que hablan por sí solos." data-en="Professional detailing that transforms every vehicle. Results that speak for themselves.">Detallado profesional que transforma cada vehículo. Resultados que hablan por sí solos.</p>
+      <div class="hero-actions">
+        <a href="https://wa.me/13107762980" target="_blank" rel="noopener" class="btn-primary">
+          <svg width="18" height="18" fill="currentColor" aria-hidden="true"><use href="#icon-wa"/></svg>
+          <span data-es="Pedir cita por WhatsApp" data-en="Book via WhatsApp">Pedir cita por WhatsApp</span>
+        </a>
+        <a href="#services" class="btn-secondary">
+          <span data-es="Ver servicios" data-en="View Services">Ver servicios</span>
+          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS BAR -->
+  <div class="stats-bar" role="region">
+    <div class="stat"><div class="stat-num">500+</div><div class="stat-label" data-es="Carros detallados" data-en="Cars Detailed">Carros detallados</div></div>
+    <div class="stat"><div class="stat-num">5★</div><div class="stat-label" data-es="Calificación" data-en="Rating">Calificación</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label" data-es="Servicios" data-en="Services">Servicios</div></div>
+    <div class="stat"><div class="stat-num">100%</div><div class="stat-label" data-es="Satisfacción" data-en="Satisfaction">Satisfacción</div></div>
+  </div>
+
+  <!-- GALLERY -->
+  <section id="gallery">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label" data-es="Nuestros Trabajos" data-en="Our Work">Nuestros Trabajos</p>
+        <h2 class="section-title" data-es="Resultados que<br>hablan por sí solos" data-en="Results That<br>Speak for Themselves">Resultados que<br>hablan por sí solos</h2>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="carousel-wrap" id="mainCarousel">
+        <div class="carousel-counter" id="carouselCounter">1 / 10</div>
+        <button class="carousel-btn carousel-prev" onclick="carouselMove(-1)" aria-label="Anterior">
+          <svg viewBox="0 0 24 24"><use href="#icon-chevron-left"/></svg>
+        </button>
+        <div class="carousel-track" id="carouselTrack">
+          <div class="carousel-slide" onclick="openLightbox(0)">
+            <img src="images/foto1.jpeg" alt="Detailing work 1" loading="lazy" width="960" height="520"/>
+            <div class="carousel-slide-overlay"><span class="carousel-tag" data-es="Detallado" data-en="Detailing">Detallado</span></div>
+          </div>
+          <div class="carousel-slide" onclick="openLightbox(1)">
+            <video src="images/video2.mp4" muted loop playsinline preload="none" poster="images/foto2.jpeg" aria-hidden="true"></video>
+            <div class="play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-play"/></svg></div>
+            <div class="carousel-slide-overlay"><span class="carousel-tag">Video</span></div>
+          </div>
+          <div class="carousel-slide" onclick="openLightbox(2)">
+            <img src="images/foto2.jpeg" alt="Detailing work 2" loading="lazy" width="960" height="520"/>
+            <div class="carousel-slide-overlay"><span class="carousel-tag" data-es="Exterior" data-en="Exterior">Exterior</span></div>
+          </div>
+          <div class="carousel-slide" onclick="openLightbox(3)">
+            <video src="images/video3.mp4" muted loop playsinline preload="none" poster="images/foto1.jpeg" aria-hidden="true"></video>
+            <div class="play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-play"/></svg></div>
+            <div class="carousel-slide-overlay"><span class="carousel-tag">Video</span></div>
+          </div>
+          <div class="carousel-slide" onclick="openLightbox(4)">
+            <img src="images/foto4.jpeg" alt="Detailing work 4" loading="lazy" width="960" height="520"/>
+            <div class="carousel-slide-overlay"><span class="carousel-tag" data-es="Interior" data-en="Interior">Interior</span></div>
+          </div>
+          <div class="carousel-slide" onclick="openLightbox(5)">
+            <video src="images/video5.mp4" muted loop playsinline preload="none" poster="images/foto4.jpeg" aria-hidden="true"></video>
+            <div class="play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-play"/></svg></div>
+            <div class="carousel-slide-overlay"><span class="carousel-tag">Video</span></div>
+          </div>
+          <div class="carousel-slide" onclick="openLightbox(6)">
+            <img src="images/foto5.jpeg" alt="Detailing work 5" loading="lazy" width="960" height="520"/>
+            <div class="carousel-slide-overlay"><span class="carousel-tag" data-es="Detallado" data-en="Detailing">Detallado</span></div>
+          </div>
+          <div class="carousel-slide" onclick="openLightbox(7)">
+            <video src="images/video6.mp4" muted loop playsinline preload="none" poster="images/foto5.jpeg" aria-hidden="true"></video>
+            <div class="play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-play"/></svg></div>
+            <div class="carousel-slide-overlay"><span class="carousel-tag">Video</span></div>
+          </div>
+          <div class="carousel-slide" onclick="openLightbox(8)">
+            <img src="images/foto6.jpeg" alt="Detailing work 6" loading="lazy" width="960" height="520"/>
+            <div class="carousel-slide-overlay"><span class="carousel-tag" data-es="Premium" data-en="Premium">Premium</span></div>
+          </div>
+          <div class="carousel-slide" onclick="openLightbox(9)">
+            <video src="images/video1.mp4" muted loop playsinline preload="none" poster="images/foto6.jpeg" aria-hidden="true"></video>
+            <div class="play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-play"/></svg></div>
+            <div class="carousel-slide-overlay"><span class="carousel-tag">Video</span></div>
+          </div>
+        </div>
+        <button class="carousel-btn carousel-next" onclick="carouselMove(1)" aria-label="Siguiente">
+          <svg viewBox="0 0 24 24"><use href="#icon-chevron-right"/></svg>
+        </button>
+      </div>
+      <div class="carousel-dots" id="carouselDots"></div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="container">
+      <div class="section-header">
+        <p class="section-label" data-es="Nuestros Servicios" data-en="Our Services">Nuestros Servicios</p>
+        <h2 class="section-title" data-es="Elige el detallado<br>perfecto para ti" data-en="Choose the Perfect<br>Detail for You">Elige el detallado<br>perfecto para ti</h2>
+        <p class="section-sub" data-es="Desde un lavado express hasta un full detail completo. Calidad garantizada en cada servicio." data-en="From an express wash to a full detail. Quality guaranteed in every service.">Desde un lavado express hasta un full detail completo. Calidad garantizada en cada servicio.</p>
+        <div class="gold-divider"></div>
+      </div>
+      <div class="services-grid">
+
+        <!-- 1 Express -->
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+          <div class="service-name">Express Wash</div>
+          <div class="service-price">$35 <span data-es="/ servicio" data-en="/ service">/ servicio</span></div>
+          <ul class="service-features">
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Lavado por fuera" data-en="Exterior Wash">Lavado por fuera</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Armorol en llantas" data-en="Tire Dressing">Armorol en llantas</span></li>
+          </ul>
+          <button class="service-book-btn" onclick="openBooking('Express Wash', '$35')">
+            <span data-es="Reservar este servicio" data-en="Book This Service">Reservar este servicio</span>
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+          </button>
+        </div>
+
+        <!-- 2 Regular -->
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
+          <div class="service-name" data-es="Lavada Regular" data-en="Regular Wash">Lavada Regular</div>
+          <div class="service-price">$45 <span data-es="/ servicio" data-en="/ service">/ servicio</span></div>
+          <ul class="service-features">
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Lavado por fuera" data-en="Exterior Wash">Lavado por fuera</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Armorol en llantas" data-en="Tire Dressing">Armorol en llantas</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de vidrios (ambos lados)" data-en="Window Cleaning (both sides)">Limpieza de vidrios (ambos lados)</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Aspirado" data-en="Vacuuming">Aspirado</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de tablero y consola" data-en="Dashboard &amp; Console Cleaning">Limpieza de tablero y consola</span></li>
+          </ul>
+          <button class="service-book-btn" onclick="openBooking('Regular Wash', '$45')">
+            <span data-es="Reservar este servicio" data-en="Book This Service">Reservar este servicio</span>
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+          </button>
+        </div>
+
+        <!-- 3 Premium -->
+        <div class="service-card featured">
+          <div class="featured-badge" data-es="Popular" data-en="Popular">Popular</div>
+          <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
+          <div class="service-name">Premium Wash</div>
+          <div class="service-price">$80 <span data-es="/ servicio" data-en="/ service">/ servicio</span></div>
+          <ul class="service-features">
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Lavado por fuera" data-en="Exterior Wash">Lavado por fuera</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Armorol en llantas" data-en="Tire Dressing">Armorol en llantas</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de vidrios (ambos lados)" data-en="Window Cleaning (both sides)">Limpieza de vidrios (ambos lados)</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Aspirado" data-en="Vacuuming">Aspirado</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de tablero y consola" data-en="Dashboard &amp; Console Cleaning">Limpieza de tablero y consola</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Acondicionador en plásticos y piel" data-en="Plastic &amp; Leather Conditioner">Acondicionador en plásticos y piel</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Spray Wax en pintura" data-en="Spray Wax on Paint">Spray Wax en pintura</span></li>
+          </ul>
+          <button class="service-book-btn" onclick="openBooking('Premium Wash', '$80')">
+            <span data-es="Reservar este servicio" data-en="Book This Service">Reservar este servicio</span>
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+          </button>
+        </div>
+
+        <!-- 4 Clay Bar -->
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
+          <div class="service-name">Clay Bar</div>
+          <div class="service-price">$120 <span data-es="/ servicio" data-en="/ service">/ servicio</span></div>
+          <ul class="service-features">
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Lavado por fuera" data-en="Exterior Wash">Lavado por fuera</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Armorol en llantas" data-en="Tire Dressing">Armorol en llantas</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de vidrios (ambos lados)" data-en="Window Cleaning (both sides)">Limpieza de vidrios (ambos lados)</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Aspirado" data-en="Vacuuming">Aspirado</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de tablero y consola" data-en="Dashboard &amp; Console Cleaning">Limpieza de tablero y consola</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Clay Bar en pintura" data-en="Clay Bar on Paint">Clay Bar en pintura</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Acondicionador en plásticos y piel" data-en="Plastic &amp; Leather Conditioner">Acondicionador en plásticos y piel</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Spray Wax en pintura" data-en="Spray Wax on Paint">Spray Wax en pintura</span></li>
+          </ul>
+          <button class="service-book-btn" onclick="openBooking('Clay Bar', '$120')">
+            <span data-es="Reservar este servicio" data-en="Book This Service">Reservar este servicio</span>
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+          </button>
+        </div>
+
+        <!-- 5 Ditel -->
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5C3.89 4 3.01 4.9 3.01 6L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg></div>
+          <div class="service-name">Ditel</div>
+          <div class="service-price">$180 <span data-es="/ servicio" data-en="/ service">/ servicio</span></div>
+          <ul class="service-features">
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Lavado por fuera" data-en="Exterior Wash">Lavado por fuera</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Armorol en llantas" data-en="Tire Dressing">Armorol en llantas</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de vidrios (ambos lados)" data-en="Window Cleaning (both sides)">Limpieza de vidrios (ambos lados)</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Aspirado" data-en="Vacuuming">Aspirado</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza profunda de tablero a detalle" data-en="Deep Dashboard Detail">Limpieza profunda de tablero a detalle</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Clay Bar en pintura" data-en="Clay Bar on Paint">Clay Bar en pintura</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Acondicionador en plásticos y piel" data-en="Plastic &amp; Leather Conditioner">Acondicionador en plásticos y piel</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Spray Wax en pintura" data-en="Spray Wax on Paint">Spray Wax en pintura</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Limpieza profunda de plásticos" data-en="Deep Plastic Cleaning">Limpieza profunda de plásticos</span></li>
+          </ul>
+          <button class="service-book-btn" onclick="openBooking('Ditel', '$180')">
+            <span data-es="Reservar este servicio" data-en="Book This Service">Reservar este servicio</span>
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+          </button>
+        </div>
+
+        <!-- 6 Full Ditel -->
+        <div class="service-card">
+          <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
+          <div class="service-name">Full Ditel</div>
+          <div class="service-price">$220 <span data-es="/ servicio" data-en="/ service">/ servicio</span></div>
+          <ul class="service-features">
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Lavado por fuera" data-en="Exterior Wash">Lavado por fuera</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Armorol en llantas" data-en="Tire Dressing">Armorol en llantas</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de vidrios (ambos lados)" data-en="Window Cleaning (both sides)">Limpieza de vidrios (ambos lados)</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Aspirado" data-en="Vacuuming">Aspirado</span></li>
+            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de tablero y consola" data-en="Dashboard &amp; Console Cleaning">Limpieza de tablero y consola</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Clay Bar en pintura" data-en="Clay Bar on Paint">Clay Bar en pintura</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Acondicionador en plásticos y piel" data-en="Plastic &amp; Leather Conditioner">Acondicionador en plásticos y piel</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Spray Wax en pintura" data-en="Spray Wax on Paint">Spray Wax en pintura</span></li>
+            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Lavado de sillones y carpeta" data-en="Seat &amp; Carpet Wash">Lavado de sillones y carpeta</span></li>
+          </ul>
+          <button class="service-book-btn" onclick="openBooking('Full Ditel', '$220')">
+            <span data-es="Reservar este servicio" data-en="Book This Service">Reservar este servicio</span>
+            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- PAYMENTS -->
+  <section id="payments">
+    <div class="container">
+      <div class="section-header centered">
+        <p class="section-label" data-es="Métodos de Pago" data-en="Payment Methods">Métodos de Pago</p>
+        <h2 class="section-title" data-es="Formas de pago<br>que aceptamos" data-en="We Accept<br>These Payments">Formas de pago<br>que aceptamos</h2>
+        <p class="section-sub" data-es="Sin complicaciones. Paga como prefieras." data-en="No hassle. Pay however you prefer.">Sin complicaciones. Paga como prefieras.</p>
+        <div class="gold-divider"></div>
+      </div>
+
+      <div class="payments-row">
+
+        <!-- Cash -->
+        <div class="pay-card pay-cash">
+          <div class="pay-icon">
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="2" y="6" width="20" height="12" rx="2" stroke="#34C759" stroke-width="1.8"/>
+              <circle cx="12" cy="12" r="3" stroke="#34C759" stroke-width="1.8"/>
+              <path d="M6 10v4M18 10v4" stroke="#34C759" stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="pay-name">Cash</div>
+          <div class="pay-sub" data-es="Efectivo" data-en="Cash payment">Efectivo</div>
+        </div>
+
+        <!-- Zelle -->
+        <div class="pay-card pay-zelle">
+          <div class="pay-icon">
+            <span class="pay-letter" style="color:#6D1ED4" aria-hidden="true">Z</span>
+          </div>
+          <div class="pay-name">Zelle</div>
+          <div class="pay-sub" data-es="Transferencia rápida" data-en="Instant transfer">Transferencia rápida</div>
+        </div>
+
+        <!-- Venmo -->
+        <div class="pay-card pay-venmo">
+          <div class="pay-icon">
+            <span class="pay-letter" style="color:#008CFF" aria-hidden="true">V</span>
+          </div>
+          <div class="pay-name">Venmo</div>
+          <div class="pay-sub" data-es="Pago digital" data-en="Digital payment">Pago digital</div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="container">
+      <div class="cta-box">
+        <p class="section-label" data-es="Contáctanos" data-en="Contact Us">Contáctanos</p>
+        <h2 class="section-title" data-es="¿Listo para dejar<br>tu carro impecable?" data-en="Ready to Make<br>Your Car Shine?">¿Listo para dejar<br>tu carro impecable?</h2>
+        <p class="section-sub" data-es="Contáctanos como prefieras — WhatsApp, texto o llamada. Respondemos rápido." data-en="Contact us however you prefer — WhatsApp, text, or a direct call. We respond fast.">Contáctanos como prefieras — WhatsApp, texto o llamada. Respondemos rápido.</p>
+
+        <div class="contact-btns">
+          <a href="https://wa.me/13107762980" target="_blank" rel="noopener" class="contact-btn btn-whatsapp">
+            <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><use href="#icon-wa"/></svg>
+            WhatsApp
+          </a>
+          <a href="sms:+13107762980" class="contact-btn btn-sms">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/><path d="M7 9h10M7 13h7"/></svg>
+            <span data-es="Mensaje de Texto" data-en="Text Message">Mensaje de Texto</span>
+          </a>
+          <a href="tel:+13107762980" class="contact-btn btn-call">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.1 10.82 19.79 19.79 0 01.06 2.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+            <span data-es="Llamar" data-en="Call">Llamar</span>
+          </a>
+        </div>
+
+        <div class="contact-divider" data-es="o escríbenos al" data-en="or reach us at">o escríbenos al</div>
+        <p class="contact-phone">+1 (310) 776-2980</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- SCHEDULE -->
+  <section id="schedule" style="background:var(--bg2);transition:background 300ms;padding:100px 24px;">
+    <div class="container">
+      <div class="schedule-card">
+        <div class="schedule-left">
+          <p class="section-label" data-es="Agenda en línea" data-en="Book Online">Agenda en línea</p>
+          <h2 class="section-title" data-es="¿Listo para dejar<br>tu carro <span style='color:var(--gold)'>brillando?</span>" data-en="Ready to make<br>your car <span style='color:var(--gold)'>shine?</span>">¿Listo para dejar<br>tu carro <span style="color:var(--gold)">brillando?</span></h2>
+          <p class="section-sub" data-es="Elige el día y la hora que más te convenga. Solo aparecen los horarios disponibles — sin llamadas, sin esperar." data-en="Pick the day and time that works best for you. Only available slots shown — no calls, no waiting.">Elige el día y la hora que más te convenga. Solo aparecen los horarios disponibles — sin llamadas, sin esperar.</p>
+          <div class="schedule-perks">
+            <div class="schedule-perk">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-es="Horarios en tiempo real" data-en="Real-time availability">Horarios en tiempo real</span>
+            </div>
+            <div class="schedule-perk">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-es="Confirmación instantánea" data-en="Instant confirmation">Confirmación instantánea</span>
+            </div>
+            <div class="schedule-perk">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-es="Se guarda en tu Google Calendar" data-en="Saved to your Google Calendar">Se guarda en tu Google Calendar</span>
+            </div>
+            <div class="schedule-perk">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              <span data-es="Recordatorio automático" data-en="Automatic reminder">Recordatorio automático</span>
+            </div>
+          </div>
+          <a href="https://calendar.app.google/FWCdevKwRxKyNLVe6" target="_blank" rel="noopener" class="schedule-cta">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <span data-es="¡Agenda tu Car Wash Ya!" data-en="Book Your Car Wash Now!">¡Agenda tu Car Wash Ya!</span>
+          </a>
+          <p class="schedule-note" data-es="Gratis · Sin registro · Abre Google Calendar" data-en="Free · No sign-up · Opens Google Calendar">Gratis · Sin registro · Abre Google Calendar</p>
+        </div>
+        <div class="schedule-right" aria-hidden="true">
+          <div class="schedule-cal-preview">
+            <div class="cal-header">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              <span>DetailGO Calendar</span>
+            </div>
+            <div class="cal-slots">
+              <div class="cal-slot available">9:00 AM</div>
+              <div class="cal-slot available">10:00 AM</div>
+              <div class="cal-slot booked" data-es="Ocupado" data-en="Booked">Ocupado</div>
+              <div class="cal-slot available">12:00 PM</div>
+              <div class="cal-slot booked" data-es="Ocupado" data-en="Booked">Ocupado</div>
+              <div class="cal-slot available">2:00 PM</div>
+              <div class="cal-slot available">3:00 PM</div>
+              <div class="cal-slot available">4:00 PM</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo"><img src="images/logo.png" alt="DetailGO Logo" width="auto" height="48" /></div>
+    <p class="footer-sub">Premium Car Detailing &nbsp;·&nbsp; +1 (310) 776-2980</p>
+    <p class="footer-copy">&copy; 2026 DetailGO. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+  </footer>
+
+  <!-- FLOATING WHATSAPP -->
+  <a href="https://wa.me/13107762980" target="_blank" rel="noopener" class="wa-float" aria-label="WhatsApp">
+    <svg width="32" height="32" fill="#fff" aria-hidden="true"><use href="#icon-wa"/></svg>
+  </a>
+
+  <!-- BOOKING MODAL -->
+  <div id="bookingOverlay" class="booking-overlay" onclick="if(event.target===this)closeBooking()">
+    <div class="booking-modal" role="dialog" aria-modal="true" aria-labelledby="bookingHeading">
+      <button class="booking-close" onclick="closeBooking()" aria-label="Cerrar">&times;</button>
+      <div class="booking-service-tag" id="bookingTag"></div>
+      <div class="booking-heading" id="bookingHeading" data-es="Solicitar cita" data-en="Request Appointment">Solicitar cita</div>
+      <div class="booking-price-display" id="bookingPriceDisplay"></div>
+      <form class="booking-form" id="bookingForm" onsubmit="submitBooking(event)" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="bookingName" data-es="Tu nombre completo" data-en="Your full name">Tu nombre completo</label>
+          <input class="form-input" id="bookingName" type="text" required autocomplete="name"
+            data-placeholder-es="Ej: Juan García"
+            data-placeholder-en="e.g. John Smith"
+            placeholder="Ej: Juan García" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="bookingAddress" data-es="Tu dirección" data-en="Your address">Tu dirección</label>
+          <input class="form-input" id="bookingAddress" type="text" required autocomplete="street-address"
+            data-placeholder-es="Ej: 123 Main St, Los Angeles"
+            data-placeholder-en="e.g. 123 Main St, Los Angeles"
+            placeholder="Ej: 123 Main St, Los Angeles" />
+        </div>
+        <div class="form-group">
+          <label class="form-label" for="bookingPhone" data-es="Tu número de WhatsApp" data-en="Your WhatsApp number">Tu número de WhatsApp</label>
+          <input class="form-input" id="bookingPhone" type="tel" required autocomplete="tel"
+            data-placeholder-es="Ej: +1 (747) 000-0000"
+            data-placeholder-en="e.g. +1 (747) 000-0000"
+            placeholder="Ej: +1 (747) 000-0000" />
+        </div>
+        <button type="submit" class="booking-submit">
+          <svg aria-hidden="true"><use href="#icon-wa"/></svg>
+          <span data-es="Enviar solicitud por WhatsApp" data-en="Send Request via WhatsApp">Enviar solicitud por WhatsApp</span>
+        </button>
+      </form>
+      <p class="booking-note" data-es="Se abrirá WhatsApp con tu solicitud lista para enviar." data-en="WhatsApp will open with your request ready to send.">Se abrirá WhatsApp con tu solicitud lista para enviar.</p>
+    </div>
+  </div>
+
+  <!-- LIGHTBOX -->
+  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada" onclick="if(event.target===this)closeLightbox()">
+    <div class="lightbox-inner">
+      <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar">&times;</button>
+      <button class="lb-arrow lb-prev" onclick="lbMove(-1)" aria-label="Anterior"><svg viewBox="0 0 24 24"><use href="#icon-chevron-left"/></svg></button>
+      <div id="lightbox-content"></div>
+      <button class="lb-arrow lb-next" onclick="lbMove(1)" aria-label="Siguiente"><svg viewBox="0 0 24 24"><use href="#icon-chevron-right"/></svg></button>
+      <div class="lb-counter" id="lbCounter"></div>
+    </div>
+  </div>
+
+  <script>
+    /* ── BUBBLES ── */
+    (function() {
+      const container   = document.getElementById('bubbles-container');
+      const BUBBLE_COUNT = 26;
+      for (let i = 0; i < BUBBLE_COUNT; i++) {
+        const b    = document.createElement('div');
+        b.className = 'bubble';
+        const size  = Math.random() * 60 + 12;
+        const left  = Math.random() * 98 + 1;
+        const delay = Math.random() * 22;
+        const dur   = Math.random() * 16 + 14;
+        const drift = ((Math.random() - 0.5) * 140).toFixed(1) + 'px';
+        b.style.cssText = `width:${size}px;height:${size}px;left:${left}%;animation-duration:${dur}s;animation-delay:-${delay}s;--drift:${drift};`;
+        container.appendChild(b);
+      }
+    })();
+
+    /* ── MEDIA ── */
+    const media = [
+      { type:'img', src:'images/foto1.jpeg' },
+      { type:'vid', src:'images/video2.mp4' },
+      { type:'img', src:'images/foto2.jpeg' },
+      { type:'vid', src:'images/video3.mp4' },
+      { type:'img', src:'images/foto4.jpeg' },
+      { type:'vid', src:'images/video5.mp4' },
+      { type:'img', src:'images/foto5.jpeg' },
+      { type:'vid', src:'images/video6.mp4' },
+      { type:'img', src:'images/foto6.jpeg' },
+      { type:'vid', src:'images/video1.mp4' },
+    ];
+    const MEDIA_COUNT = media.length;
+
+    /* ── CAROUSEL ── */
+    let carIdx = 0;
+
+    (function buildDots() {
+      const wrap = document.getElementById('carouselDots');
+      media.forEach((_, i) => {
+        const d = document.createElement('div');
+        d.className = 'carousel-dot' + (i === 0 ? ' active' : '');
+        d.onclick = () => carouselGo(i);
+        wrap.appendChild(d);
+      });
+    })();
+
+    function updateDots() {
+      document.querySelectorAll('.carousel-dot').forEach((d,i) => d.classList.toggle('active', i === carIdx));
+      document.getElementById('carouselCounter').textContent = `${carIdx + 1} / ${MEDIA_COUNT}`;
+    }
+
+    function carouselGo(idx) {
+      carIdx = (idx + MEDIA_COUNT) % MEDIA_COUNT;
+      document.getElementById('carouselTrack').style.transform = `translateX(-${carIdx * 100}%)`;
+      updateDots();
+    }
+    function carouselMove(dir) { carouselGo(carIdx + dir); }
+
+    /* swipe */
+    (function(){
+      let sx = 0;
+      const t = document.getElementById('carouselTrack');
+      t.addEventListener('touchstart', e => { sx = e.touches[0].clientX; }, { passive: true });
+      t.addEventListener('touchend', e => {
+        const dx = e.changedTouches[0].clientX - sx;
+        if (Math.abs(dx) > 50) carouselMove(dx < 0 ? 1 : -1);
+      });
+    })();
+
+    /* ── LIGHTBOX ── */
+    let lbIdx = 0;
+
+    function renderLb() {
+      const m = media[lbIdx];
+      const c = document.getElementById('lightbox-content');
+      if (m.type === 'img') {
+        const img = document.createElement('img');
+        img.src = m.src;
+        img.alt = 'DetailGO';
+        c.innerHTML = '';
+        c.appendChild(img);
+      } else {
+        const vid = document.createElement('video');
+        vid.src = m.src;
+        vid.controls = true;
+        vid.autoplay = true;
+        vid.playsInline = true;
+        c.innerHTML = '';
+        c.appendChild(vid);
+      }
+      document.getElementById('lbCounter').textContent = `${lbIdx + 1} / ${MEDIA_COUNT}`;
+    }
+
+    function openLightbox(idx) {
+      lbIdx = idx;
+      renderLb();
+      document.getElementById('lightbox').classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function lbMove(dir) { lbIdx = (lbIdx + dir + MEDIA_COUNT) % MEDIA_COUNT; renderLb(); }
+
+    function closeLightbox() {
+      const c = document.getElementById('lightbox-content');
+      const vid = c.querySelector('video');
+      if (vid) { vid.pause(); vid.src = ''; }
+      c.innerHTML = '';
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+
+    document.addEventListener('keydown', e => {
+      if (!document.getElementById('lightbox').classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLightbox();
+      if (e.key === 'ArrowLeft')  lbMove(-1);
+      if (e.key === 'ArrowRight') lbMove(1);
+    });
+
+    /* ── MOBILE MENU ── */
+    function openMobileMenu() {
+      document.getElementById('mobileMenu').classList.add('open');
+      document.getElementById('navHamburger').classList.add('open');
+      document.getElementById('navHamburger').setAttribute('aria-expanded', 'true');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMobileMenu() {
+      document.getElementById('mobileMenu').classList.remove('open');
+      document.getElementById('navHamburger').classList.remove('open');
+      document.getElementById('navHamburger').setAttribute('aria-expanded', 'false');
+      document.body.style.overflow = '';
+    }
+
+    document.getElementById('mobileMenuClose').addEventListener('click', closeMobileMenu);
+
+    document.addEventListener('keydown', e => {
+      if (e.key === 'Escape' && document.getElementById('mobileMenu').classList.contains('open')) {
+        closeMobileMenu();
+      }
+    });
+
+    /* ── THEME ── */
+    let isDark = true;
+
+    function toggleTheme() {
+      isDark = !isDark;
+      document.body.classList.toggle('light', !isDark);
+      document.getElementById('iconSun').style.display  = isDark  ? '' : 'none';
+      document.getElementById('iconMoon').style.display = !isDark ? '' : 'none';
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+    }
+
+    (function initTheme() {
+      if (localStorage.getItem('theme') === 'light') toggleTheme();
+    })();
+
+    /* ── LANGUAGE ── */
+    let currentLang = 'es';
+
+    function setLang(lang) {
+      currentLang = lang;
+      document.documentElement.lang = lang;
+      document.getElementById('langToggle').textContent = lang === 'es' ? 'EN' : 'ES';
+      document.querySelectorAll('[data-' + lang + ']').forEach(el => {
+        el.innerHTML = el.getAttribute('data-' + lang);
+      });
+      localStorage.setItem('lang', lang);
+    }
+
+    function toggleLang() { setLang(currentLang === 'es' ? 'en' : 'es'); }
+
+    (function initLang() {
+      const saved = localStorage.getItem('lang');
+      if (saved && saved !== 'es') setLang(saved);
+    })();
+
+    /* ── BOOKING ── */
+    let _bookingService = '';
+    let _bookingPrice   = '';
+
+    function openBooking(service, price) {
+      _bookingService = service;
+      _bookingPrice   = price;
+      document.getElementById('bookingTag').textContent = service;
+      document.getElementById('bookingPriceDisplay').textContent = price;
+
+      /* update placeholders to match current language */
+      document.querySelectorAll('.form-input[data-placeholder-' + currentLang + ']').forEach(function(el) {
+        el.placeholder = el.getAttribute('data-placeholder-' + currentLang);
+      });
+
+      document.getElementById('bookingOverlay').classList.add('open');
+      document.body.style.overflow = 'hidden';
+      setTimeout(function() { document.getElementById('bookingName').focus(); }, 50);
+    }
+
+    function closeBooking() {
+      document.getElementById('bookingOverlay').classList.remove('open');
+      document.body.style.overflow = '';
+      document.getElementById('bookingForm').reset();
+    }
+
+    function submitBooking(e) {
+      e.preventDefault();
+      const name    = document.getElementById('bookingName').value.trim();
+      const address = document.getElementById('bookingAddress').value.trim();
+      const phone   = document.getElementById('bookingPhone').value.trim();
+
+      if (!name || !address || !phone) return;
+
+      const isEs = currentLang === 'es';
+      const msg  = isEs
+        ? 'Hola DetailGO! Quiero reservar el servicio *' + _bookingService + ' (' + _bookingPrice + ')*.\n\nNombre: ' + name + '\nDirección: ' + address + '\nMi WhatsApp: ' + phone + '\n\n¡Gracias!'
+        : 'Hi DetailGO! I want to book the *' + _bookingService + ' (' + _bookingPrice + ')* service.\n\nName: ' + name + '\nAddress: ' + address + '\nMy WhatsApp: ' + phone + '\n\nThank you!';
+
+      window.open('https://wa.me/13107762980?text=' + encodeURIComponent(msg), '_blank');
+      closeBooking();
+    }
+
+    document.addEventListener('keydown', function(e) {
+      if (e.key === 'Escape' && document.getElementById('bookingOverlay').classList.contains('open')) {
+        closeBooking();
+      }
+    });
+  </script>
+</body>
+</html>
