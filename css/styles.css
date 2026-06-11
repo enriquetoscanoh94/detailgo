@@ -493,8 +493,9 @@ body.light .carousel-dot { background: rgba(13,27,62,0.2); }
 .service-icon svg { width: 24px; height: 24px; stroke: var(--gold); fill: none; stroke-width: 1.8; stroke-linecap: round; stroke-linejoin: round; }
 
 .service-name { font-family: 'Playfair Display', serif; font-size: 1.25rem; font-weight: 700; margin-bottom: 6px; color: var(--text); }
-.service-price { font-size: 2rem; font-weight: 700; color: var(--gold); margin-bottom: 20px; line-height: 1; }
+.service-price { font-size: 2rem; font-weight: 700; color: var(--gold); margin-bottom: 6px; line-height: 1; }
 .service-price span { font-size: 1rem; color: var(--gray); font-weight: 400; }
+.service-truck-note { font-size: 0.8rem; color: var(--gray); margin-bottom: 18px; font-weight: 500; }
 
 .service-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
 .service-features li { display: flex; align-items: flex-start; gap: 10px; font-size: 0.875rem; color: var(--feat-color); line-height: 1.4; }
