@@ -1,0 +1,11 @@
+# Logs de servidores de preview / local
+*.log
+web-preview.log
+web-preview.err.log
+
+# Dependencias
+node_modules/
+
+# Sistema
+.DS_Store
+Thumbs.db
