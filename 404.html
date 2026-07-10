@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <title>DetailGO</title>
+  <script>
+    // Single Page Apps for GitHub Pages.
+    // Only the /app single-page app needs this: a direct hit / refresh on a
+    // deep route (e.g. /app/login) 404s on GitHub Pages, so we encode the path
+    // into a query and bounce to /app/, where index.html decodes it back.
+    (function () {
+      var l = window.location;
+      if (l.pathname.indexOf('/app/') === 0 && l.pathname !== '/app/') {
+        l.replace(
+          l.protocol + '//' + l.host + '/app/?/' +
+          l.pathname.slice(5).replace(/&/g, '~and~') +
+          (l.search ? '&' + l.search.slice(1).replace(/&/g, '~and~') : '') +
+          l.hash
+        );
+      }
+    })();
+  </script>
+</head>
+<body>
+  <p style="font-family: system-ui, sans-serif; padding: 2rem;">
+    Página no encontrada. <a href="/">Ir al inicio</a>
+  </p>
+</body>
+</html>

@@ -3,8 +3,8 @@
 web-preview.log
 web-preview.err.log
 
-# Dependencias
-node_modules/
+# Dependencias (solo la raíz; NO el assets/node_modules del build de la app)
+/node_modules/
 
 # Sistema
 .DS_Store
