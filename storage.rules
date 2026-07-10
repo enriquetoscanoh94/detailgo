@@ -1,0 +1,39 @@
+rules_version = '2';
+
+// Detail Go — Storage security rules (Phase 1).
+// Zelle receipts live under receipts/{uid}/... Only the owner can upload;
+// the owner and admins can read.
+
+service firebase.storage {
+  match /b/{bucket}/o {
+
+    function isAdmin() {
+      return request.auth != null
+        && firestore.get(/databases/(default)/documents/users/$(request.auth.uid)).data.role == 'admin';
+    }
+
+    // Uploaded image: owner writes, up to 8 MB, images only.
+    function isOwnerImage(uid) {
+      return request.auth != null
+        && request.auth.uid == uid
+        && request.resource.size < 8 * 1024 * 1024
+        && request.resource.contentType.matches('image/.*');
+    }
+
+    match /receipts/{uid}/{fileName} {
+      allow read: if request.auth != null && (request.auth.uid == uid || isAdmin());
+      allow write: if isOwnerImage(uid);
+    }
+
+    // Profile photos and car photos: the owner uploads; any signed-in user can
+    // read them (a client sees their detailer's photo and vice versa).
+    match /avatars/{uid}/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if isOwnerImage(uid);
+    }
+    match /vehicles/{uid}/{fileName} {
+      allow read: if request.auth != null;
+      allow write: if isOwnerImage(uid);
+    }
+  }
+}

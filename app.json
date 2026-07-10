@@ -1,24 +1,66 @@
 {
   "expo": {
-    "name": "detailgo",
+    "name": "Detail Go",
     "slug": "detailgo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
-    "userInterfaceStyle": "light",
+    "scheme": "detailgo",
+    "userInterfaceStyle": "dark",
+    "backgroundColor": "#06101F",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": false,
+      "bundleIdentifier": "com.detailgo.app",
+      "infoPlist": {
+        "NSCameraUsageDescription": "Detail Go usa la cámara para que puedas tomar la foto de tu comprobante de pago.",
+        "NSPhotoLibraryUsageDescription": "Detail Go accede a tus fotos para subir el comprobante de pago de tu servicio."
+      }
     },
     "android": {
+      "package": "com.detailgo.app",
       "adaptiveIcon": {
-        "backgroundColor": "#E6F4FE",
+        "backgroundColor": "#0A0F1E",
         "foregroundImage": "./assets/android-icon-foreground.png",
         "backgroundImage": "./assets/android-icon-background.png",
         "monochromeImage": "./assets/android-icon-monochrome.png"
-      }
+      },
+      "permissions": [
+        "CAMERA",
+        "READ_MEDIA_IMAGES"
+      ]
     },
     "web": {
-      "favicon": "./assets/favicon.png"
+      "favicon": "./assets/favicon.png",
+      "bundler": "metro",
+      "output": "single"
+    },
+    "plugins": [
+      "expo-router",
+      "expo-status-bar",
+      [
+        "expo-image-picker",
+        {
+          "photosPermission": "Detail Go accede a tus fotos para subir el comprobante de pago de tu servicio.",
+          "cameraPermission": "Detail Go usa la cámara para que puedas tomar la foto de tu comprobante de pago."
+        }
+      ],
+      "expo-localization",
+      "expo-audio",
+      "expo-font",
+      "expo-asset",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/van.png",
+          "backgroundColor": "#06101F",
+          "resizeMode": "contain",
+          "imageWidth": 260
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true,
+      "baseUrl": "/app"
     }
   }
 }

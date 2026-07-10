@@ -39,3 +39,9 @@ yarn-error.*
 # generated native folders
 /ios
 /android
+
+# local dev artifacts / debug screenshots (do not commit)
+*.log
+tmp-*.png
+preview-*.png
+Camioneta.PNG

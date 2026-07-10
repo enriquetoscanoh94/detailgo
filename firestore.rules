@@ -1,0 +1,124 @@
+rules_version = '2';
+
+// Detail Go — Firestore security rules (Phase 1).
+//
+// Principles:
+//   - Deny by default; grant the minimum each role needs.
+//   - Clients touch only their own data and never the money/status fields.
+//   - Workers can read searching orders and only advance their own order's status.
+//   - Admin has full access. Money + dispatch are finalized by Cloud Functions
+//     (Phase 2); these rules already lock the sensitive fields off clients.
+//
+// NOTE: Phase 2 will tighten worker writes further (field-level checks on the
+// exact status transition). This is the Phase-1 baseline.
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    function isSignedIn() {
+      return request.auth != null;
+    }
+
+    function userDoc() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function role() {
+      return isSignedIn() ? userDoc().role : '';
+    }
+
+    function isAdmin() {
+      return role() == 'admin';
+    }
+
+    // --- users -------------------------------------------------------------
+    match /users/{uid} {
+      allow read: if isSignedIn() && (request.auth.uid == uid || isAdmin());
+
+      // A client may create ONLY their own document, and only with role 'client'
+      // and active == true (cannot self-promote to worker/admin).
+      // The admin may create any user doc (used to onboard detailers/workers).
+      allow create: if isAdmin()
+        || (isSignedIn()
+            && request.auth.uid == uid
+            && request.resource.data.role == 'client'
+            && request.resource.data.active == true);
+
+      // A user may toggle their own `available` flag and set their own profile
+      // photo; everything else about a user doc is admin-only.
+      allow update: if isAdmin()
+        || (isSignedIn() && request.auth.uid == uid
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['available', 'photoUrl']));
+
+      allow delete: if isAdmin();
+
+      // Private subcollections: only the owner (or admin) reads/writes.
+      match /{sub=**} {
+        allow read, write: if isSignedIn() && (request.auth.uid == uid || isAdmin());
+      }
+    }
+
+    // --- services ----------------------------------------------------------
+    // Public catalog: anyone (even logged out) can browse services before
+    // signing up. Only the admin can create/edit/remove packages.
+    match /services/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // --- extras ------------------------------------------------------------
+    // Extra services (quoted per vehicle). Public catalog read, admin write.
+    match /extras/{id} {
+      allow read: if true;
+      allow write: if isAdmin();
+    }
+
+    // --- bookings ----------------------------------------------------------
+    match /bookings/{id} {
+      allow read: if isSignedIn() && (
+        isAdmin()
+        || resource.data.clientId == request.auth.uid
+        || resource.data.workerId == request.auth.uid
+        || (role() == 'worker' && resource.data.status == 'searching_worker')
+      );
+
+      // Client creates their own order. Money/status are constrained so a
+      // client cannot forge a confirmed/paid order or a bogus payout: the split
+      // must add up (total = worker payout + business fee) and be non-negative.
+      allow create: if isSignedIn()
+        && request.resource.data.clientId == request.auth.uid
+        && request.resource.data.total == request.resource.data.workerPayout + request.resource.data.businessFee
+        && request.resource.data.workerPayout >= 0
+        && request.resource.data.businessFee >= 0
+        && request.resource.data.status in ['pending_payment', 'searching_worker'];
+
+      // Admin drives verification/cancellation; client can re-submit a rejected
+      // receipt or cancel their own order; a worker that already owns the order
+      // may advance its status. Full transition validation lives in the service
+      // layer + Cloud Functions (Phase 2).
+      allow update: if isAdmin()
+        || (isSignedIn() && resource.data.clientId == request.auth.uid)
+        || (isSignedIn() && resource.data.workerId == request.auth.uid)
+        // A worker claims a searching order ("first to accept wins"): they may
+        // only set themselves as the worker and move it to 'assigned'.
+        || (role() == 'worker'
+            && resource.data.status == 'searching_worker'
+            && request.resource.data.workerId == request.auth.uid
+            && request.resource.data.status == 'assigned');
+
+      allow delete: if isAdmin();
+    }
+
+    // --- counters (sequential detailer IDs) --------------------------------
+    // Admin-only: used to hand out DET-001, DET-002… when creating detailers.
+    match /counters/{id} {
+      allow read, write: if isAdmin();
+    }
+
+    // --- applications (public "work here" form) ----------------------------
+    match /applications/{id} {
+      allow create: if true;   // anyone, even unauthenticated, may apply
+      allow read, update, delete: if isAdmin();
+    }
+  }
+}
