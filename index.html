@@ -3,519 +3,201 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>DetailGO — Premium Car Detailing</title>
-  <meta name="description" content="DetailGO — Detallado profesional de carros en Los Ángeles. Express $35, Regular $45, Premium $80, Full Detail $220. Llama o escribe: +1 (310) 776-2980." />
-  <meta property="og:title" content="DetailGO — Premium Car Detailing" />
-  <meta property="og:description" content="Detallado profesional que transforma cada vehículo. Resultados que hablan por sí solos." />
-  <meta property="og:image" content="images/foto1.jpeg" />
-  <meta property="og:type" content="website" />
+  <title>DetailGO - Car Wash Mobil</title>
+  <meta name="description" content="DetailGO - Lavado y detallado de autos a domicilio en Los Angeles. Paquetes desde $50." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
-
-  <!-- SVG SYMBOL LIBRARY (hidden) -->
-  <svg style="display:none" xmlns="http://www.w3.org/2000/svg">
-    <symbol id="icon-wa" viewBox="0 0 24 24">
-      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
-      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.116.554 4.103 1.524 5.83L0 24l6.343-1.498A11.956 11.956 0 0012 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.818a9.818 9.818 0 01-5.015-1.378l-.36-.213-3.767.889.936-3.663-.234-.375A9.773 9.773 0 012.182 12C2.182 6.57 6.57 2.182 12 2.182S21.818 6.57 21.818 12 17.43 21.818 12 21.818z"/>
-    </symbol>
-    <symbol id="icon-check" viewBox="0 0 12 12">
-      <polyline points="2,6 5,9 10,3"/>
-    </symbol>
-    <symbol id="icon-star-sm" viewBox="0 0 12 12">
-      <polygon points="6 1 7.5 4.5 11 5 8.5 7.5 9 11 6 9.5 3 11 3.5 7.5 1 5 4.5 4.5"/>
-    </symbol>
-    <symbol id="icon-arrow-right" viewBox="0 0 24 24">
-      <path d="M5 12h14M12 5l7 7-7 7"/>
-    </symbol>
-    <symbol id="icon-play" viewBox="0 0 24 24">
-      <path d="M8 5v14l11-7z"/>
-    </symbol>
-    <symbol id="icon-chevron-left" viewBox="0 0 24 24">
-      <polyline points="15 18 9 12 15 6"/>
-    </symbol>
-    <symbol id="icon-chevron-right" viewBox="0 0 24 24">
-      <polyline points="9 18 15 12 9 6"/>
-    </symbol>
-  </svg>
-
-  <!-- BUBBLES -->
-  <div id="bubbles-container" aria-hidden="true"></div>
-
-  <!-- MOBILE MENU -->
-  <div class="mobile-menu" id="mobileMenu" role="dialog" aria-modal="true" aria-label="Menú de navegación">
-    <button class="mobile-menu-close" id="mobileMenuClose" aria-label="Cerrar menú">&times;</button>
-    <a href="#gallery"  data-es="Trabajos"  data-en="Work">Trabajos</a>
-    <a href="#services" data-es="Servicios" data-en="Services">Servicios</a>
-    <a href="#payments" data-es="Pagos"     data-en="Payment">Pagos</a>
-    <a href="#contact"  data-es="Contacto"  data-en="Contact">Contacto</a>
-    <a href="#schedule" data-es="Agendar"   data-en="Schedule">Agendar</a>
-    <a href="#schedule" class="mobile-menu-cta">
-      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0a0f1e" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-      <span data-es="Reservar" data-en="Book Now">Reservar</span>
+  <header class="site-header">
+    <a class="brand" href="#top" aria-label="DetailGO inicio">
+      <img src="images/Logohirizontal-nav.PNG" alt="DetailGO Car Wash Mobil" />
     </a>
-  </div>
+    <nav class="desktop-nav" aria-label="Navegacion principal">
+      <a href="#about">Quienes somos</a>
+      <a href="#services">Paquetes</a>
+      <a href="#app">App</a>
+      <a href="#work">Detailers</a>
+    </nav>
+    <a class="login-link" href="#app">Iniciar sesion</a>
+    <button class="menu-button" type="button" aria-label="Abrir menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </header>
 
-  <!-- NAV -->
-  <nav role="navigation" aria-label="Navegación principal">
-    <a href="#hero" class="nav-logo" aria-label="DetailGO">
-      <img src="images/logo.png" alt="DetailGO Logo" height="64" />
-    </a>
-
-    <ul class="nav-links">
-      <li><a href="#gallery"  data-es="Trabajos"  data-en="Work">Trabajos</a></li>
-      <li><a href="#services" data-es="Servicios"  data-en="Services">Servicios</a></li>
-      <li><a href="#payments" data-es="Pagos"      data-en="Payment">Pagos</a></li>
-      <li><a href="#contact"  data-es="Contacto"   data-en="Contact">Contacto</a></li>
-      <li><a href="#schedule" data-es="Agendar"    data-en="Schedule">Agendar</a></li>
-    </ul>
-
-    <div class="nav-right">
-      <button class="nav-toggle" id="themeToggle" aria-label="Cambiar tema">
-        <svg id="iconSun" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
-        <svg id="iconMoon" viewBox="0 0 24 24" style="display:none"><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"/></svg>
-      </button>
-      <button class="nav-toggle" id="langToggle" aria-label="Cambiar idioma">EN</button>
-      <a href="#schedule" class="nav-cta" data-es="Reservar" data-en="Book Now">Reservar</a>
-      <button class="nav-hamburger" id="navHamburger" aria-label="Abrir menú" aria-expanded="false">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
+  <nav class="mobile-nav" aria-label="Menu movil">
+    <a href="#about">Quienes somos</a>
+    <a href="#services">Paquetes</a>
+    <a href="#app">App</a>
+    <a href="#work">Detailers</a>
   </nav>
 
-  <!-- HERO -->
-  <section id="hero" aria-label="Portada">
-    <video id="hero-video" autoplay muted loop playsinline aria-hidden="true">
-      <source src="images/video4.mp4" type="video/mp4" />
-    </video>
-    <div class="hero-overlay" aria-hidden="true"></div>
-    <div class="hero-content">
-      <div class="hero-badge">Premium Car Detailing</div>
-      <h1 class="hero-title" data-es="Tu carro<br>merece lo <span>mejor</span>" data-en="Your car<br>deserves the <span>best</span>">Tu carro<br>merece lo <span>mejor</span></h1>
-      <p class="hero-sub" data-es="Detallado profesional que transforma cada vehículo. Resultados que hablan por sí solos." data-en="Professional detailing that transforms every vehicle. Results that speak for themselves.">Detallado profesional que transforma cada vehículo. Resultados que hablan por sí solos.</p>
-      <div class="hero-actions">
-        <a href="https://wa.me/13107762980" target="_blank" rel="noopener" class="btn-primary">
-          <svg width="18" height="18" fill="currentColor" aria-hidden="true"><use href="#icon-wa"/></svg>
-          <span data-es="Pedir cita por WhatsApp" data-en="Book via WhatsApp">Pedir cita por WhatsApp</span>
-        </a>
-        <a href="#services" class="btn-secondary">
-          <span data-es="Ver servicios" data-en="View Services">Ver servicios</span>
-          <svg width="16" height="16" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
-        </a>
+  <main id="top">
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow">Car wash mobil en Los Angeles</p>
+        <h1>Lavado de autos a domicilio.</h1>
+        <p class="hero-text">Agenda desde la app, elige tu paquete, agrega tu carro y paga de forma ordenada. DetailGO lleva el servicio hasta donde estes.</p>
+        <div class="hero-actions">
+          <a class="primary-button" href="#services">Ver paquetes</a>
+          <a class="secondary-button" href="#app">Agendar en la app</a>
+        </div>
       </div>
-    </div>
-  </section>
-
-  <!-- STATS BAR -->
-  <div class="stats-bar" role="region">
-    <div class="stat"><div class="stat-num">500+</div><div class="stat-label" data-es="Carros detallados" data-en="Cars Detailed">Carros detallados</div></div>
-    <div class="stat"><div class="stat-num">5★</div><div class="stat-label" data-es="Calificación" data-en="Rating">Calificación</div></div>
-    <div class="stat"><div class="stat-num">6</div><div class="stat-label" data-es="Servicios" data-en="Services">Servicios</div></div>
-    <div class="stat"><div class="stat-num">100%</div><div class="stat-label" data-es="Satisfacción" data-en="Satisfaction">Satisfacción</div></div>
-  </div>
-
-  <!-- GALLERY -->
-  <section id="gallery">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label" data-es="Nuestros Trabajos" data-en="Our Work">Nuestros Trabajos</p>
-        <h2 class="section-title" data-es="Resultados que<br>hablan por sí solos" data-en="Results That<br>Speak for Themselves">Resultados que<br>hablan por sí solos</h2>
-        <div class="gold-divider"></div>
-      </div>
-
-      <div class="carousel-wrap" id="mainCarousel">
-        <div class="carousel-counter" id="carouselCounter">1 / 10</div>
-        <button class="carousel-btn carousel-prev" aria-label="Anterior">
-          <svg viewBox="0 0 24 24"><use href="#icon-chevron-left"/></svg>
-        </button>
-        <div class="carousel-track" id="carouselTrack">
-          <div class="carousel-slide" data-index="0" data-type="img" data-src="images/foto1.jpeg">
-            <img src="images/foto1.jpeg" alt="Detailing work 1" loading="lazy" width="960" height="520"/>
-            <div class="carousel-slide-overlay"><span class="carousel-tag" data-es="Detallado" data-en="Detailing">Detallado</span></div>
+      <div class="hero-panel" aria-label="Vista previa DetailGO">
+        <div class="phone-frame">
+          <div class="phone-top"></div>
+          <img src="images/Logohirizontal-nav.PNG" alt="Logo DetailGO" />
+          <div class="phone-card">
+            <span>Paquetes desde</span>
+            <strong>$50</strong>
           </div>
-          <div class="carousel-slide" data-index="1" data-type="vid" data-src="images/video2.mp4">
-            <video src="images/video2.mp4" muted loop playsinline preload="none" poster="images/foto2.jpeg" aria-hidden="true"></video>
-            <div class="play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-play"/></svg></div>
-            <div class="carousel-slide-overlay"><span class="carousel-tag">Video</span></div>
-          </div>
-          <div class="carousel-slide" data-index="2" data-type="img" data-src="images/foto2.jpeg">
-            <img src="images/foto2.jpeg" alt="Detailing work 2" loading="lazy" width="960" height="520"/>
-            <div class="carousel-slide-overlay"><span class="carousel-tag" data-es="Exterior" data-en="Exterior">Exterior</span></div>
-          </div>
-          <div class="carousel-slide" data-index="3" data-type="vid" data-src="images/video3.mp4">
-            <video src="images/video3.mp4" muted loop playsinline preload="none" poster="images/foto1.jpeg" aria-hidden="true"></video>
-            <div class="play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-play"/></svg></div>
-            <div class="carousel-slide-overlay"><span class="carousel-tag">Video</span></div>
-          </div>
-          <div class="carousel-slide" data-index="4" data-type="img" data-src="images/foto4.jpeg">
-            <img src="images/foto4.jpeg" alt="Detailing work 4" loading="lazy" width="960" height="520"/>
-            <div class="carousel-slide-overlay"><span class="carousel-tag" data-es="Interior" data-en="Interior">Interior</span></div>
-          </div>
-          <div class="carousel-slide" data-index="5" data-type="vid" data-src="images/video5.mp4">
-            <video src="images/video5.mp4" muted loop playsinline preload="none" poster="images/foto4.jpeg" aria-hidden="true"></video>
-            <div class="play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-play"/></svg></div>
-            <div class="carousel-slide-overlay"><span class="carousel-tag">Video</span></div>
-          </div>
-          <div class="carousel-slide" data-index="6" data-type="img" data-src="images/foto5.jpeg">
-            <img src="images/foto5.jpeg" alt="Detailing work 5" loading="lazy" width="960" height="520"/>
-            <div class="carousel-slide-overlay"><span class="carousel-tag" data-es="Detallado" data-en="Detailing">Detallado</span></div>
-          </div>
-          <div class="carousel-slide" data-index="7" data-type="vid" data-src="images/video6.mp4">
-            <video src="images/video6.mp4" muted loop playsinline preload="none" poster="images/foto5.jpeg" aria-hidden="true"></video>
-            <div class="play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-play"/></svg></div>
-            <div class="carousel-slide-overlay"><span class="carousel-tag">Video</span></div>
-          </div>
-          <div class="carousel-slide" data-index="8" data-type="img" data-src="images/foto6.jpeg">
-            <img src="images/foto6.jpeg" alt="Detailing work 6" loading="lazy" width="960" height="520"/>
-            <div class="carousel-slide-overlay"><span class="carousel-tag" data-es="Premium" data-en="Premium">Premium</span></div>
-          </div>
-          <div class="carousel-slide" data-index="9" data-type="vid" data-src="images/video1.mp4">
-            <video src="images/video1.mp4" muted loop playsinline preload="none" poster="images/foto6.jpeg" aria-hidden="true"></video>
-            <div class="play-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><use href="#icon-play"/></svg></div>
-            <div class="carousel-slide-overlay"><span class="carousel-tag">Video</span></div>
+          <div class="phone-list">
+            <div><b>Elige paquete</b><span>Precios claros</span></div>
+            <div><b>Agrega tu carro</b><span>Direccion y fotos</span></div>
+            <div><b>Agenda y paga</b><span>Todo en la app</span></div>
           </div>
         </div>
-        <button class="carousel-btn carousel-next" aria-label="Siguiente">
-          <svg viewBox="0 0 24 24"><use href="#icon-chevron-right"/></svg>
-        </button>
       </div>
-      <div class="carousel-dots" id="carouselDots"></div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SERVICES -->
-  <section id="services">
-    <div class="container">
-      <div class="section-header">
-        <p class="section-label" data-es="Nuestros Servicios" data-en="Our Services">Nuestros Servicios</p>
-        <h2 class="section-title" data-es="Elige el detallado<br>perfecto para ti" data-en="Choose the Perfect<br>Detail for You">Elige el detallado<br>perfecto para ti</h2>
-        <p class="section-sub" data-es="Desde un lavado express hasta un full detail completo. Calidad garantizada en cada servicio." data-en="From an express wash to a full detail. Quality guaranteed in every service.">Desde un lavado express hasta un full detail completo. Calidad garantizada en cada servicio.</p>
-        <div class="gold-divider"></div>
+    <section class="intro-band" id="about">
+      <div>
+        <p class="eyebrow">Quienes somos</p>
+        <h2>Un servicio movil pensado para que el cliente no pierda tiempo.</h2>
+      </div>
+      <p>DetailGO ofrece lavado y detallado de autos a domicilio. El cliente podra ver paquetes, agregar su carro, agendar, pagar con Zelle, Venmo o cash, subir foto del carro y calificar el servicio.</p>
+    </section>
+
+    <section class="services-section" id="services">
+      <div class="section-heading">
+        <p class="eyebrow">Paquetes</p>
+        <h2>Elige el servicio para tu carro</h2>
+        <p>Precios actuales con el ajuste de $15 ya aplicado.</p>
       </div>
 
       <div class="services-grid">
+        <article class="service-card">
+          <div class="service-top"><h3>Express Wash</h3><span>$50</span></div>
+          <p>Lavado rapido por fuera.</p>
+          <ul><li>Lavado por fuera</li><li>Armorol en llantas</li></ul>
+          <a href="#app">Agendar en la app</a>
+        </article>
 
-        <!-- 1 Express -->
-        <div class="service-card">
-          <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
-          <div class="service-name">Express Wash</div>
-          <div class="service-price">$35 <span data-es="/ servicio" data-en="/ service">/ servicio</span></div>
-          <ul class="service-features">
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Lavado por fuera" data-en="Exterior Wash">Lavado por fuera</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Armorol en llantas" data-en="Tire Dressing">Armorol en llantas</span></li>
-          </ul>
-          <button class="service-book-btn" data-service="Express Wash" data-price="$35">
-            <span data-es="Reservar este servicio" data-en="Book This Service">Reservar este servicio</span>
-            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
-          </button>
-        </div>
+        <article class="service-card">
+          <div class="service-top"><h3>Lavada Regular</h3><span>$60</span></div>
+          <p>Exterior + interior basico. Trocas $65.</p>
+          <ul><li>Lavado por fuera</li><li>Armorol en llantas</li><li>Limpieza de vidrios</li><li>Aspirado</li><li>Limpieza de tablero y consola</li></ul>
+          <a href="#app">Agendar en la app</a>
+        </article>
 
-        <!-- 2 Regular -->
-        <div class="service-card">
-          <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div>
-          <div class="service-name" data-es="Lavada Regular" data-en="Regular Wash">Lavada Regular</div>
-          <div class="service-price">$45 <span data-es="/ servicio" data-en="/ service">/ servicio</span></div>
-          <div class="service-truck-note" data-es="Trocas $50" data-en="Trucks $50">Trocas $50</div>
-          <ul class="service-features">
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Lavado por fuera" data-en="Exterior Wash">Lavado por fuera</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Armorol en llantas" data-en="Tire Dressing">Armorol en llantas</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de vidrios (ambos lados)" data-en="Window Cleaning (both sides)">Limpieza de vidrios (ambos lados)</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Aspirado" data-en="Vacuuming">Aspirado</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de tablero y consola" data-en="Dashboard &amp; Console Cleaning">Limpieza de tablero y consola</span></li>
-          </ul>
-          <button class="service-book-btn" data-service="Regular Wash" data-price="$45">
-            <span data-es="Reservar este servicio" data-en="Book This Service">Reservar este servicio</span>
-            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
-          </button>
-        </div>
+        <article class="service-card featured">
+          <div class="popular">Popular</div>
+          <div class="service-top"><h3>Premium Wash</h3><span>$95</span></div>
+          <p>Exterior e interior completo con cera. Trocas $105.</p>
+          <ul><li>Lavado por fuera</li><li>Armorol en llantas</li><li>Limpieza de vidrios</li><li>Aspirado</li><li>Acondicionador en plasticos y piel</li><li>Spray Wax en pintura</li></ul>
+          <a href="#app">Agendar en la app</a>
+        </article>
 
-        <!-- 3 Premium -->
-        <div class="service-card featured">
-          <div class="featured-badge" data-es="Popular" data-en="Popular">Popular</div>
-          <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg></div>
-          <div class="service-name">Premium Wash</div>
-          <div class="service-price">$80 <span data-es="/ servicio" data-en="/ service">/ servicio</span></div>
-          <div class="service-truck-note" data-es="Trocas $90" data-en="Trucks $90">Trocas $90</div>
-          <ul class="service-features">
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Lavado por fuera" data-en="Exterior Wash">Lavado por fuera</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Armorol en llantas" data-en="Tire Dressing">Armorol en llantas</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de vidrios (ambos lados)" data-en="Window Cleaning (both sides)">Limpieza de vidrios (ambos lados)</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Aspirado" data-en="Vacuuming">Aspirado</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de tablero y consola" data-en="Dashboard &amp; Console Cleaning">Limpieza de tablero y consola</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Acondicionador en plásticos y piel" data-en="Plastic &amp; Leather Conditioner">Acondicionador en plásticos y piel</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Spray Wax en pintura" data-en="Spray Wax on Paint">Spray Wax en pintura</span></li>
-          </ul>
-          <button class="service-book-btn" data-service="Premium Wash" data-price="$80">
-            <span data-es="Reservar este servicio" data-en="Book This Service">Reservar este servicio</span>
-            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
-          </button>
-        </div>
+        <article class="service-card">
+          <div class="service-top"><h3>Clay Bar</h3><span>$135</span></div>
+          <p>Descontaminacion de pintura con clay bar.</p>
+          <ul><li>Lavado por fuera</li><li>Limpieza de vidrios</li><li>Aspirado</li><li>Clay Bar en pintura</li><li>Spray Wax en pintura</li></ul>
+          <a href="#app">Agendar en la app</a>
+        </article>
 
-        <!-- 4 Clay Bar -->
-        <div class="service-card">
-          <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/></svg></div>
-          <div class="service-name">Clay Bar</div>
-          <div class="service-price">$120 <span data-es="/ servicio" data-en="/ service">/ servicio</span></div>
-          <ul class="service-features">
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Lavado por fuera" data-en="Exterior Wash">Lavado por fuera</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Armorol en llantas" data-en="Tire Dressing">Armorol en llantas</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de vidrios (ambos lados)" data-en="Window Cleaning (both sides)">Limpieza de vidrios (ambos lados)</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Aspirado" data-en="Vacuuming">Aspirado</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de tablero y consola" data-en="Dashboard &amp; Console Cleaning">Limpieza de tablero y consola</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Clay Bar en pintura" data-en="Clay Bar on Paint">Clay Bar en pintura</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Acondicionador en plásticos y piel" data-en="Plastic &amp; Leather Conditioner">Acondicionador en plásticos y piel</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Spray Wax en pintura" data-en="Spray Wax on Paint">Spray Wax en pintura</span></li>
-          </ul>
-          <button class="service-book-btn" data-service="Clay Bar" data-price="$120">
-            <span data-es="Reservar este servicio" data-en="Book This Service">Reservar este servicio</span>
-            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
-          </button>
-        </div>
+        <article class="service-card">
+          <div class="service-top"><h3>Ditel</h3><span>$195</span></div>
+          <p>Detallado a fondo interior y exterior.</p>
+          <ul><li>Lavado por fuera</li><li>Aspirado</li><li>Limpieza profunda de tablero</li><li>Clay Bar en pintura</li><li>Limpieza profunda de plasticos</li></ul>
+          <a href="#app">Agendar en la app</a>
+        </article>
 
-        <!-- 5 Ditel -->
-        <div class="service-card">
-          <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M9 11H7v2h2v-2zm4 0h-2v2h2v-2zm4 0h-2v2h2v-2zm2-7h-1V2h-2v2H8V2H6v2H5C3.89 4 3.01 4.9 3.01 6L3 20c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 16H5V9h14v11z"/></svg></div>
-          <div class="service-name">Ditel</div>
-          <div class="service-price">$180 <span data-es="/ servicio" data-en="/ service">/ servicio</span></div>
-          <ul class="service-features">
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Lavado por fuera" data-en="Exterior Wash">Lavado por fuera</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Armorol en llantas" data-en="Tire Dressing">Armorol en llantas</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de vidrios (ambos lados)" data-en="Window Cleaning (both sides)">Limpieza de vidrios (ambos lados)</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Aspirado" data-en="Vacuuming">Aspirado</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza profunda de tablero a detalle" data-en="Deep Dashboard Detail">Limpieza profunda de tablero a detalle</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Clay Bar en pintura" data-en="Clay Bar on Paint">Clay Bar en pintura</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Acondicionador en plásticos y piel" data-en="Plastic &amp; Leather Conditioner">Acondicionador en plásticos y piel</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Spray Wax en pintura" data-en="Spray Wax on Paint">Spray Wax en pintura</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Limpieza profunda de plásticos" data-en="Deep Plastic Cleaning">Limpieza profunda de plásticos</span></li>
-          </ul>
-          <button class="service-book-btn" data-service="Ditel" data-price="$180">
-            <span data-es="Reservar este servicio" data-en="Book This Service">Reservar este servicio</span>
-            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
-          </button>
-        </div>
-
-        <!-- 6 Full Ditel -->
-        <div class="service-card">
-          <div class="service-icon" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/></svg></div>
-          <div class="service-name">Full Ditel</div>
-          <div class="service-price">$220 <span data-es="/ servicio" data-en="/ service">/ servicio</span></div>
-          <ul class="service-features">
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Lavado por fuera" data-en="Exterior Wash">Lavado por fuera</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Armorol en llantas" data-en="Tire Dressing">Armorol en llantas</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de vidrios (ambos lados)" data-en="Window Cleaning (both sides)">Limpieza de vidrios (ambos lados)</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Aspirado" data-en="Vacuuming">Aspirado</span></li>
-            <li><div class="feature-check" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-check"/></svg></div><span data-es="Limpieza de tablero y consola" data-en="Dashboard &amp; Console Cleaning">Limpieza de tablero y consola</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Clay Bar en pintura" data-en="Clay Bar on Paint">Clay Bar en pintura</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Acondicionador en plásticos y piel" data-en="Plastic &amp; Leather Conditioner">Acondicionador en plásticos y piel</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Spray Wax en pintura" data-en="Spray Wax on Paint">Spray Wax en pintura</span></li>
-            <li><div class="feature-star" aria-hidden="true"><svg viewBox="0 0 12 12"><use href="#icon-star-sm"/></svg></div><span data-es="Lavado de sillones y carpeta" data-en="Seat &amp; Carpet Wash">Lavado de sillones y carpeta</span></li>
-          </ul>
-          <button class="service-book-btn" data-service="Full Ditel" data-price="$220">
-            <span data-es="Reservar este servicio" data-en="Book This Service">Reservar este servicio</span>
-            <svg fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#icon-arrow-right"/></svg>
-          </button>
-        </div>
-
+        <article class="service-card">
+          <div class="service-top"><h3>Full Ditel</h3><span>$235</span></div>
+          <p>Detallado completo, incluye lavado de sillones y carpeta.</p>
+          <ul><li>Lavado por fuera</li><li>Limpieza de tablero y consola</li><li>Clay Bar en pintura</li><li>Spray Wax en pintura</li><li>Lavado de sillones y carpeta</li></ul>
+          <a href="#app">Agendar en la app</a>
+        </article>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- SCHEDULE -->
-  <section id="schedule">
-    <div class="container">
-      <div class="schedule-card">
-        <div class="schedule-left">
-          <p class="section-label" data-es="Agenda en línea" data-en="Book Online">Agenda en línea</p>
-          <h2 class="section-title" data-es="¿Listo para dejar<br>tu carro <span style='color:var(--gold)'>brillando?</span>" data-en="Ready to make<br>your car <span style='color:var(--gold)'>shine?</span>">¿Listo para dejar<br>tu carro <span style="color:var(--gold)">brillando?</span></h2>
-          <p class="section-sub" data-es="Elige el día y la hora que más te convenga. Solo aparecen los horarios disponibles — sin llamadas, sin esperar." data-en="Pick the day and time that works best for you. Only available slots shown — no calls, no waiting.">Elige el día y la hora que más te convenga. Solo aparecen los horarios disponibles — sin llamadas, sin esperar.</p>
-          <div class="schedule-perks">
-            <div class="schedule-perk">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-es="Horarios en tiempo real" data-en="Real-time availability">Horarios en tiempo real</span>
-            </div>
-            <div class="schedule-perk">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-es="Confirmación instantánea" data-en="Instant confirmation">Confirmación instantánea</span>
-            </div>
-            <div class="schedule-perk">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-es="Se guarda en tu Google Calendar" data-en="Saved to your Google Calendar">Se guarda en tu Google Calendar</span>
-            </div>
-            <div class="schedule-perk">
-              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
-              <span data-es="Recordatorio automático" data-en="Automatic reminder">Recordatorio automático</span>
-            </div>
-          </div>
-          <a href="https://calendar.app.google/FWCdevKwRxKyNLVe6" target="_blank" rel="noopener" class="schedule-cta">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-            <span data-es="¡Agenda tu Car Wash Ya!" data-en="Book Your Car Wash Now!">¡Agenda tu Car Wash Ya!</span>
-          </a>
-          <p class="schedule-note" data-es="Gratis · Sin registro · Abre Google Calendar" data-en="Free · No sign-up · Opens Google Calendar">Gratis · Sin registro · Abre Google Calendar</p>
+    <section class="app-section" id="app">
+      <div class="section-heading">
+        <p class="eyebrow">App iOS y Android</p>
+        <h2>Las citas se agendan dentro de DetailGO</h2>
+        <p>El cliente ve paquetes, registra su carro, guarda direccion, agenda el servicio y paga desde la app.</p>
+      </div>
+      <div class="app-grid">
+        <div class="app-card">
+          <h3>Agenda y paga</h3>
+          <p>Ver paquetes, agregar carros, guardar direcciones, seleccionar servicio, pedir orden, pagar con Zelle/Venmo/cash y calificar al detailer.</p>
         </div>
-        <div class="schedule-right" aria-hidden="true">
-          <div class="schedule-cal-preview">
-            <div class="cal-header">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--gold)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
-              <span>DetailGO Calendar</span>
-            </div>
-            <div class="cal-slots">
-              <div class="cal-slot available">9:00 AM</div>
-              <div class="cal-slot available">10:00 AM</div>
-              <div class="cal-slot booked" data-es="Ocupado" data-en="Booked">Ocupado</div>
-              <div class="cal-slot available">12:00 PM</div>
-              <div class="cal-slot booked" data-es="Ocupado" data-en="Booked">Ocupado</div>
-              <div class="cal-slot available">2:00 PM</div>
-              <div class="cal-slot available">3:00 PM</div>
-              <div class="cal-slot available">4:00 PM</div>
-            </div>
-          </div>
+        <div class="app-card">
+          <h3>Tu informacion lista</h3>
+          <p>Guarda tu direccion, selecciona el carro correcto y sube fotos para que el servicio llegue con la informacion necesaria.</p>
+        </div>
+        <div class="app-card">
+          <h3>Historial y calificacion</h3>
+          <p>Consulta tus lavados anteriores y califica el servicio cuando termine para mantener la calidad de DetailGO.</p>
         </div>
       </div>
-    </div>
-  </section>
-
-  <!-- PAYMENTS -->
-  <section id="payments">
-    <div class="container">
-      <div class="section-header centered">
-        <p class="section-label" data-es="Métodos de Pago" data-en="Payment Methods">Métodos de Pago</p>
-        <h2 class="section-title" data-es="Formas de pago<br>que aceptamos" data-en="We Accept<br>These Payments">Formas de pago<br>que aceptamos</h2>
-        <p class="section-sub" data-es="Sin complicaciones. Paga como prefieras." data-en="No hassle. Pay however you prefer.">Sin complicaciones. Paga como prefieras.</p>
-        <div class="gold-divider"></div>
+      <div class="download-row">
+        <button type="button" disabled>Descargar app iPhone</button>
+        <button type="button" disabled>Descargar app Android</button>
       </div>
+      <p class="download-note">Los enlaces de App Store y Google Play se conectan cuando esten publicados.</p>
+    </section>
 
-      <div class="payments-row">
-
-        <!-- Cash -->
-        <div class="pay-card pay-cash">
-          <div class="pay-icon">
-            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="2" y="6" width="20" height="12" rx="2" stroke="#34C759" stroke-width="1.8"/>
-              <circle cx="12" cy="12" r="3" stroke="#34C759" stroke-width="1.8"/>
-              <path d="M6 10v4M18 10v4" stroke="#34C759" stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="pay-name">Cash</div>
-          <div class="pay-sub" data-es="Efectivo" data-en="Cash payment">Efectivo</div>
-        </div>
-
-        <!-- Zelle -->
-        <div class="pay-card pay-zelle">
-          <div class="pay-icon">
-            <span class="pay-letter" aria-hidden="true">Z</span>
-          </div>
-          <div class="pay-name">Zelle</div>
-          <div class="pay-sub" data-es="Transferencia rápida" data-en="Instant transfer">Transferencia rápida</div>
-        </div>
-
-        <!-- Venmo -->
-        <div class="pay-card pay-venmo">
-          <div class="pay-icon">
-            <span class="pay-letter" aria-hidden="true">V</span>
-          </div>
-          <div class="pay-name">Venmo</div>
-          <div class="pay-sub" data-es="Pago digital" data-en="Digital payment">Pago digital</div>
-        </div>
-
+    <section class="work-section" id="work">
+      <div class="work-copy">
+        <p class="eyebrow">Unete al equipo</p>
+        <h2>Trabaja con DetailGO</h2>
+        <p>Envia tu informacion para que el administrador revise tu solicitud desde la app.</p>
       </div>
-    </div>
-  </section>
+      <button
+        class="primary-button detailer-open-button"
+        id="openDetailerForm"
+        type="button"
+        aria-haspopup="dialog"
+        aria-controls="detailerDialog"
+      >Quiero ser detailer</button>
+    </section>
 
-  <!-- CONTACT -->
-  <section id="contact">
-    <div class="container">
-      <div class="cta-box">
-        <p class="section-label" data-es="Contáctanos" data-en="Contact Us">Contáctanos</p>
-        <h2 class="section-title" data-es="¿Listo para dejar<br>tu carro impecable?" data-en="Ready to Make<br>Your Car Shine?">¿Listo para dejar<br>tu carro impecable?</h2>
-        <p class="section-sub" data-es="Contáctanos como prefieras — WhatsApp, texto o llamada. Respondemos rápido." data-en="Contact us however you prefer — WhatsApp, text, or a direct call. We respond fast.">Contáctanos como prefieras — WhatsApp, texto o llamada. Respondemos rápido.</p>
-
-        <div class="contact-btns">
-          <a href="https://wa.me/13107762980" target="_blank" rel="noopener" class="contact-btn btn-whatsapp">
-            <svg viewBox="0 0 24 24" fill="#fff" aria-hidden="true"><use href="#icon-wa"/></svg>
-            WhatsApp
-          </a>
-          <a href="sms:+13107762980" class="contact-btn btn-sms">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2z"/><path d="M7 9h10M7 13h7"/></svg>
-            <span data-es="Mensaje de Texto" data-en="Text Message">Mensaje de Texto</span>
-          </a>
-          <a href="tel:+13107762980" class="contact-btn btn-call">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.1 10.82 19.79 19.79 0 01.06 2.18 2 2 0 012.03 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
-            <span data-es="Llamar" data-en="Call">Llamar</span>
-          </a>
+    <dialog class="detailer-dialog" id="detailerDialog" aria-labelledby="detailerDialogTitle">
+      <div class="dialog-header">
+        <div>
+          <p class="eyebrow">Solicitud de detailer</p>
+          <h2 id="detailerDialogTitle">Trabaja con DetailGO</h2>
         </div>
-
-        <div class="contact-divider" data-es="o escríbenos al" data-en="or reach us at">o escríbenos al</div>
-        <p class="contact-phone">+1 (310) 776-2980</p>
+        <button class="dialog-close" id="closeDetailerForm" type="button" aria-label="Cerrar formulario">&times;</button>
       </div>
-    </div>
-  </section>
+      <p class="dialog-intro">Completa tus datos. La solicitud llegara al administrador dentro de su app.</p>
+      <form class="detailer-form" id="detailerForm">
+        <div class="form-grid">
+          <label>Nombre completo<input name="name" type="text" autocomplete="name" required /></label>
+          <label>Telefono<input name="phone" type="tel" autocomplete="tel" required /></label>
+          <label>Direccion<input name="address" type="text" autocomplete="street-address" required /></label>
+          <label>Area donde vive<input name="zone" type="text" required /></label>
+        </div>
+        <div class="choice-row">
+          <label><input name="hasTransport" type="checkbox" /> Tengo carro</label>
+          <label><input name="hasEquipment" type="checkbox" /> Tengo equipo para lavar</label>
+        </div>
+        <label>Comentario<textarea name="comment" rows="3" placeholder="Experiencia, horarios o detalles importantes"></textarea></label>
+        <button class="primary-button" type="submit">Enviar solicitud</button>
+        <p class="form-status" id="detailerFormStatus" role="status"></p>
+      </form>
+    </dialog>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="footer-logo"><img src="images/logo.png" alt="DetailGO Logo" height="48" /></div>
-    <p class="footer-sub">Premium Car Detailing &nbsp;·&nbsp; +1 (310) 776-2980</p>
-    <p class="footer-copy">&copy; 2026 DetailGO. <span data-es="Todos los derechos reservados." data-en="All rights reserved.">Todos los derechos reservados.</span></p>
+  </main>
+
+  <footer class="site-footer">
+    <img src="images/Logohirizontal-nav.PNG" alt="DetailGO" />
+    <p>DetailGO Car Wash Mobil - Los Angeles, CA</p>
   </footer>
 
-  <!-- FLOATING SMS -->
-  <a href="sms:+13107762980" class="sms-float" aria-label="Mensaje de texto">
-    <svg width="30" height="30" viewBox="0 0 24 24" fill="#fff" aria-hidden="true">
-      <path d="M20 2H4c-1.1 0-2 .9-2 2v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zM7 9h10v2H7V9zm7 5H7v-2h7v2z"/>
-    </svg>
-  </a>
-
-  <!-- BOOKING MODAL -->
-  <div id="bookingOverlay" class="booking-overlay">
-    <div class="booking-modal" role="dialog" aria-modal="true" aria-labelledby="bookingHeading">
-      <button class="booking-close" aria-label="Cerrar">&times;</button>
-      <div class="booking-service-tag" id="bookingTag"></div>
-      <div class="booking-heading" id="bookingHeading" data-es="Solicitar cita" data-en="Request Appointment">Solicitar cita</div>
-      <div class="booking-price-display" id="bookingPriceDisplay"></div>
-      <form class="booking-form" id="bookingForm" novalidate>
-        <div class="form-group">
-          <label class="form-label" for="bookingName" data-es="Tu nombre completo" data-en="Your full name">Tu nombre completo</label>
-          <input class="form-input" id="bookingName" type="text" required autocomplete="name"
-            data-placeholder-es="Ej: Juan García"
-            data-placeholder-en="e.g. John Smith"
-            placeholder="Ej: Juan García" />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="bookingAddress" data-es="Tu dirección" data-en="Your address">Tu dirección</label>
-          <input class="form-input" id="bookingAddress" type="text" required autocomplete="street-address"
-            data-placeholder-es="Ej: 123 Main St, Los Angeles"
-            data-placeholder-en="e.g. 123 Main St, Los Angeles"
-            placeholder="Ej: 123 Main St, Los Angeles" />
-        </div>
-        <div class="form-group">
-          <label class="form-label" for="bookingPhone" data-es="Tu número de WhatsApp" data-en="Your WhatsApp number">Tu número de WhatsApp</label>
-          <input class="form-input" id="bookingPhone" type="tel" required autocomplete="tel"
-            data-placeholder-es="Ej: +1 (747) 000-0000"
-            data-placeholder-en="e.g. +1 (747) 000-0000"
-            placeholder="Ej: +1 (747) 000-0000" />
-        </div>
-        <button type="submit" class="booking-submit">
-          <svg aria-hidden="true"><use href="#icon-wa"/></svg>
-          <span data-es="Enviar solicitud por WhatsApp" data-en="Send Request via WhatsApp">Enviar solicitud por WhatsApp</span>
-        </button>
-      </form>
-      <p class="booking-note" data-es="Se abrirá WhatsApp con tu solicitud lista para enviar." data-en="WhatsApp will open with your request ready to send.">Se abrirá WhatsApp con tu solicitud lista para enviar.</p>
-    </div>
-  </div>
-
-  <!-- LIGHTBOX -->
-  <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Vista ampliada">
-    <div class="lightbox-inner">
-      <button class="lightbox-close" aria-label="Cerrar">&times;</button>
-      <button class="lb-arrow lb-prev" aria-label="Anterior"><svg viewBox="0 0 24 24"><use href="#icon-chevron-left"/></svg></button>
-      <div id="lightbox-content"></div>
-      <button class="lb-arrow lb-next" aria-label="Siguiente"><svg viewBox="0 0 24 24"><use href="#icon-chevron-right"/></svg></button>
-      <div class="lb-counter" id="lbCounter"></div>
-    </div>
-  </div>
-
-  <script src="js/main.js" defer></script>
+  <script type="module" src="js/main.js"></script>
 </body>
 </html>
