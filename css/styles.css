@@ -118,6 +118,30 @@ h2 { font-size: clamp(30px, 3.4vw, 48px); line-height: 1.08; letter-spacing: 0; 
 h3 { font-size: 20px; margin-bottom: 8px; letter-spacing: 0; }
 .hero-text { max-width: 585px; color: var(--muted); font-size: 18px; line-height: 1.65; margin-bottom: 28px; }
 .hero-actions, .contact-actions, .download-row { display: flex; flex-wrap: wrap; gap: 14px; align-items: center; }
+.trust-row {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+  margin: 26px 0 0;
+  padding: 0;
+}
+.trust-row li {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 600;
+}
+.trust-row li::before {
+  content: "";
+  width: 16px;
+  height: 16px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--water), var(--aqua));
+  flex: 0 0 auto;
+}
 .primary-button, .secondary-button, .contact-actions a, .service-card a, .download-row button {
   display: inline-flex;
   align-items: center;
