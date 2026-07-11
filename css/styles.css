@@ -441,6 +441,58 @@ a:focus-visible, button:focus-visible, .primary-button:focus-visible, .secondary
 .contact-actions { justify-content: center; margin: 28px 0 20px; }
 .contact-section strong { color: var(--blue); font-size: 22px; }
 
+.policy-page {
+  min-height: calc(100vh - 76px);
+  padding: clamp(42px, 7vw, 96px) clamp(18px, 6vw, 88px);
+}
+.policy-panel {
+  max-width: 1040px;
+  margin: 0 auto;
+  padding: clamp(28px, 5vw, 58px);
+  border: 1px solid rgba(34, 211, 238, 0.28);
+  border-radius: 28px;
+  background:
+    radial-gradient(circle at 86% 18%, rgba(6,182,212,0.16), transparent 36%),
+    linear-gradient(135deg, #0D1B2E, #081426 72%);
+  box-shadow: 0 28px 70px rgba(0, 0, 0, 0.42);
+}
+.policy-panel h1 {
+  max-width: 760px;
+  font-size: clamp(38px, 5vw, 62px);
+}
+.policy-panel > p {
+  max-width: 760px;
+  color: var(--muted);
+  line-height: 1.7;
+  font-size: 17px;
+}
+.policy-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin: 28px 0 34px;
+}
+.policy-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+}
+.policy-grid article {
+  padding: 22px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: var(--panel);
+}
+.policy-grid h2 {
+  font-size: 22px;
+  margin-bottom: 10px;
+}
+.policy-grid p {
+  color: var(--muted);
+  line-height: 1.65;
+  margin-bottom: 0;
+}
+
 .site-footer {
   display: grid;
   place-items: center;
@@ -468,7 +520,7 @@ a:focus-visible, button:focus-visible, .primary-button:focus-visible, .secondary
   .menu-button { display: block; }
   .hero, .intro-band, .work-section { grid-template-columns: 1fr; }
   .hero { min-height: auto; }
-  .services-grid, .app-grid, .gallery-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .services-grid, .app-grid, .gallery-grid, .policy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 640px) {
@@ -476,7 +528,7 @@ a:focus-visible, button:focus-visible, .primary-button:focus-visible, .secondary
   .brand { width: 220px; height: 46px; }
   .hero { padding-top: 34px; }
   .hero-photo { width: 100%; }
-  .services-grid, .app-grid, .gallery-grid { grid-template-columns: 1fr; }
+  .services-grid, .app-grid, .gallery-grid, .policy-grid { grid-template-columns: 1fr; }
   .form-grid { grid-template-columns: 1fr; }
   .service-card { min-height: auto; }
   .intro-band, .work-section { margin-inline: 14px; padding: 24px; border-radius: 24px; }
@@ -486,4 +538,5 @@ a:focus-visible, button:focus-visible, .primary-button:focus-visible, .secondary
   .dialog-intro { margin-inline: 18px; }
   .detailer-form { margin: 0 18px 18px; padding: 18px; }
   .primary-button, .secondary-button, .contact-actions a, .download-row button { width: 100%; }
+  .policy-actions .primary-button, .policy-actions .secondary-button { width: 100%; }
 }
