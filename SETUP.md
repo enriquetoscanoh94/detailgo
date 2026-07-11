@@ -27,11 +27,13 @@ Native)** + **Firebase**. Un solo código para **iOS, Android y web**.
 
 ## Qué hace cada rol
 
-- **Cliente:** se registra e inicia sesión (correo). Guarda **carros** (con foto) y
-  **direcciones**, y arma una orden con **hasta 5 carros, cada uno con su propio
-  paquete**. Agrega **extras** (con precio; el shampoo se cobra por asiento). Paga
-  por **Zelle / Venmo** (sube comprobante) o **efectivo**. Sigue la orden, ve su
-  historial, califica al detailer con **caritas** y sube **foto de perfil**.
+- **Cliente:** se registra e inicia sesión con **correo** o **Google**. Guarda
+  **carros** (con foto) y **direcciones**, y arma una orden con **hasta 5 carros,
+  cada uno con su propio paquete**. Agrega **extras** (con precio; el shampoo se
+  cobra por asiento). Paga por **Zelle / Venmo** (sube comprobante) o **efectivo**.
+  Sigue la orden, ve su historial, califica al detailer con **caritas**, sube
+  **foto de perfil** y puede abrir la pagina publica para solicitar eliminacion
+  de cuenta.
 - **Detailer:** NO se registra solo — lo **crea el admin**. Recibe órdenes ("el
   primero que acepta gana", con sonido), avanza el estado, abre la dirección en
   **Maps**, ve su **ID**, sus **ganancias** y su **calificación**, y su foto de perfil.
@@ -74,6 +76,22 @@ npm start          # Metro; escanea el QR con Expo Go
 npm run web        # vista previa web en el navegador
 ```
 
+## Variables de entorno
+
+Copia `.env.example` a `.env` y llena los IDs de OAuth segun la plataforma.
+`.env` no se sube al repo.
+
+```bash
+EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID=...
+EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID=...
+EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID=...
+```
+
+- Firebase real: proyecto `detailgo-3991f`.
+- Web OAuth Client ID: ya existe en Google Cloud/Firebase.
+- Android OAuth Client ID: falta completar cuando EAS entregue el SHA-1 del
+  keystore Android.
+
 ## Publicar la app web (redeploy)
 
 ```bash
@@ -90,11 +108,43 @@ GitHub Pages necesita: `web/.nojekyll` (para servir la carpeta `_expo`) y
 `web/404.html` (redirección SPA). Tras el push tarda ~1–2 min en actualizar; si lo
 ves igual, es **caché del navegador** → recarga forzada (Ctrl+Shift+R / incógnito).
 
-## Reglas de Firebase
+## Firebase y Google Sign-In
 
-Ya publicadas en el proyecto `detailgo-3991f`. Si cambias `firestore.rules` o
-`storage.rules`, republícalas en la consola (Firestore/Storage → Reglas → pega y
-Publica) o con la CLI. **La app corre con Firebase real** (sin modo demo).
+- Proyecto Firebase correcto: `detailgo-3991f`.
+- Proveedores de Authentication habilitados: **Email/password** y **Google**.
+- Nombre publico de OAuth/Firebase: `Detail Go`.
+- Email de soporte configurado: `carwashdetailgo@gmail.com`.
+- App Android registrada: `com.detailgo.app`.
+- La app crea automaticamente el perfil `users/{uid}` cuando un cliente entra
+  con Google por primera vez.
+
+Las reglas ya estan publicadas en el proyecto `detailgo-3991f`. Si cambias
+`firestore.rules` o `storage.rules`, republícalas en la consola
+(Firestore/Storage → Reglas → pega y Publica) o con la CLI. **La app corre con
+Firebase real** (sin modo demo).
+
+## Play Store / Android
+
+Pendiente para dejar Google listo al 100% en Android:
+
+```bash
+eas login
+eas credentials --platform android
+```
+
+Con EAS hay que obtener el SHA-1 del keystore Android, agregarlo en Firebase para
+la app `com.detailgo.app`, descargar/confirmar la config actualizada y llenar
+`EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID` en `.env`.
+
+Despues:
+
+```bash
+eas build --platform android --profile production
+```
+
+El perfil production genera `.aab` para Play Store. Para apps nuevas o updates,
+Play Store exige target API vigente; este proyecto debe mantenerse con un SDK de
+Expo que compile contra el target requerido por Google Play.
 
 ## Scripts útiles (`scripts/`)
 
@@ -109,7 +159,8 @@ ADMIN_EMAIL="..." ADMIN_PASSWORD="..." node scripts/update-prices.mjs
 
 - **Fuentes del Figma:** Exo 2 (títulos) + DM Sans (texto).
 - **Bloqueado por cuentas externas:** notificaciones push con la app cerrada
-  (Cloud Functions), login con Google/Apple, y publicación en App Store / Play Store.
+  (Cloud Functions), Apple Sign-In, EAS/SHA-1 para Google Android, y publicación
+  en App Store / Play Store.
 
 ## Estructura
 
