@@ -1,4 +1,4 @@
-import { View, StyleSheet } from 'react-native';
+import { Linking, View, StyleSheet } from 'react-native';
 import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
 
@@ -7,6 +7,7 @@ import { AvatarUpload } from '@/components/AvatarUpload';
 import { useI18n } from '@/context/I18nContext';
 import { useAuth } from '@/context/AuthContext';
 import { confirmAction } from '@/utils/confirm';
+import { BUSINESS } from '@/config/business';
 import { colors, spacing } from '@/constants/theme';
 
 function InfoRow({ icon, value }) {
@@ -35,6 +36,9 @@ export default function ClientProfile() {
   const { t, lang, setLang } = useI18n();
   const router = useRouter();
   const { user, profile, signOut } = useAuth();
+  const openDeleteAccount = () => {
+    Linking.openURL(`${BUSINESS.website}/delete-account.html`);
+  };
 
   const confirmSignOut = async () => {
     if (
@@ -67,6 +71,7 @@ export default function ClientProfile() {
 
         <LinkRow icon="car-outline" label={t('client.myVehicles')} onPress={() => router.push('/(client)/vehicles')} />
         <LinkRow icon="location-outline" label={t('client.myAddresses')} onPress={() => router.push('/(client)/addresses')} />
+        <LinkRow icon="trash-outline" label={t('account.deleteRequest')} onPress={openDeleteAccount} />
 
         <AppText variant="label" style={styles.sectionLabel}>
           Idioma / Language

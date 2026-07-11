@@ -56,7 +56,8 @@
           "resizeMode": "contain",
           "imageWidth": 260
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true,

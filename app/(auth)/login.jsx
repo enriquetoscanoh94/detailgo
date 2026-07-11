@@ -1,10 +1,12 @@
 import { useState } from 'react';
 import { View, StyleSheet, Pressable, Image } from 'react-native';
 import { useRouter } from 'expo-router';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Screen, AppText, Input, Button } from '@/components/ui';
 import { useI18n } from '@/context/I18nContext';
 import { useAuth } from '@/context/AuthContext';
+import { useGoogleSignIn } from '@/hooks/useGoogleSignIn';
 import { login } from '@/services/authService';
 import { isEmail, isNonEmpty } from '@/utils/validation';
 import { colors, spacing, radius, shadow } from '@/constants/theme';
@@ -13,12 +15,14 @@ export default function LoginScreen() {
   const { t } = useI18n();
   const router = useRouter();
   const { disabledNotice, clearDisabledNotice } = useAuth();
+  const signInWithGoogle = useGoogleSignIn();
 
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState({});
   const [formError, setFormError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [googleSubmitting, setGoogleSubmitting] = useState(false);
 
   const validate = () => {
     const next = {};
@@ -40,6 +44,20 @@ export default function LoginScreen() {
       setFormError(t(err.key ?? 'error.generic'));
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const onGoogleSubmit = async () => {
+    setFormError('');
+    clearDisabledNotice();
+    setGoogleSubmitting(true);
+    try {
+      await signInWithGoogle();
+      // Navigation is handled by the root navigator once auth state updates.
+    } catch (err) {
+      setFormError(t(err.key ?? 'error.generic'));
+    } finally {
+      setGoogleSubmitting(false);
     }
   };
 
@@ -92,7 +110,16 @@ export default function LoginScreen() {
         </AppText>
       ) : null}
 
-      <Button title={t('auth.loginCta')} onPress={onSubmit} loading={submitting} />
+      <Button title={t('auth.loginCta')} onPress={onSubmit} loading={submitting} disabled={googleSubmitting} />
+      <Button
+        title={t('auth.continueWithGoogle')}
+        onPress={onGoogleSubmit}
+        loading={googleSubmitting}
+        disabled={submitting}
+        variant="secondary"
+        leftIcon={<Ionicons name="logo-google" size={18} color={colors.primary} />}
+        style={styles.googleButton}
+      />
 
       <View style={styles.footerRow}>
         <AppText variant="body" muted>
@@ -143,6 +170,7 @@ const styles = StyleSheet.create({
   },
   forgot: { alignSelf: 'flex-end', marginBottom: spacing.lg },
   formError: { marginBottom: spacing.md },
+  googleButton: { marginTop: spacing.md },
   footerRow: { flexDirection: 'row', justifyContent: 'center', marginTop: spacing.xl },
   viewServices: {
     marginTop: spacing.xl,

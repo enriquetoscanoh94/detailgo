@@ -34,6 +34,7 @@ export default {
     phone: 'Teléfono',
     login: 'Iniciar sesión',
     loginCta: 'Entrar',
+    continueWithGoogle: 'Continuar con Google',
     register: 'Crear cuenta',
     registerCta: 'Registrarme',
     noAccount: '¿No tienes cuenta?',
@@ -46,6 +47,10 @@ export default {
     viewServices: 'Ver nuestros servicios',
     signOut: 'Cerrar sesión',
     accountDisabled: 'Tu cuenta está desactivada. Contacta al administrador.',
+  },
+
+  account: {
+    deleteRequest: 'Eliminar cuenta y datos',
   },
 
   catalog: {
@@ -295,5 +300,8 @@ export default {
     userDisabled: 'Tu cuenta está desactivada. Contacta al administrador.',
     permissionDenied: 'No tienes permiso para hacer esto.',
     orderTaken: 'Esta orden ya fue tomada por otro lavador.',
+    googleConfigMissing: 'Falta configurar el acceso con Google para esta plataforma.',
+    googleUnavailable: 'Google no está listo todavía. Intenta de nuevo.',
+    googleSignInFailed: 'No pudimos iniciar sesión con Google.',
   },
 };

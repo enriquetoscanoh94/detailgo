@@ -34,6 +34,7 @@ export default {
     phone: 'Phone',
     login: 'Log in',
     loginCta: 'Log in',
+    continueWithGoogle: 'Continue with Google',
     register: 'Create account',
     registerCta: 'Sign up',
     noAccount: "Don't have an account?",
@@ -46,6 +47,10 @@ export default {
     viewServices: 'See our services',
     signOut: 'Sign out',
     accountDisabled: 'Your account is disabled. Contact the administrator.',
+  },
+
+  account: {
+    deleteRequest: 'Delete account and data',
   },
 
   catalog: {
@@ -295,5 +300,8 @@ export default {
     userDisabled: 'Your account is disabled. Contact the administrator.',
     permissionDenied: "You don't have permission to do this.",
     orderTaken: 'This order was already taken by another worker.',
+    googleConfigMissing: 'Google sign-in is missing configuration for this platform.',
+    googleUnavailable: 'Google is not ready yet. Please try again.',
+    googleSignInFailed: 'We could not sign in with Google.',
   },
 };

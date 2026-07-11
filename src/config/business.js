@@ -8,9 +8,9 @@
 
 export const BUSINESS = {
   name: 'Detail Go',
-  website: 'https://detailgo.app',
+  website: 'https://carwahsdetailgo.com',
   supportPhone: '+1 (310) 776-2980',
-  supportEmail: 'soporte@detailgo.app', // TODO: email real
+  supportEmail: 'carwashdetailgo@gmail.com',
 
   // Zona de cobertura. El wizard valida que la ciudad del cliente esté aquí.
   serviceZone: {

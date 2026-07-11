@@ -1,18 +1,22 @@
 import { useState } from 'react';
 import { View, StyleSheet } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 
 import { Screen, Header, AppText, Input, Button } from '@/components/ui';
 import { useI18n } from '@/context/I18nContext';
+import { useGoogleSignIn } from '@/hooks/useGoogleSignIn';
 import { registerClient } from '@/services/authService';
 import { isEmail, isNonEmpty, isPhone, isStrongEnoughPassword } from '@/utils/validation';
 import { colors, spacing } from '@/constants/theme';
 
 export default function RegisterScreen() {
   const { t } = useI18n();
+  const signInWithGoogle = useGoogleSignIn();
   const [form, setForm] = useState({ name: '', email: '', phone: '', password: '' });
   const [errors, setErrors] = useState({});
   const [formError, setFormError] = useState('');
   const [submitting, setSubmitting] = useState(false);
+  const [googleSubmitting, setGoogleSubmitting] = useState(false);
 
   const set = (key) => (value) => setForm((f) => ({ ...f, [key]: value }));
 
@@ -37,6 +41,19 @@ export default function RegisterScreen() {
       setFormError(t(err.key ?? 'error.generic'));
     } finally {
       setSubmitting(false);
+    }
+  };
+
+  const onGoogleSubmit = async () => {
+    setFormError('');
+    setGoogleSubmitting(true);
+    try {
+      await signInWithGoogle();
+      // Root navigator routes to the client home once the profile is created.
+    } catch (err) {
+      setFormError(t(err.key ?? 'error.generic'));
+    } finally {
+      setGoogleSubmitting(false);
     }
   };
 
@@ -83,7 +100,21 @@ export default function RegisterScreen() {
           </AppText>
         ) : null}
 
-        <Button title={t('auth.registerCta')} onPress={onSubmit} loading={submitting} />
+        <Button
+          title={t('auth.registerCta')}
+          onPress={onSubmit}
+          loading={submitting}
+          disabled={googleSubmitting}
+        />
+        <Button
+          title={t('auth.continueWithGoogle')}
+          onPress={onGoogleSubmit}
+          loading={googleSubmitting}
+          disabled={submitting}
+          variant="secondary"
+          leftIcon={<Ionicons name="logo-google" size={18} color={colors.primary} />}
+          style={styles.googleButton}
+        />
       </View>
     </Screen>
   );
@@ -93,4 +124,5 @@ const styles = StyleSheet.create({
   headerWrap: { paddingHorizontal: spacing.lg },
   body: { paddingHorizontal: spacing.lg, paddingTop: spacing.md },
   formError: { marginBottom: spacing.md },
+  googleButton: { marginTop: spacing.md },
 });

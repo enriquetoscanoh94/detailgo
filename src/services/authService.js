@@ -12,8 +12,10 @@ import {
   signOut,
   onAuthStateChanged,
   updatePassword,
+  GoogleAuthProvider,
+  signInWithCredential,
 } from '@firebase/auth';
-import { doc, serverTimestamp, setDoc } from 'firebase/firestore';
+import { doc, getDoc, serverTimestamp, setDoc } from 'firebase/firestore';
 
 import { auth, db } from '../config/firebase';
 import { ROLES } from '../constants/roles';
@@ -27,6 +29,34 @@ export const getCurrentUser = () => auth.currentUser;
 export const login = async (email, password) => {
   try {
     const cred = await signInWithEmailAndPassword(auth, email.trim(), password);
+    return cred.user;
+  } catch (error) {
+    throw toAppError(error);
+  }
+};
+
+const ensureClientProfile = async (user, fallback = {}) => {
+  const ref = doc(db, 'users', user.uid);
+  const snap = await getDoc(ref);
+  if (snap.exists()) return;
+
+  await setDoc(ref, {
+    role: ROLES.CLIENT,
+    name: (fallback.name || user.displayName || user.email || 'Cliente').trim(),
+    email: (fallback.email || user.email || '').trim(),
+    phone: fallback.phone || '',
+    photoUrl: user.photoURL || null,
+    active: true,
+    createdAt: serverTimestamp(),
+  });
+};
+
+export const loginWithGoogleIdToken = async (idToken) => {
+  try {
+    if (!idToken) throw new Error('google-missing-id-token');
+    const credential = GoogleAuthProvider.credential(idToken);
+    const cred = await signInWithCredential(auth, credential);
+    await ensureClientProfile(cred.user);
     return cred.user;
   } catch (error) {
     throw toAppError(error);
@@ -57,14 +87,7 @@ export const resetPassword = async (email) => {
 export const registerClient = async ({ name, email, phone, password }) => {
   try {
     const cred = await createUserWithEmailAndPassword(auth, email.trim(), password);
-    await setDoc(doc(db, 'users', cred.user.uid), {
-      role: ROLES.CLIENT,
-      name: name.trim(),
-      email: email.trim(),
-      phone: phone.trim(),
-      active: true,
-      createdAt: serverTimestamp(),
-    });
+    await ensureClientProfile(cred.user, { name, email, phone: phone.trim() });
     return cred.user;
   } catch (error) {
     throw toAppError(error);
