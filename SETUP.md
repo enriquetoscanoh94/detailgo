@@ -89,8 +89,7 @@ EXPO_PUBLIC_GOOGLE_IOS_CLIENT_ID=...
 
 - Firebase real: proyecto `detailgo-3991f`.
 - Web OAuth Client ID: ya existe en Google Cloud/Firebase.
-- Android OAuth Client ID: falta completar cuando EAS entregue el SHA-1 del
-  keystore Android.
+- Android OAuth Client ID: ya existe para el keystore de EAS.
 
 ## Publicar la app web (redeploy)
 
@@ -115,6 +114,7 @@ ves igual, es **caché del navegador** → recarga forzada (Ctrl+Shift+R / incó
 - Nombre publico de OAuth/Firebase: `Detail Go`.
 - Email de soporte configurado: `carwashdetailgo@gmail.com`.
 - App Android registrada: `com.detailgo.app`.
+- SHA-1 del keystore EAS agregado a la app Android de Firebase.
 - La app crea automaticamente el perfil `users/{uid}` cuando un cliente entra
   con Google por primera vez.
 
@@ -125,21 +125,27 @@ Firebase real** (sin modo demo).
 
 ## Play Store / Android
 
-Pendiente para dejar Google listo al 100% en Android:
+Ya esta configurado el proyecto EAS:
 
-```bash
-eas login
-eas credentials --platform android
-```
+- Proyecto EAS: `@detailgoapps-team/detailgo`.
+- Project ID: `8982ba52-f93c-4c32-98e2-6adb5ac99133`.
+- Variables EAS `production` creadas:
+  - `EXPO_PUBLIC_GOOGLE_WEB_CLIENT_ID`
+  - `EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID`
 
-Con EAS hay que obtener el SHA-1 del keystore Android, agregarlo en Firebase para
-la app `com.detailgo.app`, descargar/confirmar la config actualizada y llenar
-`EXPO_PUBLIC_GOOGLE_ANDROID_CLIENT_ID` en `.env`.
-
-Despues:
+Para generar el `.aab`:
 
 ```bash
 eas build --platform android --profile production
+```
+
+Despues de subir el primer `.aab` a Play Console, Google Play App Signing puede
+mostrar otro SHA-1 para el certificado final de distribucion. Agrega tambien ese
+SHA-1 en Firebase si Google Play lo asigna.
+
+```bash
+# Play Console -> Setup -> App integrity -> App signing key certificate
+# Copia el SHA-1 y agregalo en Firebase -> Project settings -> Android app.
 ```
 
 El perfil production genera `.aab` para Play Store. Para apps nuevas o updates,
@@ -159,8 +165,8 @@ ADMIN_EMAIL="..." ADMIN_PASSWORD="..." node scripts/update-prices.mjs
 
 - **Fuentes del Figma:** Exo 2 (títulos) + DM Sans (texto).
 - **Bloqueado por cuentas externas:** notificaciones push con la app cerrada
-  (Cloud Functions), Apple Sign-In, EAS/SHA-1 para Google Android, y publicación
-  en App Store / Play Store.
+  (Cloud Functions), Apple Sign-In, certificado SHA-1 de Play App Signing cuando
+  exista la app en Play Console, y publicación en App Store / Play Store.
 
 ## Estructura
 

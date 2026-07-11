@@ -27,6 +27,11 @@
       "permissions": [
         "CAMERA",
         "READ_MEDIA_IMAGES"
+      ],
+      "blockedPermissions": [
+        "android.permission.RECORD_AUDIO",
+        "android.permission.FOREGROUND_SERVICE",
+        "android.permission.FOREGROUND_SERVICE_MEDIA_PLAYBACK"
       ]
     },
     "web": {
@@ -45,7 +50,14 @@
         }
       ],
       "expo-localization",
-      "expo-audio",
+      [
+        "expo-audio",
+        {
+          "recordAudioAndroid": false,
+          "enableBackgroundPlayback": false,
+          "enableBackgroundRecording": false
+        }
+      ],
       "expo-font",
       "expo-asset",
       [
@@ -62,6 +74,13 @@
     "experiments": {
       "typedRoutes": true,
       "baseUrl": "/app"
-    }
+    },
+    "extra": {
+      "router": {},
+      "eas": {
+        "projectId": "8982ba52-f93c-4c32-98e2-6adb5ac99133"
+      }
+    },
+    "owner": "detailgoapps-team"
   }
 }
