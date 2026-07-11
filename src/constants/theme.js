@@ -15,6 +15,10 @@ export const colors = {
   aqua: '#22D3EE', // cyan-400
   aquaLight: '#0E2A35',
   gold: '#F5B841', // amber accent (ratings / highlights)
+  accent: '#FB923C', // warm orange accent (prices / highlights)
+  accentDark: '#F97316',
+  teal: '#2DD4BF', // verde agua / turquesa accent
+  tealDark: '#14B8A6',
   silver: '#8FA3BF',
   silverDark: '#6B80A0',
 

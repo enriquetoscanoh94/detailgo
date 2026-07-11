@@ -82,7 +82,7 @@ function ExtraRow({ extra, entry, onPress, onQty }) {
         ) : null}
       </View>
       <View style={styles.quoteBadge}>
-        <AppText variant="caption" color={colors.primary}>{badge}</AppText>
+        <AppText variant="caption" color={colors.accent}>{badge}</AppText>
       </View>
     </Card>
   );
@@ -298,7 +298,7 @@ export default function BookScreen() {
                     {it.service ? it.service.name : t('booking.pickPackage')}
                   </AppText>
                   {it.service && it.vehicle ? (
-                    <AppText variant="label" color={colors.primary}>
+                    <AppText variant="label" color={colors.accent}>
                       {formatMoney(itemQuote(it.service, it.vehicle.type).price)}
                     </AppText>
                   ) : (
@@ -427,7 +427,7 @@ export default function BookScreen() {
               <View style={styles.divider} />
               <View style={styles.totalRow}>
                 <AppText variant="subtitle">{t('common.total')}</AppText>
-                <AppText variant="title" color={colors.primary}>{formatMoney(quote.total)}</AppText>
+                <AppText variant="title" color={colors.accent}>{formatMoney(quote.total)}</AppText>
               </View>
             </Card>
 
@@ -539,7 +539,7 @@ export default function BookScreen() {
         {step > 1 && quote.total > 0 ? (
           <View style={styles.footerPrice}>
             <AppText variant="caption">{t('common.total')}</AppText>
-            <AppText variant="subtitle" color={colors.primary}>{formatMoney(quote.total)}</AppText>
+            <AppText variant="subtitle" color={colors.accent}>{formatMoney(quote.total)}</AppText>
           </View>
         ) : null}
         {step < TOTAL_STEPS ? (
