@@ -1,7 +1,6 @@
 import { useState } from 'react';
-import { View, StyleSheet, Pressable, Image } from 'react-native';
+import { View, StyleSheet, Pressable, Image, ActivityIndicator } from 'react-native';
 import { useRouter } from 'expo-router';
-import { Ionicons } from '@expo/vector-icons';
 
 import { Screen, AppText, Input, Button } from '@/components/ui';
 import { useI18n } from '@/context/I18nContext';
@@ -9,7 +8,7 @@ import { useAuth } from '@/context/AuthContext';
 import { useGoogleSignIn } from '@/hooks/useGoogleSignIn';
 import { login } from '@/services/authService';
 import { isEmail, isNonEmpty } from '@/utils/validation';
-import { colors, spacing, radius, shadow } from '@/constants/theme';
+import { colors, spacing, radius, shadow, fontSize, fontWeight } from '@/constants/theme';
 
 export default function LoginScreen() {
   const { t } = useI18n();
@@ -99,7 +98,7 @@ export default function LoginScreen() {
       />
 
       <Pressable onPress={() => router.push('/(auth)/forgot-password')} hitSlop={8} style={styles.forgot}>
-        <AppText variant="label" color={colors.primary}>
+        <AppText variant="label" color={colors.teal}>
           {t('auth.forgotPassword')}
         </AppText>
       </Pressable>
@@ -111,22 +110,38 @@ export default function LoginScreen() {
       ) : null}
 
       <Button title={t('auth.loginCta')} onPress={onSubmit} loading={submitting} disabled={googleSubmitting} />
-      <Button
-        title={t('auth.continueWithGoogle')}
+
+      <Pressable
         onPress={onGoogleSubmit}
-        loading={googleSubmitting}
-        disabled={submitting}
-        variant="secondary"
-        leftIcon={<Ionicons name="logo-google" size={18} color={colors.primary} />}
-        style={styles.googleButton}
-      />
+        disabled={submitting || googleSubmitting}
+        accessibilityRole="button"
+        accessibilityLabel={t('auth.continueWithGoogle')}
+        style={({ pressed }) => [
+          styles.googleButton,
+          pressed && !(submitting || googleSubmitting) && styles.googlePressed,
+          (submitting || googleSubmitting) && styles.googleDisabled,
+        ]}
+      >
+        {googleSubmitting ? (
+          <ActivityIndicator color="#3C4043" />
+        ) : (
+          <>
+            <Image
+              source={require('../../assets/google-g.png')}
+              style={styles.googleIcon}
+              resizeMode="contain"
+            />
+            <AppText style={styles.googleText}>{t('auth.continueWithGoogle')}</AppText>
+          </>
+        )}
+      </Pressable>
 
       <View style={styles.footerRow}>
         <AppText variant="body" muted>
           {t('auth.noAccount')}{' '}
         </AppText>
         <Pressable onPress={() => router.push('/(auth)/register')} hitSlop={8}>
-          <AppText variant="label" color={colors.primary}>
+          <AppText variant="label" color={colors.accent}>
             {t('auth.register')}
           </AppText>
         </Pressable>
@@ -157,7 +172,7 @@ const styles = StyleSheet.create({
     paddingHorizontal: spacing.xl,
     marginBottom: spacing.lg,
     borderWidth: 1,
-    borderColor: colors.border,
+    borderColor: 'rgba(45, 212, 191, 0.35)', // sutil borde verde agua
     ...shadow.card,
   },
   logo: { width: 240, height: 132 },
@@ -170,7 +185,23 @@ const styles = StyleSheet.create({
   },
   forgot: { alignSelf: 'flex-end', marginBottom: spacing.lg },
   formError: { marginBottom: spacing.md },
-  googleButton: { marginTop: spacing.md },
+  googleButton: {
+    marginTop: spacing.md,
+    height: 54,
+    alignSelf: 'stretch',
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    gap: spacing.sm,
+    backgroundColor: '#FFFFFF',
+    borderRadius: radius.md,
+    borderWidth: 1.5,
+    borderColor: '#DADCE0',
+  },
+  googlePressed: { opacity: 0.9, transform: [{ scale: 0.99 }] },
+  googleDisabled: { opacity: 0.5 },
+  googleIcon: { width: 20, height: 20 },
+  googleText: { color: '#3C4043', fontSize: fontSize.md, fontWeight: fontWeight.semibold },
   footerRow: { flexDirection: 'row', justifyContent: 'center', marginTop: spacing.xl },
   viewServices: {
     marginTop: spacing.xl,

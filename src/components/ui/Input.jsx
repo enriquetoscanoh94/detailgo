@@ -43,7 +43,7 @@ export function Input({
           value={value}
           onChangeText={onChangeText}
           placeholder={placeholder}
-          placeholderTextColor={colors.textMuted}
+          placeholderTextColor="#8A98AE"
           secureTextEntry={secureTextEntry}
           keyboardType={keyboardType}
           autoCapitalize={autoCapitalize}
@@ -76,23 +76,27 @@ const styles = StyleSheet.create({
   field: {
     flexDirection: 'row',
     alignItems: 'center',
-    backgroundColor: colors.surface,
+    backgroundColor: '#FFFFFF',
     borderWidth: 1.5,
-    borderColor: colors.border,
+    borderColor: '#D7DEE8',
     borderRadius: radius.md,
     paddingHorizontal: spacing.md,
     minHeight: 50,
   },
-  fieldFocused: { borderColor: colors.primary },
+  fieldFocused: { borderColor: colors.teal },
   fieldError: { borderColor: colors.danger },
   fieldMultiline: { alignItems: 'flex-start', paddingVertical: spacing.sm },
   input: {
     flex: 1,
     fontSize: fontSize.md,
-    color: colors.text,
+    color: '#0D1B2E',
     paddingVertical: spacing.sm,
-    // Quita el recuadro/outline azul que el navegador pone al enfocar (solo web).
-    ...Platform.select({ web: { outlineStyle: 'none', outlineWidth: 0 }, default: {} }),
+    // Web: quita el outline al enfocar y fuerza texto oscuro incluso con el
+    // autofill de Chrome (evita la "franja blanca" con texto invisible).
+    ...Platform.select({
+      web: { outlineStyle: 'none', outlineWidth: 0, WebkitTextFillColor: '#0D1B2E' },
+      default: {},
+    }),
   },
   inputMultiline: { minHeight: 90, textAlignVertical: 'top' },
   accessory: { marginLeft: spacing.sm },
