@@ -1,7 +1,7 @@
 /** Labeled text input with error message and consistent styling. */
 
 import { useState } from 'react';
-import { View, TextInput, StyleSheet } from 'react-native';
+import { View, TextInput, StyleSheet, Platform } from 'react-native';
 
 import { colors, radius, spacing, fontSize } from '../../constants/theme';
 import { AppText } from './Typography';
@@ -86,7 +86,14 @@ const styles = StyleSheet.create({
   fieldFocused: { borderColor: colors.primary },
   fieldError: { borderColor: colors.danger },
   fieldMultiline: { alignItems: 'flex-start', paddingVertical: spacing.sm },
-  input: { flex: 1, fontSize: fontSize.md, color: colors.text, paddingVertical: spacing.sm },
+  input: {
+    flex: 1,
+    fontSize: fontSize.md,
+    color: colors.text,
+    paddingVertical: spacing.sm,
+    // Quita el recuadro/outline azul que el navegador pone al enfocar (solo web).
+    ...Platform.select({ web: { outlineStyle: 'none', outlineWidth: 0 }, default: {} }),
+  },
   inputMultiline: { minHeight: 90, textAlignVertical: 'top' },
   accessory: { marginLeft: spacing.sm },
   helper: { marginTop: spacing.xs },

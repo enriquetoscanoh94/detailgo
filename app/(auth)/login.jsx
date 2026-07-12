@@ -94,7 +94,7 @@ export default function LoginScreen() {
         value={password}
         onChangeText={setPassword}
         error={errors.password}
-        placeholder="••••••••"
+        placeholder="Tu contraseña"
         secureTextEntry
       />
 
