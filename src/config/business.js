@@ -8,7 +8,7 @@
 
 export const BUSINESS = {
   name: 'Detail Go',
-  website: 'https://carwahsdetailgo.com',
+  website: 'https://detailgo.app',
   supportPhone: '+1 (310) 776-2980',
   supportEmail: 'carwashdetailgo@gmail.com',
 

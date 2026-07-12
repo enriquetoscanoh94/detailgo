@@ -51,6 +51,8 @@ export default {
 
   account: {
     deleteRequest: 'Eliminar cuenta y datos',
+    privacy: 'Política de privacidad',
+    terms: 'Términos y condiciones',
   },
 
   catalog: {

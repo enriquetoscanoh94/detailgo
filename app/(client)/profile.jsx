@@ -39,6 +39,12 @@ export default function ClientProfile() {
   const openDeleteAccount = () => {
     Linking.openURL(`${BUSINESS.website}/delete-account.html`);
   };
+  const openPrivacy = () => {
+    Linking.openURL(`${BUSINESS.website}/privacy.html`);
+  };
+  const openTerms = () => {
+    Linking.openURL(`${BUSINESS.website}/terms-clientes.html`);
+  };
 
   const confirmSignOut = async () => {
     if (
@@ -71,6 +77,8 @@ export default function ClientProfile() {
 
         <LinkRow icon="car-outline" label={t('client.myVehicles')} onPress={() => router.push('/(client)/vehicles')} />
         <LinkRow icon="location-outline" label={t('client.myAddresses')} onPress={() => router.push('/(client)/addresses')} />
+        <LinkRow icon="shield-checkmark-outline" label={t('account.privacy')} onPress={openPrivacy} />
+        <LinkRow icon="document-text-outline" label={t('account.terms')} onPress={openTerms} />
         <LinkRow icon="trash-outline" label={t('account.deleteRequest')} onPress={openDeleteAccount} />
 
         <AppText variant="label" style={styles.sectionLabel}>

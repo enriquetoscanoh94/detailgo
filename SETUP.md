@@ -5,8 +5,8 @@ Native)** + **Firebase**. Un solo código para **iOS, Android y web**.
 
 ## 🌐 En vivo
 
-- **Sitio (marketing):** https://carwahsdetailgo.com
-- **App (donde el cliente se registra y pide):** https://carwahsdetailgo.com/app
+- **Sitio (marketing):** https://detailgo.app
+- **App (donde el cliente se registra y pide):** https://detailgo.app/app
   - Publicada en GitHub Pages (repo `enriquetoscanoh94/detailgo`, carpeta `web/app`).
 - Tema visual: **oscuro premium** (navy `#06101F` + acento cyan `#06B6D4` + dorado),
   inspirado en el Figma del cliente.
