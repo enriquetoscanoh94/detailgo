@@ -530,9 +530,26 @@ a:focus-visible, button:focus-visible, .primary-button:focus-visible, .secondary
 }
 .footer-links a:hover { color: var(--teal); }
 
+.lang-toggle {
+  margin-left: 16px;
+  border: 1px solid rgba(34, 211, 238, 0.45);
+  background: transparent;
+  color: var(--text);
+  border-radius: 999px;
+  padding: 8px 14px;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: color 180ms ease, border-color 180ms ease;
+}
+.lang-toggle:hover { border-color: var(--aqua); color: var(--aqua); }
+
 @media (max-width: 980px) {
   .desktop-nav, .login-link { display: none; }
   .menu-button { display: block; }
+  .lang-toggle { margin-left: auto; }
+  .menu-button { margin-left: 10px; }
   .hero, .intro-band, .work-section { grid-template-columns: 1fr; }
   .hero { min-height: auto; }
   .services-grid, .app-grid, .gallery-grid, .policy-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
