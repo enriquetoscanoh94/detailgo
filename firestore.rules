@@ -75,6 +75,25 @@ service cloud.firestore {
 
     // --- bookings ----------------------------------------------------------
     match /bookings/{id} {
+      // Which top-level keys an update touches.
+      function changedKeys() {
+        return request.resource.data.diff(resource.data).affectedKeys();
+      }
+      // The money split and order contents can NEVER be rewritten by a client or
+      // worker after creation — only admin (and Cloud Functions later) may.
+      function moneyFrozen() {
+        return request.resource.data.total == resource.data.total
+          && request.resource.data.workerPayout == resource.data.workerPayout
+          && request.resource.data.businessFee == resource.data.businessFee
+          && request.resource.data.clientId == resource.data.clientId
+          && request.resource.data.items == resource.data.items;
+      }
+      // The assigned worker cannot be changed by a normal update (only by the
+      // dedicated "claim" branch below, which starts from a null workerId).
+      function workerFrozen() {
+        return request.resource.data.workerId == resource.data.workerId;
+      }
+
       allow read: if isSignedIn() && (
         isAdmin()
         || resource.data.clientId == request.auth.uid
@@ -84,27 +103,43 @@ service cloud.firestore {
 
       // Client creates their own order. Money/status are constrained so a
       // client cannot forge a confirmed/paid order or a bogus payout: the split
-      // must add up (total = worker payout + business fee) and be non-negative.
+      // must add up (total = worker payout + business fee), be non-negative, and
+      // start unassigned in an entry status.
       allow create: if isSignedIn()
         && request.resource.data.clientId == request.auth.uid
+        && request.resource.data.workerId == null
         && request.resource.data.total == request.resource.data.workerPayout + request.resource.data.businessFee
         && request.resource.data.workerPayout >= 0
         && request.resource.data.businessFee >= 0
         && request.resource.data.status in ['pending_payment', 'searching_worker'];
 
-      // Admin drives verification/cancellation; client can re-submit a rejected
-      // receipt or cancel their own order; a worker that already owns the order
-      // may advance its status. Full transition validation lives in the service
-      // layer + Cloud Functions (Phase 2).
+      // Admin drives verification/cancellation (full access). Client and worker
+      // are locked to the exact fields their screens touch, with money and the
+      // worker assignment frozen — so neither can forge a payout or skip steps.
       allow update: if isAdmin()
-        || (isSignedIn() && resource.data.clientId == request.auth.uid)
-        || (isSignedIn() && resource.data.workerId == request.auth.uid)
+        // Client edits only their own order: re-upload a receipt, submit a
+        // review, or cancel. Status may only move to re-submit or cancellation.
+        || (isSignedIn()
+            && resource.data.clientId == request.auth.uid
+            && changedKeys().hasOnly(['payment', 'status', 'review', 'cancelledBy', 'cancelReason', 'updatedAt'])
+            && moneyFrozen()
+            && workerFrozen()
+            && request.resource.data.status in ['pending_payment', 'cancelled', resource.data.status])
+        // Worker who already owns the order advances its status only.
+        || (isSignedIn()
+            && resource.data.workerId == request.auth.uid
+            && changedKeys().hasOnly(['status', 'updatedAt'])
+            && moneyFrozen()
+            && workerFrozen()
+            && request.resource.data.status in ['on_the_way', 'arrived', 'in_progress', 'completed', 'payment_issue'])
         // A worker claims a searching order ("first to accept wins"): they may
-        // only set themselves as the worker and move it to 'assigned'.
+        // only set themselves as the worker and move searching → assigned.
         || (role() == 'worker'
             && resource.data.status == 'searching_worker'
+            && changedKeys().hasOnly(['status', 'workerId', 'workerName', 'updatedAt'])
             && request.resource.data.workerId == request.auth.uid
-            && request.resource.data.status == 'assigned');
+            && request.resource.data.status == 'assigned'
+            && moneyFrozen());
 
       allow delete: if isAdmin();
     }
@@ -116,8 +151,20 @@ service cloud.firestore {
     }
 
     // --- applications (public "work here" form) ----------------------------
+    // Anyone (even unauthenticated) may apply, but the payload is bounded so the
+    // open endpoint cannot be used to dump garbage or self-approve: it must be a
+    // fresh 'pending' application with sane, size-capped fields.
     match /applications/{id} {
-      allow create: if true;   // anyone, even unauthenticated, may apply
+      allow create: if request.resource.data.status == 'pending'
+        && request.resource.data.name is string
+        && request.resource.data.name.size() > 0
+        && request.resource.data.name.size() < 120
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() < 40
+        && request.resource.data.email is string
+        && request.resource.data.email.size() < 200
+        && request.resource.data.comment is string
+        && request.resource.data.comment.size() < 2000;
       allow read, update, delete: if isAdmin();
     }
   }

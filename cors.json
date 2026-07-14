@@ -1,0 +1,19 @@
+[
+  {
+    "origin": [
+      "https://detailgo.app",
+      "http://localhost:8081",
+      "http://localhost:8092",
+      "http://localhost:19006"
+    ],
+    "method": ["GET", "HEAD", "PUT", "POST"],
+    "responseHeader": [
+      "Content-Type",
+      "Authorization",
+      "Content-Length",
+      "User-Agent",
+      "x-goog-resumable"
+    ],
+    "maxAgeSeconds": 3600
+  }
+]
