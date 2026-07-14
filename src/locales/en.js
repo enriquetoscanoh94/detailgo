@@ -45,6 +45,7 @@ export default {
     resetSent: 'Email sent. Check your inbox.',
     workHere: 'I want to work here',
     viewServices: 'See our services',
+    backToWeb: 'Back to website',
     signOut: 'Sign out',
     accountDisabled: 'Your account is disabled. Contact the administrator.',
   },

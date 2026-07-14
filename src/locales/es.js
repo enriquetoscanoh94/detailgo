@@ -45,6 +45,7 @@ export default {
     resetSent: 'Te enviamos un correo. Revisa tu bandeja.',
     workHere: 'Quiero trabajar aquí',
     viewServices: 'Ver nuestros servicios',
+    backToWeb: 'Volver al sitio web',
     signOut: 'Cerrar sesión',
     accountDisabled: 'Tu cuenta está desactivada. Contacta al administrador.',
   },

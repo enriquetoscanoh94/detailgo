@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, StyleSheet, Pressable, Image, ActivityIndicator } from 'react-native';
+import { View, StyleSheet, Pressable, Image, ActivityIndicator, Linking } from 'react-native';
 import { useRouter } from 'expo-router';
 
 import { Screen, AppText, Input, Button } from '@/components/ui';
@@ -7,6 +7,7 @@ import { useI18n } from '@/context/I18nContext';
 import { useAuth } from '@/context/AuthContext';
 import { useGoogleSignIn } from '@/hooks/useGoogleSignIn';
 import { login } from '@/services/authService';
+import { BUSINESS } from '@/config/business';
 import { isEmail, isNonEmpty } from '@/utils/validation';
 import { colors, spacing, radius, shadow, fontSize, fontWeight } from '@/constants/theme';
 
@@ -62,10 +63,21 @@ export default function LoginScreen() {
 
   return (
     <Screen scroll keyboardAvoiding contentContainerStyle={styles.content}>
+      <Pressable
+        onPress={() => Linking.openURL(BUSINESS.website)}
+        hitSlop={8}
+        style={styles.backToWeb}
+        accessibilityRole="link"
+        accessibilityLabel={t('auth.backToWeb')}
+      >
+        <AppText variant="label" color={colors.accent}>{`‹  ${t('auth.backToWeb')}`}</AppText>
+      </Pressable>
+
       <View style={styles.brand}>
         <View style={styles.logoCard}>
           <Image source={require('../../assets/van.png')} style={styles.logo} resizeMode="contain" />
         </View>
+        <View style={styles.accentBar} />
         <AppText variant="body" muted center style={styles.subtitle}>
           {t('auth.subtitle')}
         </AppText>
@@ -164,18 +176,27 @@ export default function LoginScreen() {
 
 const styles = StyleSheet.create({
   content: { justifyContent: 'center', flexGrow: 1 },
+  backToWeb: { alignSelf: 'flex-start', marginBottom: spacing.lg },
   brand: { alignItems: 'center', marginBottom: spacing.xxl },
   logoCard: {
     backgroundColor: colors.surface,
     borderRadius: radius.xl,
     paddingVertical: spacing.md,
     paddingHorizontal: spacing.xl,
-    marginBottom: spacing.lg,
-    borderWidth: 1,
-    borderColor: 'rgba(45, 212, 191, 0.35)', // sutil borde verde agua
+    marginBottom: spacing.md,
+    borderWidth: 1.5,
+    borderColor: 'rgba(251, 146, 60, 0.5)', // toque de naranja
     ...shadow.card,
+    shadowColor: colors.accent, // glow cálido naranja
   },
   logo: { width: 240, height: 132 },
+  accentBar: {
+    width: 46,
+    height: 4,
+    borderRadius: radius.pill ?? 999,
+    backgroundColor: colors.accent,
+    marginBottom: spacing.md,
+  },
   subtitle: { marginTop: spacing.xs },
   banner: {
     backgroundColor: colors.dangerLight,
