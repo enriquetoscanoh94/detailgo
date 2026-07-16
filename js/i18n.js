@@ -77,9 +77,9 @@
     'app.cta.create': 'Create account and request service',
     'app.cta.have': 'I already have an account',
     'app.iphone': 'iPhone · Coming soon',
-    'app.android': 'Android · Coming soon',
+    'app.android': 'Download for Android (APK)',
     'app.browser': 'Use the app from your browser',
-    'app.note': 'You can already book today from your browser. The App Store and Google Play apps are coming soon.',
+    'app.note': 'Android: download the APK and install it (enable "Install unknown apps"). iPhone and Google Play are coming soon. You can also book today from your browser.',
 
     // Work with us
     'work.eyebrow': 'Join the team',
