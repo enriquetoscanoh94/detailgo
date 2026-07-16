@@ -102,8 +102,7 @@
 
     // Footer
     'footer.privacy': 'Privacy Policy',
-    'footer.terms_clients': 'Terms (clients)',
-    'footer.terms_detailers': 'Terms (detailers)',
+    'footer.terms': 'Terms & Conditions',
     'footer.delete': 'Delete account'
   };
 
