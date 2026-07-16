@@ -31,8 +31,8 @@ const SERVICES = {
   'Lavada Regular': { sedan: 55,  suv: 60,  paySedan: 45,  paySuv: 50 },
   'Premium Wash':   { sedan: 95,  suv: 95,  paySedan: 75,  paySuv: 75 },
   'Clay Bar':       { sedan: 130, suv: 130, paySedan: 110, paySuv: 110 },
-  'Ditel':          { sedan: 180, suv: 180, paySedan: 160, paySuv: 160 },
-  'Full Ditel':     { sedan: 230, suv: 230, paySedan: 190, paySuv: 190 },
+  'Detail':         { sedan: 180, suv: 180, paySedan: 160, paySuv: 160 },
+  'Full Detail':    { sedan: 230, suv: 230, paySedan: 190, paySuv: 190 },
 };
 
 // extra price; the detailer always earns $5 per extra (or per unit).

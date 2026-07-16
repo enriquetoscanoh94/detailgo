@@ -94,7 +94,7 @@ const SERVICES = [
   },
   {
     slug: 'ditel',
-    name: 'Ditel',
+    name: 'Detail',
     description: 'Detallado a fondo interior y exterior.',
     includes: [
       'Lavado por fuera',
@@ -110,7 +110,7 @@ const SERVICES = [
   },
   {
     slug: 'full-ditel',
-    name: 'Full Ditel',
+    name: 'Full Detail',
     description: 'Detallado completo, incluye lavado de sillones y carpeta.',
     includes: [
       'Lavado por fuera',

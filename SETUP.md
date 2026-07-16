@@ -54,8 +54,8 @@ margen **varía por paquete**, ya NO son $10 fijos).
 | Regular | $55 / $60 | $45 / $50 |
 | Premium | $95 / $95 | $75 / $75 |
 | Clay Bar | $130 / $130 | $110 / $110 |
-| Ditel | $180 / $180 | $160 / $160 |
-| Full Ditel | $230 / $230 | $190 / $190 |
+| Detail | $180 / $180 | $160 / $160 |
+| Full Detail | $230 / $230 | $190 / $190 |
 
 - **Extras** (se suman al total; el detailer gana **$5 c/u**): Pelo de mascotas $15,
   Manchas de agua $25, **Shampoo de asientos $15 por asiento**, Cera $25,
