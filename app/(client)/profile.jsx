@@ -43,7 +43,7 @@ export default function ClientProfile() {
     Linking.openURL(`${BUSINESS.website}/privacy.html`);
   };
   const openTerms = () => {
-    Linking.openURL(`${BUSINESS.website}/terms-clientes.html`);
+    Linking.openURL(`${BUSINESS.website}/terms.html`);
   };
 
   const confirmSignOut = async () => {
