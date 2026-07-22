@@ -164,9 +164,12 @@ export default {
     alias: 'Nombre (Casa, Trabajo…)',
     full: 'Dirección completa',
     city: 'Ciudad',
+    zip: 'Código postal',
     notes: 'Notas de acceso (portón, dónde estacionar…)',
     deleteConfirm: '¿Eliminar esta dirección?',
     outOfZone: 'Aún no llegamos a esa zona: {zone}.',
+    zipInvalid: 'El código postal debe tener 5 dígitos.',
+    outOfZoneZip: 'Aún no llegamos a tu zona (código postal {zip}).',
   },
 
   booking: {

@@ -13,13 +13,12 @@ import {
   deleteAddress,
 } from '@/services/addressService';
 import { BUSINESS } from '@/config/business';
-import { isNonEmpty, normalizeCity } from '@/utils/validation';
+import { isNonEmpty } from '@/utils/validation';
+import { isValidZip, isZipCovered } from '@/constants/serviceArea';
 import { confirmAction } from '@/utils/confirm';
 import { colors, spacing } from '@/constants/theme';
 
-const emptyForm = { alias: '', fullAddress: '', city: '', notes: '' };
-
-const cityInZone = (city) => BUSINESS.serviceZone.cities.includes(normalizeCity(city));
+const emptyForm = { alias: '', fullAddress: '', city: '', zip: '', notes: '' };
 
 function AddressFormModal({ visible, initial, uid, onClose }) {
   const { t } = useI18n();
@@ -45,7 +44,9 @@ function AddressFormModal({ visible, initial, uid, onClose }) {
     if (!isNonEmpty(form.alias)) next.alias = t('common.required');
     if (!isNonEmpty(form.fullAddress)) next.fullAddress = t('common.required');
     if (!isNonEmpty(form.city)) next.city = t('common.required');
-    else if (!cityInZone(form.city)) next.city = t('address.outOfZone', { zone: BUSINESS.serviceZone.label });
+    if (!isNonEmpty(form.zip)) next.zip = t('common.required');
+    else if (!isValidZip(form.zip)) next.zip = t('address.zipInvalid');
+    else if (!isZipCovered(form.zip)) next.zip = t('address.outOfZoneZip', { zip: form.zip.trim() });
     setErrors(next);
     return Object.keys(next).length === 0;
   };
@@ -74,7 +75,17 @@ function AddressFormModal({ visible, initial, uid, onClose }) {
         <View style={styles.body}>
           <Input label={t('address.alias')} value={form.alias} onChangeText={set('alias')} error={errors.alias} />
           <Input label={t('address.full')} value={form.fullAddress} onChangeText={set('fullAddress')} error={errors.fullAddress} />
-          <Input label={t('address.city')} value={form.city} onChangeText={set('city')} error={errors.city} hint={BUSINESS.serviceZone.label} />
+          <Input label={t('address.city')} value={form.city} onChangeText={set('city')} error={errors.city} />
+          <Input
+            label={t('address.zip')}
+            value={form.zip}
+            onChangeText={(v) => set('zip')(v.replace(/[^\d]/g, '').slice(0, 5))}
+            error={errors.zip}
+            hint={BUSINESS.serviceZone.label}
+            keyboardType="number-pad"
+            maxLength={5}
+            placeholder="91355"
+          />
           <Input label={t('address.notes')} value={form.notes} onChangeText={set('notes')} multiline />
 
           {formError ? (
@@ -118,6 +129,7 @@ function AddressRow({ address, uid, onEdit }) {
           <AppText variant="subtitle">{address.alias}</AppText>
           <AppText variant="caption" numberOfLines={1}>
             {address.fullAddress}
+            {address.zip ? ` · ${address.zip}` : ''}
           </AppText>
         </View>
       </View>

@@ -164,9 +164,12 @@ export default {
     alias: 'Name (Home, Work…)',
     full: 'Full address',
     city: 'City',
+    zip: 'ZIP code',
     notes: 'Access notes (gate, where to park…)',
     deleteConfirm: 'Delete this address?',
     outOfZone: "We don't reach that area yet: {zone}.",
+    zipInvalid: 'ZIP code must be 5 digits.',
+    outOfZoneZip: "We don't reach your area yet (ZIP {zip}).",
   },
 
   booking: {

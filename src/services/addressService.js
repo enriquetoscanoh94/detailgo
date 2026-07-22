@@ -29,6 +29,7 @@ const normalize = (data) => ({
   alias: data.alias.trim(),
   fullAddress: data.fullAddress.trim(),
   city: data.city.trim(),
+  zip: (data.zip ?? '').trim().slice(0, 5),
   notes: (data.notes ?? '').trim(),
 });
 

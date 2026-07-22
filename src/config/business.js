@@ -12,26 +12,10 @@ export const BUSINESS = {
   supportPhone: '+1 (310) 776-2980',
   supportEmail: 'carwashdetailgo@gmail.com',
 
-  // Zona de cobertura. El wizard valida que la ciudad del cliente esté aquí.
+  // Zona de cobertura. El wizard valida el CÓDIGO POSTAL del cliente contra
+  // la lista en src/constants/serviceArea.js (SERVICE_AREA_ZIPS).
   serviceZone: {
-    label: 'Los Angeles, CA',
-    cities: [
-      // Ciudades atendidas (en minúsculas). Ajusta según tu cobertura real.
-      'los angeles',
-      'huntington park',
-      'south gate',
-      'downey',
-      'bell',
-      'bell gardens',
-      'maywood',
-      'cudahy',
-      'lynwood',
-      'commerce',
-      'vernon',
-      'east los angeles',
-      'inglewood',
-      'compton',
-    ],
+    label: 'Santa Clarita y área de Los Ángeles',
   },
 
   // Datos de Zelle que se le muestran al cliente para pagar.
