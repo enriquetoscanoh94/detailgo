@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "1019714598702",
+    "project_id": "detailgo-3991f",
+    "storage_bucket": "detailgo-3991f.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1019714598702:android:6c210927682d2dcc876cbf",
+        "android_client_info": {
+          "package_name": "com.detailgo.app"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1019714598702-te4qjaljcrhuvtipc6810vhs9k981fha.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.detailgo.app",
+            "certificate_hash": "4c855b5e13483320fbe463b66e2115a0e0176a31"
+          }
+        },
+        {
+          "client_id": "1019714598702-lbecoqr7tulr2g0svtcu4v8qo64h714g.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBLqT5hwPYXYu56Ui5iSrTf58LgPa-ZdtY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1019714598702-lbecoqr7tulr2g0svtcu4v8qo64h714g.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
