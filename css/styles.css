@@ -328,6 +328,19 @@ a:focus-visible, button:focus-visible, .primary-button:focus-visible, .secondary
 .app-card h3 { color: var(--teal); }
 .app-card:hover { transform: translateY(-4px); box-shadow: 0 24px 56px rgba(0, 0, 0, 0.45); }
 .download-note { margin: 12px 0 0; font-size: 14px; }
+
+/* Aire vertical entre los grupos de CTA de la seccion app (evita botones encimados) */
+.app-section .hero-actions { margin-top: 26px; }
+.app-section .download-row { margin-top: 14px; }
+.app-section > a.secondary-button { margin-top: 14px; }
+
+/* Boton de descarga en naranja: rompe el monotono azul y crea jerarquia */
+.primary-button.accent-button {
+  background: linear-gradient(135deg, var(--accent) 0%, var(--accent-2) 100%);
+  color: #1a0e04;
+  box-shadow: 0 16px 34px rgba(251, 146, 60, 0.30);
+}
+.primary-button.accent-button:hover { box-shadow: 0 22px 48px rgba(251, 146, 60, 0.44); }
 .work-section {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;
