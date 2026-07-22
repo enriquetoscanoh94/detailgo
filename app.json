@@ -59,6 +59,13 @@
       "expo-font",
       "expo-asset",
       [
+        "expo-notifications",
+        {
+          "color": "#06B6D4",
+          "sounds": ["./assets/ring.wav"]
+        }
+      ],
+      [
         "expo-splash-screen",
         {
           "image": "./assets/van.png",

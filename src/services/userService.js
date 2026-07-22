@@ -39,3 +39,12 @@ export const setProfilePhoto = async (uid, photoUrl) => {
     throw toAppError(error);
   }
 };
+
+/** Saves the detailer's Expo push token so the server can ring them. */
+export const setPushToken = async (uid, pushToken) => {
+  try {
+    await updateDoc(doc(db, 'users', uid), { pushToken: pushToken ?? null });
+  } catch (error) {
+    throw toAppError(error);
+  }
+};

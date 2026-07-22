@@ -172,6 +172,13 @@ export default {
     outOfZoneZip: "We don't reach your area yet (ZIP {zip}).",
   },
 
+  push: {
+    accept: 'Accept',
+    reject: 'Decline',
+    newOrderTitle: 'New order · you earn {pay}',
+    newOrderBody: '{service} · {area}',
+  },
+
   booking: {
     stepService: 'Choose a service',
     stepVehicle: 'Choose the vehicle',

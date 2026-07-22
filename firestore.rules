@@ -44,11 +44,12 @@ service cloud.firestore {
             && request.resource.data.role == 'client'
             && request.resource.data.active == true);
 
-      // A user may toggle their own `available` flag and set their own profile
-      // photo; everything else about a user doc is admin-only.
+      // A user may toggle their own `available` flag, set their own profile
+      // photo and save their push token; everything else about a user doc is
+      // admin-only.
       allow update: if isAdmin()
         || (isSignedIn() && request.auth.uid == uid
-            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['available', 'photoUrl']));
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['available', 'photoUrl', 'pushToken']));
 
       allow delete: if isAdmin();
 

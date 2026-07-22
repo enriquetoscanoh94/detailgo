@@ -21,6 +21,7 @@ import { useI18n } from '@/context/I18nContext';
 import { useAuth } from '@/context/AuthContext';
 import { useSubscription } from '@/hooks/useSubscription';
 import { useOrderAlert } from '@/hooks/useOrderAlert';
+import { usePushRegistration } from '@/hooks/usePushRegistration';
 import { confirmAction } from '@/utils/confirm';
 import { setAvailability } from '@/services/userService';
 import {
@@ -56,6 +57,8 @@ const nextStatus = (status) => {
 export default function AvailabilityScreen() {
   const { t, lang } = useI18n();
   const { profile, user, signOut } = useAuth();
+
+  usePushRegistration();
 
   const available = profile?.available === true;
   const [savingToggle, setSavingToggle] = useState(false);
