@@ -1,6 +1,8 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { View, StyleSheet, Pressable, Image, ActivityIndicator, Linking } from 'react-native';
+import { Ionicons } from '@expo/vector-icons';
 import { useRouter } from 'expo-router';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import { Screen, AppText, Input, Button } from '@/components/ui';
 import { useI18n } from '@/context/I18nContext';
@@ -23,6 +25,24 @@ export default function LoginScreen() {
   const [formError, setFormError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [googleSubmitting, setGoogleSubmitting] = useState(false);
+  const [remember, setRemember] = useState(true);
+
+  // Prellenar con las credenciales guardadas (si el usuario marcó "recordar").
+  useEffect(() => {
+    (async () => {
+      try {
+        const saved = await AsyncStorage.getItem('savedLogin');
+        if (saved) {
+          const { email: e, password: p } = JSON.parse(saved);
+          if (e) setEmail(e);
+          if (p) setPassword(p);
+          setRemember(true);
+        }
+      } catch {
+        // sin credenciales guardadas
+      }
+    })();
+  }, []);
 
   const validate = () => {
     const next = {};
@@ -39,6 +59,16 @@ export default function LoginScreen() {
     setSubmitting(true);
     try {
       await login(email, password);
+      // Guardar o borrar las credenciales según "recordar contraseña".
+      try {
+        if (remember) {
+          await AsyncStorage.setItem('savedLogin', JSON.stringify({ email, password }));
+        } else {
+          await AsyncStorage.removeItem('savedLogin');
+        }
+      } catch {
+        // no bloquear el login si falla el guardado
+      }
       // Navigation is handled by the root navigator once auth state updates.
     } catch (err) {
       setFormError(t(err.key ?? 'error.generic'));
@@ -109,11 +139,28 @@ export default function LoginScreen() {
         secureTextEntry
       />
 
-      <Pressable onPress={() => router.push('/(auth)/forgot-password')} hitSlop={8} style={styles.forgot}>
-        <AppText variant="label" color={colors.teal}>
-          {t('auth.forgotPassword')}
-        </AppText>
-      </Pressable>
+      <View style={styles.rememberRow}>
+        <Pressable
+          onPress={() => setRemember((v) => !v)}
+          hitSlop={8}
+          style={styles.remember}
+          accessibilityRole="checkbox"
+          accessibilityState={{ checked: remember }}
+          accessibilityLabel={t('auth.rememberMe')}
+        >
+          <Ionicons
+            name={remember ? 'checkbox' : 'square-outline'}
+            size={20}
+            color={remember ? colors.primary : colors.textMuted}
+          />
+          <AppText variant="label" color={colors.textMuted}>{t('auth.rememberMe')}</AppText>
+        </Pressable>
+        <Pressable onPress={() => router.push('/(auth)/forgot-password')} hitSlop={8}>
+          <AppText variant="label" color={colors.teal}>
+            {t('auth.forgotPassword')}
+          </AppText>
+        </Pressable>
+      </View>
 
       {formError ? (
         <AppText variant="label" color={colors.danger} center style={styles.formError}>
@@ -204,7 +251,13 @@ const styles = StyleSheet.create({
     padding: spacing.md,
     marginBottom: spacing.lg,
   },
-  forgot: { alignSelf: 'flex-end', marginBottom: spacing.lg },
+  rememberRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: spacing.lg,
+  },
+  remember: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs },
   formError: { marginBottom: spacing.md },
   googleButton: {
     marginTop: spacing.md,

@@ -41,6 +41,7 @@ export default {
     noAccount: "Don't have an account?",
     hasAccount: 'Already have an account?',
     forgotPassword: 'Forgot your password?',
+    rememberMe: 'Remember password',
     resetTitle: 'Reset password',
     resetHint: "We'll email you a reset link.",
     resetSent: 'Email sent. Check your inbox.',

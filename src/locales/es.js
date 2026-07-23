@@ -41,6 +41,7 @@ export default {
     noAccount: '¿No tienes cuenta?',
     hasAccount: '¿Ya tienes cuenta?',
     forgotPassword: '¿Olvidaste tu contraseña?',
+    rememberMe: 'Recordar contraseña',
     resetTitle: 'Recuperar contraseña',
     resetHint: 'Te enviaremos un correo para restablecerla.',
     resetSent: 'Te enviamos un correo. Revisa tu bandeja.',
