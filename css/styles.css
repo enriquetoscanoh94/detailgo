@@ -341,6 +341,20 @@ a:focus-visible, button:focus-visible, .primary-button:focus-visible, .secondary
   box-shadow: 0 16px 34px rgba(251, 146, 60, 0.30);
 }
 .primary-button.accent-button:hover { box-shadow: 0 22px 48px rgba(251, 146, 60, 0.44); }
+
+/* Seccion "Zonas donde trabajamos" (mapa) */
+.zones-section { padding: clamp(56px, 7vw, 92px) clamp(18px, 6vw, 88px); }
+.zones-map {
+  height: 480px;
+  margin-top: 12px;
+  border-radius: var(--radius);
+  overflow: hidden;
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 50px rgba(0, 0, 0, 0.4);
+}
+.zones-map.leaflet-container { background: #06101F; }
+.zones-note { text-align: center; margin-top: 20px; color: var(--muted); font-weight: 600; }
+@media (max-width: 640px) { .zones-map { height: 380px; } }
 .work-section {
   grid-template-columns: minmax(0, 1fr) auto;
   align-items: center;

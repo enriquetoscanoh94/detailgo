@@ -15,10 +15,23 @@
     // Nav
     'nav.about': 'About',
     'nav.services': 'Packages',
+    'nav.zones': 'Areas',
     'nav.app': 'App',
     'nav.work': 'Detailers',
     'nav.login': 'Log in',
     'nav.register': 'Sign up',
+
+    // Zones
+    'zones.eyebrow': 'Coverage',
+    'zones.title': 'Areas we serve',
+    'zones.text': 'We cover Santa Clarita and the greater Los Angeles area. The zones marked in red are our coverage.',
+    'zones.scv': 'Santa Clarita Valley',
+    'zones.sfv': 'San Fernando Valley',
+    'zones.verdugos': 'Verdugos & Foothills',
+    'zones.central': 'Central & East LA',
+    'zones.westside': 'Westside',
+    'zones.ventura': 'Ventura County',
+    'zones.note': "The areas in red are where we go. Don't see your area? Reach out — we keep growing.",
 
     // Hero
     'hero.eyebrow': 'Mobile car wash in Los Angeles',
@@ -91,6 +104,7 @@
     'dialog.eyebrow': 'Detailer application',
     'dialog.intro': "Fill in your details. Your application reaches the admin inside their app.",
     'form.name': 'Full name',
+    'form.email': 'Email',
     'form.phone': 'Phone',
     'form.address': 'Address',
     'form.zone': 'Area where you live',

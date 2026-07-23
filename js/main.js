@@ -69,7 +69,7 @@ document.addEventListener('DOMContentLoaded', function () {
     const formData = new FormData(form);
     const payload = {
       name: String(formData.get('name') ?? '').trim(),
-      email: '',
+      email: String(formData.get('email') ?? '').trim(),
       phone: String(formData.get('phone') ?? '').trim(),
       address: String(formData.get('address') ?? '').trim(),
       zone: String(formData.get('zone') ?? '').trim(),
@@ -82,8 +82,13 @@ document.addEventListener('DOMContentLoaded', function () {
       createdAt: serverTimestamp(),
     };
 
-    if (!payload.name || !payload.phone || !payload.address || !payload.zone) {
-      status.textContent = 'Completa nombre, telefono, direccion y area.';
+    if (!payload.name || !payload.email || !payload.phone || !payload.address || !payload.zone) {
+      status.textContent = 'Completa nombre, correo, telefono, direccion y area.';
+      status.classList.add('error');
+      return;
+    }
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(payload.email)) {
+      status.textContent = 'Escribe un correo valido.';
       status.classList.add('error');
       return;
     }

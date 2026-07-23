@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="vendor/leaflet/leaflet.css" />
   <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
@@ -21,6 +22,7 @@
     <nav class="desktop-nav" aria-label="Navegacion principal">
       <a href="#about" data-i18n="nav.about">Quienes somos</a>
       <a href="#services" data-i18n="nav.services">Paquetes</a>
+      <a href="#zones" data-i18n="nav.zones">Zonas</a>
       <a href="#app" data-i18n="nav.app">App</a>
       <a href="#work" data-i18n="nav.work">Detailers</a>
     </nav>
@@ -34,6 +36,7 @@
   <nav class="mobile-nav" aria-label="Menu movil">
     <a href="#about" data-i18n="nav.about">Quienes somos</a>
     <a href="#services" data-i18n="nav.services">Paquetes</a>
+    <a href="#zones" data-i18n="nav.zones">Zonas</a>
     <a href="#app" data-i18n="nav.app">App</a>
     <a href="#work" data-i18n="nav.work">Detailers</a>
     <a href="/app/login" data-i18n="nav.login">Iniciar sesion</a>
@@ -149,6 +152,17 @@
       </div>
     </section>
 
+    <section class="zones-section" id="zones">
+      <div class="section-heading">
+        <p class="eyebrow" data-i18n="zones.eyebrow">Cobertura</p>
+        <h2 data-i18n="zones.title">Zonas donde trabajamos</h2>
+        <p data-i18n="zones.text">Llegamos a Santa Clarita y toda el area de Los Angeles. Las zonas marcadas en rojo son nuestra cobertura.</p>
+      </div>
+
+      <div id="zonesMap" class="zones-map" role="img" aria-label="Mapa de las zonas de servicio de Detail Go en el area de Los Angeles"></div>
+      <p class="zones-note" data-i18n="zones.note">Las areas en rojo son donde llegamos. No ves tu zona? Escribenos, seguimos creciendo.</p>
+    </section>
+
     <section class="app-section" id="app">
       <div class="section-heading">
         <p class="eyebrow" data-i18n="app.eyebrow">App iOS y Android</p>
@@ -209,6 +223,7 @@
       <form class="detailer-form" id="detailerForm">
         <div class="form-grid">
           <label><span data-i18n="form.name">Nombre completo</span><input name="name" type="text" autocomplete="name" required /></label>
+          <label><span data-i18n="form.email">Correo electronico</span><input name="email" type="email" autocomplete="email" required /></label>
           <label><span data-i18n="form.phone">Telefono</span><input name="phone" type="tel" autocomplete="tel" required /></label>
           <label><span data-i18n="form.address">Direccion</span><input name="address" type="text" autocomplete="street-address" required /></label>
           <label><span data-i18n="form.zone">Area donde vive</span><input name="zone" type="text" required /></label>
@@ -235,6 +250,8 @@
     <p>DetailGO Car Wash Mobile - Los Angeles, CA</p>
   </footer>
 
+  <script src="vendor/leaflet/leaflet.js" defer></script>
+  <script src="js/zones-map.js" defer></script>
   <script src="js/i18n.js" defer></script>
   <script type="module" src="js/main.js"></script>
 </body>
