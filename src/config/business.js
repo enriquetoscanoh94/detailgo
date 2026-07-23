@@ -33,8 +33,8 @@ export const BUSINESS = {
   // Horario de servicio (hora local del negocio, formato 24h).
   // El calendario genera bloques por hora dentro de esta ventana.
   hours: {
-    open: 8, // 8:00 AM
-    close: 18, // 6:00 PM (último bloque agendable: 17:00)
+    open: 7, // 7:00 AM (primer bloque agendable)
+    close: 20, // exclusivo: último bloque agendable = 19:00 (7:00 PM)
     slotMinutes: 60,
   },
 

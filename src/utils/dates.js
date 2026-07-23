@@ -3,7 +3,7 @@
  *
  * Rules (from BUSINESS.hours / BUSINESS.booking):
  *   - Orders can be scheduled for TODAY or TOMORROW only (maxLeadDays = 1).
- *   - Hourly slots live within [open, close): open 8 / close 18 → 8:00…17:00.
+ *   - Hourly slots live within [open, close): open 7 / close 20 → 7:00…19:00.
  *   - A slot must be at least `minLeadHours` ahead of "now". If today has no
  *     remaining valid slot, today becomes unavailable.
  *
