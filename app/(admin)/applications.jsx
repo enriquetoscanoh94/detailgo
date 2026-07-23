@@ -156,14 +156,18 @@ function ApplicationCard({ application }) {
             disabled={!!busyStatus}
             style={styles.actionBtn}
           />
-          <Button
-            title={t('admin.approve')}
-            variant="success"
-            onPress={() => setStatus(APPLICATION_STATUS.APPROVED)}
-            loading={busyStatus === APPLICATION_STATUS.APPROVED}
-            disabled={!!busyStatus}
-            style={styles.actionBtn}
-          />
+          {/* Para clientes, "Aprobar y activar como detailer" (abajo) es el
+              aprobar real; el aprobar genérico solo marcaría el estado. */}
+          {!isClientApp ? (
+            <Button
+              title={t('admin.approve')}
+              variant="success"
+              onPress={() => setStatus(APPLICATION_STATUS.APPROVED)}
+              loading={busyStatus === APPLICATION_STATUS.APPROVED}
+              disabled={!!busyStatus}
+              style={styles.actionBtn}
+            />
+          ) : null}
         </View>
       ) : null}
 

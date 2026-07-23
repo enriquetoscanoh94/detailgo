@@ -58,7 +58,10 @@ function RootNavigator() {
       return;
     }
 
-    // Authenticated: keep users inside their own role group.
+    // Authenticated: keep users inside their own role group. Exception: a
+    // logged-in client may open the "apply to work" screen (to become a
+    // detailer), which lives in the (auth) group.
+    if (segments[1] === 'apply') return;
     const targetGroup = ROLE_GROUP[role];
     if (inAuthGroup || (targetGroup && group !== targetGroup)) {
       router.replace(ROLE_HOME[role] ?? '/(auth)/login');
