@@ -2,6 +2,7 @@ export default {
   common: {
     appName: 'Detail Go',
     save: 'Guardar',
+    saved: 'Guardado',
     cancel: 'Cancelar',
     changePhoto: 'Cambiar foto de perfil',
     continue: 'Continuar',
@@ -78,9 +79,14 @@ export default {
     description: 'Descripción',
   },
 
+  day: {
+    sun: 'Dom', mon: 'Lun', tue: 'Mar', wed: 'Mié', thu: 'Jue', fri: 'Vie', sat: 'Sáb',
+  },
+
   apply: {
     title: 'Solicitud de trabajo',
     intro: 'Déjanos tus datos y te contactaremos.',
+    asClient: 'Estás pidiendo trabajar con tu cuenta actual. Al aprobarla, tu app pasará a ser de detailer.',
     zone: '¿En qué ciudad o zona puedes trabajar?',
     experienceYears: 'Años de experiencia lavando autos',
     hasTransport: '¿Tienes transporte propio?',
@@ -114,6 +120,10 @@ export default {
     availableOff: 'No disponible',
     availableHint: 'Recibirás alertas de nuevas órdenes.',
     unavailableHint: 'Enciende tu disponibilidad para recibir órdenes.',
+    scheduleTitle: 'Mi horario',
+    scheduleHint: 'Marca los días y las horas que puedes trabajar. Solo te avisaremos de órdenes dentro de tu horario.',
+    scheduleFrom: 'Desde',
+    scheduleTo: 'Hasta',
     queueTitle: 'Órdenes disponibles',
     noOrders: 'Sin órdenes por ahora',
     noOrdersHint: 'Cuando un cliente pida un lavado, sonará aquí.',
@@ -136,6 +146,7 @@ export default {
     noActiveOrder: 'No tienes órdenes activas',
     myVehicles: 'Mis vehículos',
     myAddresses: 'Mis direcciones',
+    workWithUs: 'Quiero trabajar aquí',
     history: 'Historial',
     oneActiveOrderOnly: 'Ya tienes una orden activa. Espera a que termine para crear otra.',
   },
@@ -233,6 +244,7 @@ export default {
     hideOrders: 'Ocultar órdenes',
     markPaid: 'Marcar como pagado',
     allSettled: 'Todo liquidado ✓',
+    noSchedule: 'Sin horario configurado',
   },
 
   review: {
@@ -268,6 +280,9 @@ export default {
       rejected: 'Rechazada',
     },
     createDetailer: 'Crear cuenta de detailer',
+    activateDetailer: 'Aprobar y activar como detailer',
+    detailerActivated: 'Cliente activado como detailer. Su app ya es de detailer.',
+    clientWantsToWork: 'Cliente que quiere trabajar',
     createDetailerTitle: 'Nueva cuenta de detailer',
     createDetailerHint: 'Se crea el acceso del detailer. Comparte el correo y la contraseña con él para que inicie sesión.',
     detailerPassword: 'Contraseña temporal',

@@ -77,6 +77,7 @@ export default function ClientProfile() {
 
         <LinkRow icon="car-outline" label={t('client.myVehicles')} onPress={() => router.push('/(client)/vehicles')} />
         <LinkRow icon="location-outline" label={t('client.myAddresses')} onPress={() => router.push('/(client)/addresses')} />
+        <LinkRow icon="briefcase-outline" label={t('client.workWithUs')} onPress={() => router.push('/apply')} />
         <LinkRow icon="shield-checkmark-outline" label={t('account.privacy')} onPress={openPrivacy} />
         <LinkRow icon="document-text-outline" label={t('account.terms')} onPress={openTerms} />
         <LinkRow icon="trash-outline" label={t('account.deleteRequest')} onPress={openDeleteAccount} />

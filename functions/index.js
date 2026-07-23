@@ -29,7 +29,26 @@ exports.onBookingCreated = onDocumentCreated('bookings/{id}', async (event) => {
   const cars = b.carCount ?? (Array.isArray(b.items) ? b.items.length : 1);
   const area = b.address?.city || b.address?.zip || '';
 
-  // Detailers activados con push token válido.
+  // Día de la semana (0=Dom) y hora de la orden, en horario de Los Ángeles.
+  // Sirve para avisar solo a los detailers cuyo horario cubre esa hora.
+  let slotDay = null;
+  let slotHour = null;
+  if (b.scheduledAt && typeof b.scheduledAt.toDate === 'function') {
+    const when = b.scheduledAt.toDate();
+    const DOW = { Sun: 0, Mon: 1, Tue: 2, Wed: 3, Thu: 4, Fri: 5, Sat: 6 };
+    const wd = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', weekday: 'short' }).format(when);
+    slotDay = DOW[wd];
+    slotHour = Number(new Intl.DateTimeFormat('en-US', { timeZone: 'America/Los_Angeles', hour: 'numeric', hour12: false }).format(when)) % 24;
+  }
+
+  // ¿El horario del detailer cubre la hora de la orden? Si no tiene horario
+  // configurado (o la orden no trae hora), no se filtra por horario.
+  const scheduleCovers = (sched) => {
+    if (slotDay === null || !sched || !Array.isArray(sched.days)) return true;
+    return sched.days.includes(slotDay) && slotHour >= sched.startHour && slotHour < sched.endHour;
+  };
+
+  // Detailers activados, con push token válido y cuyo horario cubre la orden.
   const workersSnap = await db
     .collection('users')
     .where('role', '==', 'worker')
@@ -38,8 +57,11 @@ exports.onBookingCreated = onDocumentCreated('bookings/{id}', async (event) => {
 
   const tokens = [];
   workersSnap.forEach((d) => {
-    const tk = d.data().pushToken;
-    if (typeof tk === 'string' && tk.startsWith('ExponentPushToken')) tokens.push(tk);
+    const data = d.data();
+    const tk = data.pushToken;
+    if (typeof tk === 'string' && tk.startsWith('ExponentPushToken') && scheduleCovers(data.schedule)) {
+      tokens.push(tk);
+    }
   });
   if (tokens.length === 0) return;
 

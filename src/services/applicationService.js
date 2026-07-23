@@ -42,6 +42,11 @@ export const submitApplication = async (data) => {
       hasEquipment: Boolean(data.hasEquipment),
       comment: (data.comment ?? '').trim(),
       status: APPLICATION_STATUS.PENDING,
+      // Si un cliente ya registrado pide trabajar, su solicitud queda ligada a
+      // su cuenta (clientUid). El admin la aprueba cambiándole el rol a detailer
+      // en vez de crear una cuenta nueva.
+      source: data.source ?? 'app',
+      ...(data.clientUid ? { clientUid: data.clientUid } : {}),
       createdAt: serverTimestamp(),
     });
   } catch (error) {

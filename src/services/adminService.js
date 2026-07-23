@@ -72,6 +72,25 @@ export const createDetailer = async ({ name, email, phone, password }) => {
   }
 };
 
+/**
+ * Promotes an EXISTING client to detailer (worker): assigns a detailer code and
+ * flips their role. Same account and login — used when a registered client
+ * applies to work and the admin approves. Written by the admin (isAdmin rule).
+ */
+export const promoteToDetailer = async (uid) => {
+  try {
+    const detailerCode = await nextDetailerCode();
+    await setDoc(
+      doc(db, 'users', uid),
+      { role: ROLES.WORKER, detailerCode, available: false },
+      { merge: true }
+    );
+    return detailerCode;
+  } catch (error) {
+    throw toAppError(error);
+  }
+};
+
 /** Live list of all detailers (workers), for the admin. */
 export const subscribeDetailers = (onData, onError) =>
   onSnapshot(

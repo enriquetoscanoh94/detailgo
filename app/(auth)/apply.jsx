@@ -1,14 +1,20 @@
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { View, StyleSheet } from 'react-native';
 
 import { Screen, Header, AppText, Input, Button, SegmentedControl } from '@/components/ui';
 import { useI18n } from '@/context/I18nContext';
+import { useAuth } from '@/context/AuthContext';
 import { submitApplication } from '@/services/applicationService';
 import { isEmail, isNonEmpty, isPhone } from '@/utils/validation';
 import { colors, spacing } from '@/constants/theme';
 
 export default function ApplyScreen() {
   const { t } = useI18n();
+  const { user, profile, role } = useAuth();
+  // Un cliente ya registrado que quiere trabajar: su solicitud se liga a su
+  // cuenta y el admin la aprueba cambiándole el rol (no crea cuenta nueva).
+  const isClient = role === 'client' && !!user;
+  const prefilled = useRef(false);
   const [form, setForm] = useState({
     name: '',
     email: '',
@@ -23,6 +29,19 @@ export default function ApplyScreen() {
   const [formError, setFormError] = useState('');
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+
+  // Prellenar con los datos de la cuenta si es un cliente registrado.
+  useEffect(() => {
+    if (isClient && profile && !prefilled.current) {
+      prefilled.current = true;
+      setForm((f) => ({
+        ...f,
+        name: profile.name ?? f.name,
+        email: profile.email ?? f.email,
+        phone: profile.phone ?? f.phone,
+      }));
+    }
+  }, [isClient, profile]);
 
   const set = (key) => (value) => setForm((f) => ({ ...f, [key]: value }));
 
@@ -46,7 +65,11 @@ export default function ApplyScreen() {
     if (!validate()) return;
     setSubmitting(true);
     try {
-      await submitApplication(form);
+      await submitApplication({
+        ...form,
+        clientUid: isClient ? user.uid : undefined,
+        source: isClient ? 'client' : 'app',
+      });
       setDone(true);
     } catch (err) {
       setFormError(t(err.key ?? 'error.generic'));
@@ -83,6 +106,12 @@ export default function ApplyScreen() {
         <AppText variant="body" muted style={styles.intro}>
           {t('apply.intro')}
         </AppText>
+
+        {isClient ? (
+          <AppText variant="label" color={colors.primary} style={styles.clientNote}>
+            {t('apply.asClient')}
+          </AppText>
+        ) : null}
 
         <Input label={t('auth.name')} value={form.name} onChangeText={set('name')} error={errors.name} autoCapitalize="words" />
         <Input label={t('auth.email')} value={form.email} onChangeText={set('email')} error={errors.email} keyboardType="email-address" autoCapitalize="none" />
@@ -128,6 +157,7 @@ const styles = StyleSheet.create({
   headerWrap: { paddingHorizontal: spacing.lg },
   body: { paddingHorizontal: spacing.lg, paddingTop: spacing.md },
   intro: { marginBottom: spacing.lg },
+  clientNote: { marginBottom: spacing.lg },
   qLabel: { marginBottom: spacing.sm },
   seg: { marginBottom: spacing.lg },
   formError: { marginBottom: spacing.md },

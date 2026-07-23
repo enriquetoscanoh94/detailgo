@@ -2,6 +2,7 @@ export default {
   common: {
     appName: 'Detail Go',
     save: 'Save',
+    saved: 'Saved',
     cancel: 'Cancel',
     changePhoto: 'Change profile photo',
     continue: 'Continue',
@@ -78,9 +79,14 @@ export default {
     description: 'Description',
   },
 
+  day: {
+    sun: 'Sun', mon: 'Mon', tue: 'Tue', wed: 'Wed', thu: 'Thu', fri: 'Fri', sat: 'Sat',
+  },
+
   apply: {
     title: 'Job application',
     intro: 'Leave your details and we will contact you.',
+    asClient: 'You are applying with your current account. Once approved, your app becomes a detailer app.',
     zone: 'Which city or area can you work in?',
     experienceYears: 'Years washing cars',
     hasTransport: 'Do you have your own transport?',
@@ -114,6 +120,10 @@ export default {
     availableOff: 'Unavailable',
     availableHint: "You'll get alerts for new orders.",
     unavailableHint: 'Turn availability on to receive orders.',
+    scheduleTitle: 'My schedule',
+    scheduleHint: 'Mark the days and hours you can work. We will only ring you for orders within your schedule.',
+    scheduleFrom: 'From',
+    scheduleTo: 'To',
     queueTitle: 'Available orders',
     noOrders: 'No orders right now',
     noOrdersHint: 'When a client requests a wash, it will ring here.',
@@ -136,6 +146,7 @@ export default {
     noActiveOrder: 'You have no active orders',
     myVehicles: 'My vehicles',
     myAddresses: 'My addresses',
+    workWithUs: 'I want to work here',
     history: 'History',
     oneActiveOrderOnly: 'You already have an active order. Wait until it finishes to create another.',
   },
@@ -233,6 +244,7 @@ export default {
     hideOrders: 'Hide orders',
     markPaid: 'Mark as paid',
     allSettled: 'All settled ✓',
+    noSchedule: 'No schedule set',
   },
 
   review: {
@@ -268,6 +280,9 @@ export default {
       rejected: 'Rejected',
     },
     createDetailer: 'Create detailer account',
+    activateDetailer: 'Approve and activate as detailer',
+    detailerActivated: 'Client activated as detailer. Their app is now a detailer app.',
+    clientWantsToWork: 'Client who wants to work',
     createDetailerTitle: 'New detailer account',
     createDetailerHint: 'Creates the detailer login. Share the email and password with them so they can sign in.',
     detailerPassword: 'Temporary password',

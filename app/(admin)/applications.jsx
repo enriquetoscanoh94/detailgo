@@ -11,7 +11,7 @@ import {
   subscribeApplications,
   updateApplicationStatus,
 } from '@/services/applicationService';
-import { createDetailer } from '@/services/adminService';
+import { createDetailer, promoteToDetailer } from '@/services/adminService';
 import { isEmail, isStrongEnoughPassword } from '@/utils/validation';
 import { toDate } from '@/utils/dates';
 
@@ -32,6 +32,22 @@ function ApplicationCard({ application }) {
   const createdAt = toDate(application.createdAt);
   const status = application.status ?? APPLICATION_STATUS.PENDING;
   const isPending = status === APPLICATION_STATUS.PENDING;
+  // Solicitud de un cliente ya registrado: se aprueba cambiando su rol.
+  const isClientApp = !!application.clientUid;
+  const [promoting, setPromoting] = useState(false);
+
+  const promote = async () => {
+    setPromoting(true);
+    try {
+      await promoteToDetailer(application.clientUid);
+      await updateApplicationStatus(application.id, APPLICATION_STATUS.APPROVED).catch(() => {});
+      Alert.alert(t('common.close'), t('admin.detailerActivated'));
+    } catch (error) {
+      Alert.alert(t('common.close'), t(error.key ?? 'error.generic'));
+    } finally {
+      setPromoting(false);
+    }
+  };
 
   // "Create detailer account" form state.
   const [showForm, setShowForm] = useState(false);
@@ -96,9 +112,19 @@ function ApplicationCard({ application }) {
       </View>
 
       <View style={styles.metaRow}>
+        <Ionicons name="mail-outline" size={16} color={colors.textMuted} />
+        <AppText variant="body">{application.email || '—'}</AppText>
+      </View>
+      <View style={styles.metaRow}>
         <Ionicons name="call-outline" size={16} color={colors.textMuted} />
         <AppText variant="body">{application.phone || '—'}</AppText>
       </View>
+      {isClientApp ? (
+        <View style={styles.clientTag}>
+          <Ionicons name="person-circle-outline" size={16} color={colors.primary} />
+          <AppText variant="caption" color={colors.primary}>{t('admin.clientWantsToWork')}</AppText>
+        </View>
+      ) : null}
       <View style={styles.metaRow}>
         <Ionicons name="location-outline" size={16} color={colors.textMuted} />
         <AppText variant="body">{application.address || '—'}</AppText>
@@ -142,16 +168,26 @@ function ApplicationCard({ application }) {
       ) : null}
 
       {status !== APPLICATION_STATUS.REJECTED ? (
-        <Button
-          title={t('admin.createDetailer')}
-          onPress={() => {
-            setFormError('');
-            setEmail(application.email ?? '');
-            setPassword('');
-            setShowForm(true);
-          }}
-          style={styles.createBtn}
-        />
+        isClientApp ? (
+          <Button
+            title={t('admin.activateDetailer')}
+            variant="success"
+            onPress={promote}
+            loading={promoting}
+            style={styles.createBtn}
+          />
+        ) : (
+          <Button
+            title={t('admin.createDetailer')}
+            onPress={() => {
+              setFormError('');
+              setEmail(application.email ?? '');
+              setPassword('');
+              setShowForm(true);
+            }}
+            style={styles.createBtn}
+          />
+        )
       ) : null}
 
       <Modal visible={showForm} animationType="slide" transparent onRequestClose={() => setShowForm(false)}>
@@ -239,6 +275,7 @@ const styles = StyleSheet.create({
   card: { gap: spacing.sm },
   cardHead: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
   metaRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs },
+  clientTag: { flexDirection: 'row', alignItems: 'center', gap: spacing.xs, marginTop: spacing.xs },
   booleanGrid: { gap: spacing.xs, marginTop: spacing.xs },
   commentBox: {
     gap: spacing.xs,

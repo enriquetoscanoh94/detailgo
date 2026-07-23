@@ -23,7 +23,8 @@ import { useSubscription } from '@/hooks/useSubscription';
 import { useOrderAlert } from '@/hooks/useOrderAlert';
 import { usePushRegistration } from '@/hooks/usePushRegistration';
 import { confirmAction } from '@/utils/confirm';
-import { setAvailability } from '@/services/userService';
+import { setAvailability, setSchedule } from '@/services/userService';
+import { BUSINESS } from '@/config/business';
 import {
   subscribeSearchingOrders,
   subscribeWorkerActiveBooking,
@@ -53,6 +54,88 @@ const nextStatus = (status) => {
   const idx = WORKER_PROGRESS_FLOW.indexOf(status);
   return idx === -1 ? WORKER_PROGRESS_FLOW[0] : WORKER_PROGRESS_FLOW[idx + 1];
 };
+
+const DAY_KEYS = ['day.sun', 'day.mon', 'day.tue', 'day.wed', 'day.thu', 'day.fri', 'day.sat'];
+const fmtHour = (h) => `${(h % 12) || 12}${h < 12 || h === 24 ? 'am' : 'pm'}`;
+
+/** Detailer's weekly schedule editor: which days + hour range they can work. */
+function ScheduleCard({ profile, uid, t }) {
+  const initial = profile?.schedule ?? {
+    days: [1, 2, 3, 4, 5, 6],
+    startHour: BUSINESS.hours.open,
+    endHour: BUSINESS.hours.close,
+  };
+  const [days, setDays] = useState(initial.days ?? []);
+  const [startHour, setStartHour] = useState(initial.startHour ?? BUSINESS.hours.open);
+  const [endHour, setEndHour] = useState(initial.endHour ?? BUSINESS.hours.close);
+  const [saving, setSaving] = useState(false);
+  const [saved, setSaved] = useState(false);
+
+  const dirty = () => setSaved(false);
+  const toggleDay = (d) => {
+    dirty();
+    setDays((arr) => (arr.includes(d) ? arr.filter((x) => x !== d) : [...arr, d].sort((a, b) => a - b)));
+  };
+  const bumpStart = (delta) => { dirty(); setStartHour((h) => Math.max(4, Math.min(h + delta, endHour - 1))); };
+  const bumpEnd = (delta) => { dirty(); setEndHour((h) => Math.max(startHour + 1, Math.min(h + delta, 23))); };
+
+  const save = async () => {
+    setSaving(true);
+    try {
+      await setSchedule(uid, { days, startHour, endHour });
+      setSaved(true);
+    } catch (err) {
+      Alert.alert(t('common.close'), t(err.key ?? 'error.generic'));
+    } finally {
+      setSaving(false);
+    }
+  };
+
+  return (
+    <Card style={styles.schedCard}>
+      <AppText variant="subtitle">{t('worker.scheduleTitle')}</AppText>
+      <AppText variant="caption" style={styles.schedHint}>{t('worker.scheduleHint')}</AppText>
+
+      <View style={styles.dayRow}>
+        {DAY_KEYS.map((key, d) => {
+          const on = days.includes(d);
+          return (
+            <Pressable key={d} onPress={() => toggleDay(d)} style={[styles.dayChip, on && styles.dayChipOn]}>
+              <AppText variant="caption" color={on ? colors.textOnPrimary : colors.text}>{t(key)}</AppText>
+            </Pressable>
+          );
+        })}
+      </View>
+
+      <View style={styles.hourRow}>
+        <View style={styles.hourCol}>
+          <AppText variant="caption">{t('worker.scheduleFrom')}</AppText>
+          <View style={styles.stepper}>
+            <Pressable onPress={() => bumpStart(-1)} style={styles.stepBtn}><AppText variant="subtitle">−</AppText></Pressable>
+            <AppText variant="subtitle">{fmtHour(startHour)}</AppText>
+            <Pressable onPress={() => bumpStart(1)} style={styles.stepBtn}><AppText variant="subtitle">+</AppText></Pressable>
+          </View>
+        </View>
+        <View style={styles.hourCol}>
+          <AppText variant="caption">{t('worker.scheduleTo')}</AppText>
+          <View style={styles.stepper}>
+            <Pressable onPress={() => bumpEnd(-1)} style={styles.stepBtn}><AppText variant="subtitle">−</AppText></Pressable>
+            <AppText variant="subtitle">{fmtHour(endHour)}</AppText>
+            <Pressable onPress={() => bumpEnd(1)} style={styles.stepBtn}><AppText variant="subtitle">+</AppText></Pressable>
+          </View>
+        </View>
+      </View>
+
+      <Button
+        title={saved ? t('common.saved') : t('common.save')}
+        onPress={save}
+        loading={saving}
+        disabled={days.length === 0}
+        style={styles.schedSave}
+      />
+    </Card>
+  );
+}
 
 export default function AvailabilityScreen() {
   const { t, lang } = useI18n();
@@ -228,6 +311,8 @@ export default function AvailabilityScreen() {
                 />
               </View>
             </Card>
+
+            <ScheduleCard profile={profile} uid={user.uid} t={t} />
 
             {available ? (
               <View style={styles.listArea}>
@@ -420,6 +505,35 @@ const styles = StyleSheet.create({
   earnRow: { flexDirection: 'row', gap: spacing.md },
   toggleCard: { marginTop: spacing.lg, borderRadius: radius.lg },
   toggleRow: { flexDirection: 'row', alignItems: 'center' },
+  schedCard: { marginTop: spacing.md, borderRadius: radius.lg, gap: spacing.xs },
+  schedHint: { marginBottom: spacing.sm },
+  dayRow: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing.xs },
+  dayChip: {
+    paddingVertical: 8,
+    paddingHorizontal: 12,
+    borderRadius: radius.md,
+    borderWidth: 1.5,
+    borderColor: colors.border,
+    backgroundColor: colors.surface,
+    minWidth: 46,
+    alignItems: 'center',
+  },
+  dayChipOn: { backgroundColor: colors.primary, borderColor: colors.primary },
+  hourRow: { flexDirection: 'row', gap: spacing.md, marginTop: spacing.md },
+  hourCol: { flex: 1, gap: spacing.xs },
+  stepper: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderWidth: 1.5,
+    borderColor: colors.border,
+    borderRadius: radius.md,
+    paddingHorizontal: spacing.md,
+    paddingVertical: spacing.sm,
+    backgroundColor: colors.surface,
+  },
+  stepBtn: { paddingHorizontal: spacing.sm },
+  schedSave: { marginTop: spacing.md },
   listArea: { marginTop: spacing.xl },
   historyArea: { marginTop: spacing.xl },
   historyRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.md, marginTop: spacing.sm },

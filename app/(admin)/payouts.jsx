@@ -19,6 +19,13 @@ import { ratingFace } from '@/screens/AvailabilityScreen';
 import { formatMoney } from '@/utils/money';
 import { colors, spacing, radius } from '@/constants/theme';
 
+const DAY_KEYS = ['day.sun', 'day.mon', 'day.tue', 'day.wed', 'day.thu', 'day.fri', 'day.sat'];
+const fmtH = (h) => `${(h % 12) || 12}${h < 12 || h === 24 ? 'am' : 'pm'}`;
+const formatSchedule = (s, t) => {
+  const days = (s.days ?? []).slice().sort((a, b) => a - b).map((d) => t(DAY_KEYS[d])).join(' ');
+  return `${days} · ${fmtH(s.startHour)}–${fmtH(s.endHour)}`;
+};
+
 export default function AdminPayouts() {
   const { t } = useI18n();
   const detailers = useSubscription((d, e) => subscribeDetailers(d, e), []);
@@ -87,6 +94,15 @@ function DetailerRow({ detailer, summary, t }) {
               {t('review.avg')}: {ratingFace(summary.avgRating)} ({summary.reviewCount})
             </AppText>
           ) : null}
+          {detailer.schedule?.days?.length ? (
+            <AppText variant="caption" muted>
+              🗓️ {formatSchedule(detailer.schedule, t)}
+            </AppText>
+          ) : (
+            <AppText variant="caption" color={colors.textMuted}>
+              {t('payout.noSchedule')}
+            </AppText>
+          )}
         </View>
         <View style={styles.amountBox}>
           <AppText variant="caption">{owesBusiness ? t('payout.owesBusiness') : t('payout.toPay')}</AppText>

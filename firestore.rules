@@ -49,7 +49,7 @@ service cloud.firestore {
       // admin-only.
       allow update: if isAdmin()
         || (isSignedIn() && request.auth.uid == uid
-            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['available', 'photoUrl', 'pushToken']));
+            && request.resource.data.diff(resource.data).affectedKeys().hasOnly(['available', 'photoUrl', 'pushToken', 'schedule']));
 
       allow delete: if isAdmin();
 
